@@ -62,6 +62,7 @@ require('packer').startup( function(use)
     config = function() require('plugins.configs.lsp.cmp') end }
   use {'hrsh7th/cmp-vsnip'}
   use {'hrsh7th/vim-vsnip'}
+  use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
   -- TODO: there is a bug ...
   use {'Thiago4532/lsp-semantic.nvim'}
   use {'ahmedkhalf/project.nvim',
@@ -73,8 +74,6 @@ require('packer').startup( function(use)
   use {'folke/lsp-colors.nvim'}
   use {'folke/trouble.nvim'}
   use {'lewis6991/spellsitter.nvim'}
-
-
 
   if Packer_bootstrap then
     require('packer').sync()
