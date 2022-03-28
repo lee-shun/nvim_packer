@@ -124,5 +124,70 @@ vim.o.undodir=global.vim_config_path..'tmp/undo'
 vim.o.backupdir=global.vim_config_path..'tmp/backup'
 vim.o.directory=global.vim_config_path..'tmp/backup'
 
+vim.opt.wildignore:append('*.o,*.obj,*.bin,*.dll,*.exe')
+vim.opt.wildignore:append('*/.git/*,*/.svn/*,*/__pycache__/*,*/build/**')
+vim.opt.wildignore:append('*.pyc')
+vim.opt.wildignore:append('*.DS_Store')
+vim.opt.wildignore:append('*.aux,*.bbl,*.blg,*.brf,*.fls,*.fdb_latexmk,*.synctex.gz,*.pdf')
 
+vim.cmd([[
+autocmd BufNewFile,BufRead *.launch set filetype=xml
+autocmd BufNewFile,BufRead *.Md set filetype=markdown
+autocmd BufNewFile,BufRead *.ejs set filetype=html
+]])
 
+vim.g.netrw_preview	=1
+vim.g.netrw_hide = 1
+vim.g.netrw_liststyle = 3
+vim.g.netrw_banner = 0
+vim.g.netrw_browse_split = 4
+vim.g.netrw_winsize = 30
+vim.g.netrw_altv = 1
+vim.g.netrw_chgwin = 2
+vim.g.netrw_list_hide = '.*\\.swp$'
+vim.g.netrw_localrmdir = 'rm -rf'
+
+if vim.fn.exists('##CmdLineEnter') then
+  vim.cmd([[
+        augroup dynamic_smartcase
+            autocmd!
+            autocmd CmdLineEnter : set nosmartcase
+            autocmd CmdLineLeave : set smartcase
+        augroup END
+    ]])
+end
+
+vim.cmd([[
+augroup accurate_syn_highlight
+    autocmd!
+    autocmd BufEnter * :syntax sync fromstart
+augroup END
+]])
+
+vim.cmd([[
+augroup non_utf8_file_warn
+    autocmd!
+    autocmd BufRead * if &fileencoding != 'utf-8' && expand('%:e') != 'gz'
+                \ | unsilent echomsg 'File not in UTF-8 format!' | endif
+augroup END
+]])
+
+vim.cmd([[
+augroup number_toggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &number | set relativenumber | endif
+    autocmd BufLeave,FocusLost,InsertEnter,WinLeave * if &number | set norelativenumber | endif
+augroup END
+]])
+
+vim.g.neoterm_autoscroll = 1
+if vim.fn.exists('##TermOpen') then
+  vim.cmd([[
+        augroup term_settings
+        autocmd!
+        autocmd TermOpen * setlocal norelativenumber nonumber
+        autocmd TermOpen * startinsert
+    augroup END
+
+]])
+end
