@@ -13,7 +13,8 @@ require('packer').startup( function(use)
   use {'nvim-lua/plenary.nvim'}
 
   -- UI
-  use {'arcticicestudio/nord-vim'}
+  use {'arcticicestudio/nord-vim',
+    config = function() vim.cmd('colorscheme nord') end}
   use {'glepnir/galaxyline.nvim',
     branch = 'main',
     requires = {'kyazdani42/nvim-web-devicons', opt = true},
@@ -79,5 +80,3 @@ require('packer').startup( function(use)
     require('packer').sync()
   end
 end)
-
-require('plugins.configs.color')
