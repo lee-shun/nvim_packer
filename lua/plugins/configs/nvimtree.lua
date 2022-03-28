@@ -10,6 +10,11 @@ vim.api.nvim_set_keymap(
 )
 
 require('nvim-tree').setup {
+  git = {
+    enable = true,
+    ignore = false,
+    timeout = 400,
+  },
   view = {
     width = 30,
     height = 30,

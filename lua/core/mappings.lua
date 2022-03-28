@@ -35,3 +35,7 @@ vim.api.nvim_set_keymap('v', 'K', ':m \'<-2<CR>gv=gv', {noremap = true})
 vim.api.nvim_set_keymap('n', 'n', 'nzzzv', {noremap = true})
 vim.api.nvim_set_keymap('n', 'N', 'Nzzzv', {noremap = true})
 vim.api.nvim_set_keymap('n', 'J', 'mzJ\'z', {noremap = true})
+
+-- terminal
+vim.api.nvim_set_keymap('t', '<C-N>', '<C-\\><C-N>', {noremap = true})
+
