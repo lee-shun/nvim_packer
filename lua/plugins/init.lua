@@ -8,6 +8,11 @@ end
 require('packer').startup( function(use)
     use { 'wbthomason/packer.nvim'}
 
+    -- commom libs
+    use {'nvim-lua/popup.nvim'}
+    use {'nvim-lua/plenary.nvim'}
+
+
     -- UI
     use {'arcticicestudio/nord-vim'}
     use { 'glepnir/galaxyline.nvim',
@@ -15,11 +20,16 @@ require('packer').startup( function(use)
     requires = {'kyazdani42/nvim-web-devicons', opt = true} }
     use {'Avimitin/nerd-galaxyline',
     requires = { 'Avimitin/neovim-deus'}}
+    use { 'glepnir/dashboard-nvim',
+    config = function() require('plugins.configs.dashboard') end}
 
     -- file navgative
     use { 'kyazdani42/nvim-tree.lua',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     config = function() require('plugins.configs.nvimtree') end }
+
+    use {'nvim-telescope/telescope.nvim',
+    config = function() require('plugins.configs.telescope') end }
 
     if packer_bootstrap then
         require('packer').sync()
