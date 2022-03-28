@@ -23,20 +23,11 @@ local createdir = function ()
 end
 
 createdir()
---
--- options
---
+
 vim.o.encoding='utf-8'
 vim.o.fileencodings = 'ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1'
 vim.o.termencoding='utf-8'
 vim.o.fileformats='unix,dos,mac'
-
-vim.cmd([[
-augroup Format-Options
-autocmd!
-autocmd BufEnter * setlocal formatoptions+=m formatoptions+=B formatoptions-=o
-augroup END
-]])
 
 vim.cmd('filetype plugin indent on')
 vim.o.compatible=false
@@ -110,12 +101,8 @@ vim.opt.clipboard:prepend('unnamed,unnamedplus')
 vim.o.completeopt='menuone,noselect,noinsert'
 vim.opt.complete:append('k')
 
-vim.cmd([[
-augroup Restore-Pos
-autocmd!
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-augroup END
-]])
+vim.o.splitright=true
+vim.o.splitbelow=true
 
 vim.o.undofile = true
 vim.o.swapfile = true
@@ -130,12 +117,6 @@ vim.opt.wildignore:append('*.pyc')
 vim.opt.wildignore:append('*.DS_Store')
 vim.opt.wildignore:append('*.aux,*.bbl,*.blg,*.brf,*.fls,*.fdb_latexmk,*.synctex.gz,*.pdf')
 
-vim.cmd([[
-autocmd BufNewFile,BufRead *.launch set filetype=xml
-autocmd BufNewFile,BufRead *.Md set filetype=markdown
-autocmd BufNewFile,BufRead *.ejs set filetype=html
-]])
-
 vim.g.netrw_preview	=1
 vim.g.netrw_hide = 1
 vim.g.netrw_liststyle = 3
@@ -146,6 +127,29 @@ vim.g.netrw_altv = 1
 vim.g.netrw_chgwin = 2
 vim.g.netrw_list_hide = '.*\\.swp$'
 vim.g.netrw_localrmdir = 'rm -rf'
+
+vim.cmd([[
+augroup format_options
+autocmd!
+autocmd BufEnter * setlocal formatoptions+=m formatoptions+=B formatoptions-=o
+augroup END
+]])
+
+vim.cmd([[
+augroup restore_pos
+autocmd!
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+augroup END
+]])
+
+vim.cmd([[
+augroup file_types
+autocmd!
+autocmd BufNewFile,BufRead *.launch set filetype=xml
+autocmd BufNewFile,BufRead *.Md set filetype=markdown
+autocmd BufNewFile,BufRead *.ejs set filetype=html
+augroup END
+]])
 
 if vim.fn.exists('##CmdLineEnter') then
   vim.cmd([[
