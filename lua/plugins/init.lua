@@ -1,7 +1,7 @@
 -- install packer
 local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  packer_bootstrap = vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  Packer_bootstrap = vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
 -- plugins
@@ -48,8 +48,12 @@ require('packer').startup( function(use)
   use {'nvim-treesitter/playground'}
 
   use {'p00f/nvim-ts-rainbow'}
-  use {'voldikss/vim-floaterm'}
-
+  use {'voldikss/vim-floaterm',
+    config = function ()
+      vim.g.floaterm_keymap_toggle = '<F12>'
+      vim.g.floaterm_width = 0.8
+      vim.g.floaterm_height = 0.7
+    end}
 
   -- languages
   use {'sbdchd/neoformat'}
@@ -71,7 +75,7 @@ require('packer').startup( function(use)
     config = function() require('plugins.configs.lsp.project') end }
 
 
-  if packer_bootstrap then
+  if Packer_bootstrap then
     require('packer').sync()
   end
 end)
