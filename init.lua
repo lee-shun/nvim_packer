@@ -89,6 +89,8 @@ vim.opt.clipboard:prepend('unnamed,unnamedplus')
 vim.o.completeopt='menuone,noselect,noinsert'
 vim.opt.complete:append('k')
 vim.opt.dictionary:append('~/.config/nvim/20k')
+vim.api.nvim_set_keymap('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
+vim.api.nvim_set_keymap('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<Tab>"', {expr = true})
 
 
 
