@@ -35,26 +35,24 @@ require('packer').startup( function(use)
   -- general enchance
   use {'windwp/nvim-autopairs',
     config = function() require('nvim-autopairs').setup{} end }
-
   use {'numToStr/Comment.nvim',
     config = function() require('Comment').setup{} end }
-
   use {'norcalli/nvim-colorizer.lua',
     config = function() require('colorizer').setup{} end }
-
   use {'nvim-treesitter/nvim-treesitter', run =':TSUpdate',
     config = function() require('plugins.configs.treesitter') end }
-
   use {'nvim-treesitter/playground'}
-
   use {'p00f/nvim-ts-rainbow'}
-
   use {'voldikss/vim-floaterm',
     config = function ()
       vim.g.floaterm_keymap_toggle = '<F12>'
       vim.g.floaterm_width = 0.8
       vim.g.floaterm_height = 0.7
     end}
+    use {'folke/todo-comments.nvim',
+    config = function() require('plugins.configs.todo_comments') end }
+    use {'lewis6991/gitsigns.nvim',
+    config = function() require('gitsigns').setup{} end }
 
   -- languages
   use {'sbdchd/neoformat'}
