@@ -48,6 +48,7 @@ require('packer').startup( function(use)
   use {'nvim-treesitter/playground'}
 
   use {'p00f/nvim-ts-rainbow'}
+
   use {'voldikss/vim-floaterm',
     config = function ()
       vim.g.floaterm_keymap_toggle = '<F12>'
