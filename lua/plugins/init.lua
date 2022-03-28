@@ -63,13 +63,13 @@ require('packer').startup( function(use)
   use {'hrsh7th/cmp-vsnip'}
   use {'hrsh7th/vim-vsnip'}
   -- TODO: there is a bug ...
-  use {'Thiago4532/lsp-semantic.nvim',}
+  use {'Thiago4532/lsp-semantic.nvim'}
   use {'ahmedkhalf/project.nvim',
     config = function() require('plugins.configs.lsp.project') end }
   use {'onsails/lspkind-nvim',
     config = function() require('plugins.configs.lsp.lspkind') end }
-  use {'glepnir/lspsaga.nvim',
-    config = function() require('plugins.configs.lsp.lspsaga') end }
+  -- use {'glepnir/lspsaga.nvim',
+  --   config = function() require('plugins.configs.lsp.lspsaga') end }
   use {'folke/lsp-colors.nvim'}
   use {'folke/trouble.nvim'}
   use {'lewis6991/spellsitter.nvim'}
