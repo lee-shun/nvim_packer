@@ -14,13 +14,10 @@ require('packer').startup( function(use)
 
   -- UI
   use {'arcticicestudio/nord-vim'}
-
   use {'glepnir/galaxyline.nvim',
     branch = 'main',
     requires = {'kyazdani42/nvim-web-devicons', opt = true},
     config = function() require('plugins.configs.statusline.eviline') end}
-
-
   use {'glepnir/dashboard-nvim',
     config = function() require('plugins.configs.dashboard') end}
 
@@ -28,7 +25,6 @@ require('packer').startup( function(use)
   use {'kyazdani42/nvim-tree.lua',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     config = function() require('plugins.configs.nvimtree') end }
-
   use {'nvim-telescope/telescope.nvim',
     config = function() require('plugins.configs.telescope') end }
 
@@ -49,12 +45,10 @@ require('packer').startup( function(use)
       vim.g.floaterm_width = 0.8
       vim.g.floaterm_height = 0.7
     end}
-    use {'folke/todo-comments.nvim',
+  use {'folke/todo-comments.nvim',
     config = function() require('plugins.configs.todo_comments') end }
-    use {'lewis6991/gitsigns.nvim',
+  use {'lewis6991/gitsigns.nvim',
     config = function() require('gitsigns').setup{} end }
-
-  -- languages
   use {'sbdchd/neoformat'}
 
   -- lsp
