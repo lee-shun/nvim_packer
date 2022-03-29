@@ -34,7 +34,8 @@ require('packer').startup( function(use)
 
   -- general enchance
   use {'windwp/nvim-autopairs',
-    config = function() require('nvim-autopairs').setup{} end }
+    config = function() require('nvim-autopairs').setup{
+        ignored_next_char = ''} end }
   use {'numToStr/Comment.nvim',
     config = function() require('Comment').setup{} end }
   use {'norcalli/nvim-colorizer.lua',
@@ -77,19 +78,8 @@ require('packer').startup( function(use)
   use {'wellle/targets.vim'}
   use {'skywind3000/asyncrun.vim'}
   use {'skywind3000/asynctasks.vim'}
-  use {'907th/vim-auto-save',
-    config = function ()
-      vim.cmd([[
-        let g:auto_save = 0
-        let g:auto_save_silent = 0
-        let g:auto_save_events = ["InsertLeave", "TextChanged"]
-        augroup ft_autosave
-            autocmd!
-            autocmd FileType tex let b:auto_save = 1
-            autocmd FileType cpp let b:auto_save = 1
-            autocmd FileType cmake let b:auto_save = 1
-        augroup END
-        ]])
+  use {'Pocco81/AutoSave.nvim',
+    config = function () require("autosave").setup {}
     end}
 
   -- lsp
@@ -112,9 +102,12 @@ require('packer').startup( function(use)
     config = function() require('plugins.configs.lsp.lspkind') end }
   -- use {'glepnir/lspsaga.nvim',
   --   config = function() require('plugins.configs.lsp.lspsaga') end }
-  use {'folke/lsp-colors.nvim'}
-  use {'folke/trouble.nvim'}
-  use {'lewis6991/spellsitter.nvim'}
+  use {'folke/lsp-colors.nvim',
+    config = function () require("lsp-colors").setup {} end}
+  use {'folke/trouble.nvim',
+    config = function () require("trouble").setup {} end}
+  use {'lewis6991/spellsitter.nvim',
+  config=function () require("spellsitter").setup {} end}
 
   -- language
   use {'taketwo/vim-ros', ft =  {'rosmsg', 'cpp'}, cmd = 'Roscd'}
