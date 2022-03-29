@@ -14,7 +14,7 @@ require('packer').startup( function(use)
 
   -- UI
   use {'arcticicestudio/nord-vim',
-    config = function() vim.cmd('colorscheme nord') end}
+    config = function() vim.cmd('colorscheme sonokai') end}
   use {'sainnhe/sonokai'}
   use {'sainnhe/everforest'}
   use {'machakann/vim-highlightedyank'}
@@ -73,7 +73,7 @@ require('packer').startup( function(use)
   use {'junegunn/vim-easy-align'}
   use {'rhysd/conflict-marker.vim'}
   use {'tpope/vim-fugitive'}
-  use {'mbbill/undotree'}
+  use {'mbbill/undotree', cmd = 'UndotreeToggle '}
   use {'lambdalisue/readablefold.vim'}
   use {'wellle/targets.vim'}
   use {'skywind3000/asyncrun.vim'}
@@ -94,12 +94,12 @@ require('packer').startup( function(use)
   use {'hrsh7th/cmp-vsnip'}
   use {'hrsh7th/vim-vsnip'}
   use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
-  -- TODO: there is a bug ...
   use {'Thiago4532/lsp-semantic.nvim'}
   use {'ahmedkhalf/project.nvim',
     config = function() require('plugins.configs.lsp.project') end }
   use {'onsails/lspkind-nvim',
     config = function() require('plugins.configs.lsp.lspkind') end }
+  -- TODO: there is a bug ...
   -- use {'glepnir/lspsaga.nvim',
   --   config = function() require('plugins.configs.lsp.lspsaga') end }
   use {'folke/lsp-colors.nvim',
@@ -108,6 +108,10 @@ require('packer').startup( function(use)
     config = function () require("trouble").setup {} end}
   use {'lewis6991/spellsitter.nvim',
   config=function () require("spellsitter").setup {} end}
+
+  -- linters
+  use {'mfussenegger/nvim-lint',
+  config=function () require("plugins.configs.nvim_linter") end}
 
   -- language
   use {'taketwo/vim-ros', ft =  {'rosmsg', 'cpp'}, cmd = 'Roscd'}
@@ -136,7 +140,7 @@ require('packer').startup( function(use)
   use {'dhruvasagar/vim-table-mode',  cmd = 'TableModeToggle'}
   use {'lee-shun/vim-markdown-wiki'}
 
-  use {'numirias/semshi', run=':UpdateRemotePlugins'}
+  use {'numirias/semshi', run=':UpdateRemotePlugins<CR>'}
   use {'mboughaba/i3config.vim'}
 
 
