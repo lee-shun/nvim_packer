@@ -76,8 +76,3 @@ require('lspconfig')['sumneko_lua'].setup {
     },
   },
 }
-
--- highlight
-vim.cmd([[
-hi LspSemanticProperty ctermfg=LightRed guifg=LightRed  cterm=none gui=none
-]])

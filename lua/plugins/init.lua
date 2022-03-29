@@ -65,7 +65,7 @@ require('packer').startup( function(use)
     config = function() require('plugins.configs.indent_blankline') end }
   use {'RRethy/vim-illuminate',
     config = function ()
-      vim.g.Illuminate_ftblacklist = "['python', 'coc-explorer']"
+      vim.g.Illuminate_ftblacklist = "['python', 'Nvimtree']"
     end}
   use {'mg979/vim-visual-multi'}
   use {'godlygeek/tabular'}
@@ -79,10 +79,10 @@ require('packer').startup( function(use)
   use {'skywind3000/asynctasks.vim'}
   use {'907th/vim-auto-save',
     config = function ()
-      vim.g.auto_save = 0
-      vim.g.auto_save_silent = 0
-      vim.g.auto_save_events = '["InsertLeave", "TextChanged"]'
       vim.cmd([[
+        let g:auto_save = 0
+        let g:auto_save_silent = 0
+        let g:auto_save_events = ["InsertLeave", "TextChanged"]
         augroup ft_autosave
             autocmd!
             autocmd FileType tex let b:auto_save = 1
