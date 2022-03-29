@@ -63,7 +63,10 @@ require('packer').startup( function(use)
   use {'rlue/vim-barbaric'}
   use {'lukas-reineke/indent-blankline.nvim',
     config = function() require('plugins.configs.indent_blankline') end }
-  use {'RRethy/vim-illuminate'}
+  use {'RRethy/vim-illuminate',
+    config = function ()
+      vim.g.Illuminate_ftblacklist = "['python', 'coc-explorer']"
+    end}
   use {'mg979/vim-visual-multi'}
   use {'godlygeek/tabular'}
   use {'junegunn/vim-easy-align'}
@@ -74,6 +77,20 @@ require('packer').startup( function(use)
   use {'wellle/targets.vim'}
   use {'skywind3000/asyncrun.vim'}
   use {'skywind3000/asynctasks.vim'}
+  use {'907th/vim-auto-save',
+    config = function ()
+      vim.g.auto_save = 0
+      vim.g.auto_save_silent = 0
+      vim.g.auto_save_events = '["InsertLeave", "TextChanged"]'
+      vim.cmd([[
+        augroup ft_autosave
+            autocmd!
+            autocmd FileType tex let b:auto_save = 1
+            autocmd FileType cpp let b:auto_save = 1
+            autocmd FileType cmake let b:auto_save = 1
+        augroup END
+        ]])
+    end}
 
   -- lsp
   use {'neovim/nvim-lspconfig',
@@ -98,6 +115,37 @@ require('packer').startup( function(use)
   use {'folke/lsp-colors.nvim'}
   use {'folke/trouble.nvim'}
   use {'lewis6991/spellsitter.nvim'}
+
+  -- language
+  use {'taketwo/vim-ros', ft =  {'rosmsg', 'cpp'}, cmd = 'Roscd'}
+  use {'thibthib18/ros-nvim', ft =  {'rosmsg', 'cpp'}}
+
+  use {'lervag/vimtex', ft = 'tex'}
+  use {'SidOfc/mkdx', ft={'markdown'},
+    config = function ()
+      vim.cmd([[
+        let g:mkdx#settings = {
+                    \'highlight': { 'enable': 0 },
+                    \'map': { 'prefix': '=' }
+                    \}
+            ]])
+    end}
+  use {'iamcco/markdown-preview.nvim', run=':call mkdp#util#install()', ft ={'markdown'},
+    config = function ()
+      vim.cmd([[
+        function! g:Open_browser(url)
+        silent exec "!google-chrome --password-store=gnome --new-window " . a:url . " &"
+        endfunction
+        ]])
+      vim.g.mkdp_browser = 'google-chrome'
+      vim.g.mkdp_browserfunc = 'g:Open_browser'
+    end}
+  use {'dhruvasagar/vim-table-mode',  cmd = 'TableModeToggle'}
+  use {'lee-shun/vim-markdown-wiki'}
+
+  use {'numirias/semshi', run=':UpdateRemotePlugins'}
+  use {'mboughaba/i3config.vim'}
+
 
   if Packer_bootstrap then
     require('packer').sync()

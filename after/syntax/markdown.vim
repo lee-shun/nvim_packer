@@ -181,4 +181,11 @@ HtmlHiLink mkdDelimiter     Delimiter
 let b:current_syntax = "mkd"
 
 delcommand HtmlHiLink
+
+" ===
+" === markdown(plasticboy)--shun
+" ===
+let g:vim_markdown_math=1
+let g:vim_markdown_conceal=1
+let g:closetag_html_style=1
 " vim: ts=8
