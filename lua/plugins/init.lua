@@ -15,6 +15,9 @@ require('packer').startup( function(use)
   -- UI
   use {'arcticicestudio/nord-vim',
     config = function() vim.cmd('colorscheme nord') end}
+  use {'sainnhe/sonokai'}
+  use {'sainnhe/everforest'}
+  use {'machakann/vim-highlightedyank'}
   use {'glepnir/galaxyline.nvim',
     branch = 'main',
     requires = {'kyazdani42/nvim-web-devicons', opt = true},
@@ -51,6 +54,26 @@ require('packer').startup( function(use)
   use {'lewis6991/gitsigns.nvim',
     config = function() require('gitsigns').setup{} end }
   use {'sbdchd/neoformat'}
+  use {'psliwka/vim-smoothie'}
+  use {'junegunn/vim-peekaboo'}
+  use {'tpope/vim-surround'}
+  use {'tpope/vim-repeat'}
+  use {'AndrewRadev/switch.vim'}
+  use {'liuchengxu/vista.vim'}
+  use {'rlue/vim-barbaric'}
+  use {'lukas-reineke/indent-blankline.nvim',
+    config = function() require('plugins.configs.indent_blankline') end }
+  use {'RRethy/vim-illuminate'}
+  use {'mg979/vim-visual-multi'}
+  use {'godlygeek/tabular'}
+  use {'junegunn/vim-easy-align'}
+  use {'rhysd/conflict-marker.vim'}
+  use {'tpope/vim-fugitive'}
+  use {'mbbill/undotree'}
+  use {'lambdalisue/readablefold.vim'}
+  use {'wellle/targets.vim'}
+  use {'skywind3000/asyncrun.vim'}
+  use {'skywind3000/asynctasks.vim'}
 
   -- lsp
   use {'neovim/nvim-lspconfig',
