@@ -140,7 +140,7 @@ require('packer').startup( function(use)
   use {'dhruvasagar/vim-table-mode',  cmd = 'TableModeToggle'}
   use {'lee-shun/vim-markdown-wiki'}
 
-  use {'numirias/semshi', run=':UpdateRemotePlugins<CR>'}
+  use {'numirias/semshi', run=':UpdateRemotePlugins'}
   use {'mboughaba/i3config.vim'}
 
 
