@@ -84,6 +84,14 @@ local function ins_right(component)
   table.insert(config.sections.lualine_x, component)
 end
 
+local function ins_left_inactive(component)
+  table.insert(config.inactive_sections.lualine_c, component)
+end
+
+local function ins_right_inactive(component)
+  table.insert(config.inactive_sections.lualine_x, component)
+end
+
 ins_left {
   function()
     return '▊'
@@ -133,6 +141,12 @@ ins_left {
 }
 
 ins_left {
+  'filename',
+  cond = conditions.buffer_not_empty,
+  color = { fg = colors.magenta, gui = 'bold' },
+}
+
+ins_left_inactive {
   'filename',
   cond = conditions.buffer_not_empty,
   color = { fg = colors.magenta, gui = 'bold' },
@@ -198,6 +212,12 @@ ins_right {
 }
 
 ins_right {
+  'branch',
+  icon = '',
+  color = { fg = colors.violet, gui = 'bold' },
+}
+
+ins_right_inactive{
   'branch',
   icon = '',
   color = { fg = colors.violet, gui = 'bold' },
