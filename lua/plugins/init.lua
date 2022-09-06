@@ -130,7 +130,6 @@ require('packer').startup( function(use)
       vim.g.mkdp_browser = 'google-chrome'
       vim.g.mkdp_browserfunc = 'g:Open_browser'
     end}
-  use {'dhruvasagar/vim-table-mode',  cmd = 'TableModeToggle', ft = {'markdown'}}
   use {'lee-shun/vim-markdown-wiki', ft = {'markdown'}}
 
   use {'numirias/semshi', run=':UpdateRemotePlugins', ft={'python'}}
