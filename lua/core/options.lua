@@ -117,7 +117,7 @@ vim.opt.wildignore:append('*.pyc')
 vim.opt.wildignore:append('*.DS_Store')
 vim.opt.wildignore:append('*.aux,*.bbl,*.blg,*.brf,*.fls,*.fdb_latexmk,*.synctex.gz,*.pdf')
 
-vim.g.netrw_preview	=1
+vim.g.netrw_preview = 1
 vim.g.netrw_hide = 1
 vim.g.netrw_liststyle = 3
 vim.g.netrw_banner = 0

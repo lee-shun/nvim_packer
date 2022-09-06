@@ -13,21 +13,19 @@ require('packer').startup( function(use)
   use {'nvim-lua/plenary.nvim'}
 
   -- UI
-  use {'arcticicestudio/nord-vim',
-    config = function() vim.cmd('colorscheme sonokai') end}
-  use {'sainnhe/sonokai'}
-  use {'sainnhe/everforest'}
+  use {'marko-cerovac/material.nvim',
+    config = function() vim.cmd('colorscheme material') end}
   use {'machakann/vim-highlightedyank'}
-  use {'glepnir/galaxyline.nvim',
-    branch = 'main',
-    requires = {'kyazdani42/nvim-web-devicons', opt = true},
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     config = function() require('plugins.configs.statusline.eviline') end}
   use {'glepnir/dashboard-nvim',
     config = function() require('plugins.configs.dashboard') end}
 
   -- file navgative
   use {'kyazdani42/nvim-tree.lua',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true, cmd = 'NvimTreeToggle',},
     config = function() require('plugins.configs.nvimtree') end }
   use {'nvim-telescope/telescope.nvim',
     config = function() require('plugins.configs.telescope') end }
@@ -35,7 +33,7 @@ require('packer').startup( function(use)
   -- general enchance
   use {'windwp/nvim-autopairs',
     config = function() require('nvim-autopairs').setup{
-        ignored_next_char = ''} end }
+      ignored_next_char = ''} end }
   use {'numToStr/Comment.nvim',
     config = function() require('Comment').setup{} end }
   use {'norcalli/nvim-colorizer.lua',
@@ -78,8 +76,8 @@ require('packer').startup( function(use)
   use {'wellle/targets.vim'}
   use {'skywind3000/asyncrun.vim'}
   use {'skywind3000/asynctasks.vim'}
-  use {'Pocco81/AutoSave.nvim',
-    config = function () require("autosave").setup {}
+  use {'Pocco81/auto-save.nvim',
+    config = function () require("auto-save").setup {}
     end}
 
   -- lsp
@@ -107,11 +105,11 @@ require('packer').startup( function(use)
   use {'folke/trouble.nvim',
     config = function () require("trouble").setup {} end}
   use {'lewis6991/spellsitter.nvim',
-  config=function () require("spellsitter").setup {} end}
+    config=function () require("spellsitter").setup {} end}
 
   -- linters
   use {'mfussenegger/nvim-lint',
-  config=function () require("plugins.configs.nvim_linter") end}
+    config=function () require("plugins.configs.nvim_linter") end}
 
   -- language
   use {'taketwo/vim-ros', ft =  {'rosmsg', 'cpp'}, cmd = 'Roscd'}
