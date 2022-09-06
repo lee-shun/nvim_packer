@@ -25,7 +25,7 @@ require('packer').startup( function(use)
 
   -- file navgative
   use {'kyazdani42/nvim-tree.lua',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true, cmd = 'NvimTreeToggle',},
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true, cmd = {"NvimTreeToggle", "NvimTreeClose"},},
     config = function() require('plugins.configs.nvimtree') end }
   use {'nvim-telescope/telescope.nvim',requires = {'nvim-lua/plenary.nvim'},
     config = function() require('plugins.configs.telescope') end }
@@ -52,7 +52,7 @@ require('packer').startup( function(use)
     end}
   use {'folke/todo-comments.nvim',
     config = function() require('plugins.configs.todo_comments') end }
-  use {'lewis6991/gitsigns.nvim',
+  use {'lewis6991/gitsigns.nvim', event = "BufReadPre",
     config = function() require('gitsigns').setup{} end }
   use {'sbdchd/neoformat', cmd = 'Neoformat'}
   use {'psliwka/vim-smoothie'}
@@ -61,7 +61,7 @@ require('packer').startup( function(use)
   use {'tpope/vim-repeat'}
   use {'liuchengxu/vista.vim'}
   use {'rlue/vim-barbaric'}
-  use {'lukas-reineke/indent-blankline.nvim',
+  use {'lukas-reineke/indent-blankline.nvim', event = "BufReadPre",
     config = function() require('plugins.configs.indent_blankline') end }
   use {'RRethy/vim-illuminate',
     config = function ()
@@ -71,7 +71,7 @@ require('packer').startup( function(use)
   use {'godlygeek/tabular'}
   use {'junegunn/vim-easy-align'}
   use {'rhysd/conflict-marker.vim'}
-  use {'tpope/vim-fugitive'}
+  use {'tpope/vim-fugitive', cmd = { "Git", "GBrowse", "Gdiffsplit", "Gvdiffsplit" }}
   use {'mbbill/undotree', cmd = 'UndotreeToggle '}
   use {'lambdalisue/readablefold.vim'}
   use {'wellle/targets.vim'}
