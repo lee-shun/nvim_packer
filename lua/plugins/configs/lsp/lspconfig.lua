@@ -77,6 +77,9 @@ require('lspconfig')['sumneko_lua'].setup {
   },
 }
 
+-- taxlab
+require('lspconfig').texlab.setup{}
+
 -- set icons (if not use lsp-saga)
 local signs = { Error = "", Warn = "", Hint = "", Info = "" }
 for type, icon in pairs(signs) do

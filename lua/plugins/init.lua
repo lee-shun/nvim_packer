@@ -78,6 +78,10 @@ require('packer').startup( function(use)
   use {'Pocco81/auto-save.nvim',
     config = function () require("auto-save").setup {}
     end}
+  use {'uga-rosa/translate.nvim', cmd = 'Translate',
+    configs=function () require("translate").setup()
+    end}
+  vim.api.nvim_set_keymap('n', 'ts', 'viw:Translate ZH<CR>', {noremap = true})
 
   -- lsp
   use {'neovim/nvim-lspconfig',
