@@ -61,7 +61,7 @@ require('packer').startup( function(use)
   use {'tpope/vim-surround'}
   use {'tpope/vim-repeat'}
   use {'liuchengxu/vista.vim'}
-  use {'rlue/vim-barbaric'}
+  use {'rlue/vim-barbaric', event='BufReadPre'}
   use {'lukas-reineke/indent-blankline.nvim', event = "BufReadPre",
     config = function() require('plugins.configs.indent_blankline') end }
   use {'RRethy/vim-illuminate',
@@ -100,7 +100,7 @@ require('packer').startup( function(use)
     config = function() require('plugins.configs.lsp.lspkind') end }
   use {'folke/lsp-colors.nvim',
     config = function () require("lsp-colors").setup {} end}
-  use {'folke/trouble.nvim',
+  use {'folke/trouble.nvim', cmd = 'Trouble',
     config = function () require("trouble").setup {} end}
 
   -- linters
