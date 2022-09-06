@@ -69,7 +69,6 @@ require('packer').startup( function(use)
       vim.g.Illuminate_ftblacklist = "['python', 'Nvimtree']"
     end}
   use {'mg979/vim-visual-multi'}
-  use {'godlygeek/tabular'}
   use {'junegunn/vim-easy-align'}
   use {'rhysd/conflict-marker.vim'}
   use {'tpope/vim-fugitive', cmd = { "Git", "GBrowse", "Gdiffsplit", "Gvdiffsplit" }}

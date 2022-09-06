@@ -1,3 +1,7 @@
+--
+-- buildin Mapping
+--
+
 -- comp
 vim.api.nvim_set_keymap('i', '<CR>', '(pumvisible())?("\\<C-y>"):("\\<cr>")',  {expr = true, noremap = true})
 vim.api.nvim_set_keymap('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true, noremap = true})
@@ -39,8 +43,16 @@ vim.api.nvim_set_keymap('n', 'J', 'mzJ\'z', {noremap = true})
 -- terminal
 vim.api.nvim_set_keymap('t', '<C-N>', '<C-\\><C-N>', {noremap = true})
 
+--
+-- Plugins Mapping
+--
+
 -- translate
 vim.api.nvim_set_keymap('n', 'ts', ':TranslateW<CR>', {noremap = true})
 
 -- Mappings for nvimtree
 vim.api.nvim_set_keymap( "n", "<leader>t", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
+
+-- easy-align
+vim.api.nvim_set_keymap( "v", "ga", "<Plug>(EasyAlign)", {noremap = false})
+vim.api.nvim_set_keymap( "n", "ga", "<Plug>(EasyAlign)", {noremap = false})
