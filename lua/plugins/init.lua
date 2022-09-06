@@ -13,8 +13,9 @@ require('packer').startup( function(use)
   use {'nvim-lua/plenary.nvim'}
 
   -- UI
-  use {'marko-cerovac/material.nvim',
-    config = function() vim.cmd('colorscheme material') end}
+  use{'kyazdani42/nvim-web-devicons'}
+  use {'folke/tokyonight.nvim',
+    config = function() vim.cmd('colorscheme tokyonight') end}
   use {'machakann/vim-highlightedyank'}
   use {
     'nvim-lualine/lualine.nvim',
@@ -27,7 +28,7 @@ require('packer').startup( function(use)
   use {'kyazdani42/nvim-tree.lua',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true, cmd = 'NvimTreeToggle',},
     config = function() require('plugins.configs.nvimtree') end }
-  use {'nvim-telescope/telescope.nvim',
+  use {'nvim-telescope/telescope.nvim',requires = {'nvim-lua/plenary.nvim'},
     config = function() require('plugins.configs.telescope') end }
 
   -- general enchance
@@ -97,9 +98,6 @@ require('packer').startup( function(use)
     config = function() require('plugins.configs.lsp.project') end }
   use {'onsails/lspkind-nvim',
     config = function() require('plugins.configs.lsp.lspkind') end }
-  -- TODO: there is a bug ...
-  -- use {'glepnir/lspsaga.nvim',
-  --   config = function() require('plugins.configs.lsp.lspsaga') end }
   use {'folke/lsp-colors.nvim',
     config = function () require("lsp-colors").setup {} end}
   use {'folke/trouble.nvim',
