@@ -25,7 +25,8 @@ require('packer').startup( function(use)
 
   -- file navgative
   use {'kyazdani42/nvim-tree.lua',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true, cmd = {"NvimTreeToggle", "NvimTreeClose"},},
+    cmd = {'NvimTreeToggle', 'NvimTreeClose'},
+    requires = {'kyazdani42/nvim-web-devicons', opt = true,},
     config = function() require('plugins.configs.nvimtree') end }
   use {'nvim-telescope/telescope.nvim',requires = {'nvim-lua/plenary.nvim'},
     config = function() require('plugins.configs.telescope') end }
@@ -78,10 +79,7 @@ require('packer').startup( function(use)
   use {'Pocco81/auto-save.nvim',
     config = function () require("auto-save").setup {}
     end}
-  use {'uga-rosa/translate.nvim', cmd = 'Translate',
-    configs=function () require("translate").setup()
-    end}
-  vim.api.nvim_set_keymap('n', 'ts', 'viw:Translate ZH<CR>', {noremap = true})
+  use {'voldikss/vim-translator',cmd='TranslateW'}
 
   -- lsp
   use {'neovim/nvim-lspconfig',

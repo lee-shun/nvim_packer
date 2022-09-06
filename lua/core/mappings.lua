@@ -39,3 +39,8 @@ vim.api.nvim_set_keymap('n', 'J', 'mzJ\'z', {noremap = true})
 -- terminal
 vim.api.nvim_set_keymap('t', '<C-N>', '<C-\\><C-N>', {noremap = true})
 
+-- translate
+vim.api.nvim_set_keymap('n', 'ts', ':TranslateW<CR>', {noremap = true})
+
+-- Mappings for nvimtree
+vim.api.nvim_set_keymap( "n", "<leader>t", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
