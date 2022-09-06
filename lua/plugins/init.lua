@@ -17,8 +17,7 @@ require('packer').startup( function(use)
   use {'folke/tokyonight.nvim',
     config = function() vim.cmd('colorscheme tokyonight') end}
   use {'machakann/vim-highlightedyank'}
-  use {
-    'nvim-lualine/lualine.nvim',
+  use { 'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     config = function() require('plugins.configs.statusline.eviline') end}
   use {'glepnir/dashboard-nvim',
@@ -32,6 +31,8 @@ require('packer').startup( function(use)
     config = function() require('plugins.configs.telescope') end }
 
   -- general enchance
+  use {'lewis6991/impatient.nvim',
+    configs = function() require('impatient') end}
   use {'windwp/nvim-autopairs',
     config = function() require('nvim-autopairs').setup{
       ignored_next_char = ''} end }
@@ -53,12 +54,11 @@ require('packer').startup( function(use)
     config = function() require('plugins.configs.todo_comments') end }
   use {'lewis6991/gitsigns.nvim',
     config = function() require('gitsigns').setup{} end }
-  use {'sbdchd/neoformat'}
+  use {'sbdchd/neoformat', cmd = 'Neoformat'}
   use {'psliwka/vim-smoothie'}
   use {'junegunn/vim-peekaboo'}
   use {'tpope/vim-surround'}
   use {'tpope/vim-repeat'}
-  use {'AndrewRadev/switch.vim'}
   use {'liuchengxu/vista.vim'}
   use {'rlue/vim-barbaric'}
   use {'lukas-reineke/indent-blankline.nvim',
@@ -75,8 +75,6 @@ require('packer').startup( function(use)
   use {'mbbill/undotree', cmd = 'UndotreeToggle '}
   use {'lambdalisue/readablefold.vim'}
   use {'wellle/targets.vim'}
-  use {'skywind3000/asyncrun.vim'}
-  use {'skywind3000/asynctasks.vim'}
   use {'Pocco81/auto-save.nvim',
     config = function () require("auto-save").setup {}
     end}
@@ -102,8 +100,6 @@ require('packer').startup( function(use)
     config = function () require("lsp-colors").setup {} end}
   use {'folke/trouble.nvim',
     config = function () require("trouble").setup {} end}
-  use {'lewis6991/spellsitter.nvim',
-    config=function () require("spellsitter").setup {} end}
 
   -- linters
   use {'mfussenegger/nvim-lint',
@@ -112,7 +108,6 @@ require('packer').startup( function(use)
   -- language
   use {'taketwo/vim-ros', ft =  {'rosmsg', 'cpp'}, cmd = 'Roscd'}
   use {'thibthib18/ros-nvim', ft =  {'rosmsg', 'cpp'}}
-
   use {'lervag/vimtex', ft = 'tex'}
   use {'SidOfc/mkdx', ft={'markdown'},
     config = function ()
@@ -133,11 +128,11 @@ require('packer').startup( function(use)
       vim.g.mkdp_browser = 'google-chrome'
       vim.g.mkdp_browserfunc = 'g:Open_browser'
     end}
-  use {'dhruvasagar/vim-table-mode',  cmd = 'TableModeToggle'}
-  use {'lee-shun/vim-markdown-wiki'}
+  use {'dhruvasagar/vim-table-mode',  cmd = 'TableModeToggle', ft = {'markdown'}}
+  use {'lee-shun/vim-markdown-wiki', ft = {'markdown'}}
 
-  use {'numirias/semshi', run=':UpdateRemotePlugins'}
-  use {'mboughaba/i3config.vim'}
+  use {'numirias/semshi', run=':UpdateRemotePlugins', ft={'python'}}
+  use {'mboughaba/i3config.vim', ft={'i3config'}}
 
 
   if Packer_bootstrap then

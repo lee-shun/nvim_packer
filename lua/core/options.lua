@@ -117,13 +117,28 @@ vim.opt.wildignore:append('*.pyc')
 vim.opt.wildignore:append('*.DS_Store')
 vim.opt.wildignore:append('*.aux,*.bbl,*.blg,*.brf,*.fls,*.fdb_latexmk,*.synctex.gz,*.pdf')
 
-vim.g.netrw_preview = 1
-vim.g.netrw_hide = 1
-vim.g.netrw_liststyle = 3
-vim.g.netrw_banner = 0
-vim.g.netrw_browse_split = 4
-vim.g.netrw_winsize = 30
-vim.g.netrw_altv = 1
-vim.g.netrw_chgwin = 2
-vim.g.netrw_list_hide = '.*\\.swp$'
-vim.g.netrw_localrmdir = 'rm -rf'
+-- Disable some builtin vim plugins
+local disabled_built_ins = {
+  "2html_plugin",
+  "getscript",
+  "getscriptPlugin",
+  "gzip",
+  "logipat",
+  "netrw",
+  "netrwPlugin",
+  "netrwSettings",
+  "netrwFileHandlers",
+  "matchit",
+  "matchparen",
+  "tar",
+  "tarPlugin",
+  "rrhelper",
+  "vimball",
+  "vimballPlugin",
+  "zip",
+  "zipPlugin",
+}
+
+for _, plugin in pairs(disabled_built_ins) do
+  vim.g["loaded_" .. plugin] = 1
+end
