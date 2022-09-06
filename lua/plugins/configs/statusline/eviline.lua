@@ -46,6 +46,12 @@ local config = {
       normal = { c = { fg = colors.fg, bg = colors.bg } },
       inactive = { c = { fg = colors.fg, bg = colors.bg } },
     },
+    disabled_filetypes = {     -- Filetypes to disable lualine for.
+      'dashboard',
+      'packer',
+      'NvimTree',
+      'vista'
+    },
   },
   sections = {
     -- these are to remove the defaults
