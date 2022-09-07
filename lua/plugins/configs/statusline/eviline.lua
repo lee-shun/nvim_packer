@@ -190,6 +190,16 @@ ins_left {
   color = { fg = '#ffffff', gui = 'bold' },
 }
 
+ins_left {
+  function ()
+    local b = vim.api.nvim_get_current_buf()
+    if next(vim.treesitter.highlighter.active[b]) then return "" end
+    return ""
+  end,
+  color = { fg = '#ffffff', gui = 'bold' },
+
+}
+
 -- Add components to right sections
 ins_right {
   'o:encoding', -- option component same as &encoding in viml
