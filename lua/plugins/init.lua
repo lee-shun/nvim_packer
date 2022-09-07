@@ -27,9 +27,10 @@ require('packer').startup( function(use)
     config = function() require('plugins.configs.statusline.eviline') end}
   use {'glepnir/dashboard-nvim',
     config = function() require('plugins.configs.dashboard') end}
-  use{'yamatsum/nvim-cursorline', config = function ()
-    require('nvim-cursorline').setup {}
-  end}
+  use {'RRethy/vim-illuminate',
+    config = function ()
+      require('illuminate').configure({})
+    end}
 
   -- file navgative
   use {'kyazdani42/nvim-tree.lua',
@@ -65,23 +66,22 @@ require('packer').startup( function(use)
     config = function() require('gitsigns').setup{} end }
   use {'sbdchd/neoformat', cmd = 'Neoformat'}
   use {'psliwka/vim-smoothie'}
-  use {'junegunn/vim-peekaboo'}
-  use {'tpope/vim-surround'}
-  use {'tpope/vim-repeat'}
+  use {'tversteeg/registers.nvim'}
+  use{'kylechui/nvim-surround'}
   use {'liuchengxu/vista.vim'}
   use {'rlue/vim-barbaric', event='BufReadPre'}
   use {'lukas-reineke/indent-blankline.nvim', event = "BufReadPre",
     config = function() require('plugins.configs.indent_blankline') end }
-  use {'RRethy/vim-illuminate',
-    config = function ()
-      vim.g.Illuminate_ftblacklist = "['python', 'Nvimtree']"
-    end}
   use {'mg979/vim-visual-multi'}
   use {'junegunn/vim-easy-align'}
   use {'rhysd/conflict-marker.vim'}
   use {'tpope/vim-fugitive', cmd = { "Git", "GBrowse", "Gdiffsplit", "Gvdiffsplit" }}
   use {'mbbill/undotree', cmd = 'UndotreeToggle '}
-  use {'lambdalisue/readablefold.vim'}
+  use{ 'anuvyklack/pretty-fold.nvim',
+    config = function()
+      require('pretty-fold').setup()
+    end
+  }
   use {'wellle/targets.vim'}
   use {'Pocco81/auto-save.nvim',
     config = function () require("auto-save").setup {}
