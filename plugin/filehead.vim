@@ -43,6 +43,8 @@ endfunc
 
 " for shell-like file
 func SetCommentSh()
+    call setline(1,"")
+    call setline(2,"")
     call setline(3,"")
     call setline(4, "# ------------------------------------------------------------------------------")
     call setline(5 , "#")
@@ -65,29 +67,29 @@ endfunc
 
 func SetTitle()
     if expand("%:e") == 'make'
+        call SetCommentSh()
         call setline(1,"")
         call setline(2,"")
-        call SetCommentSh()
 
     elseif expand("%:e") == 'txt'
+        call SetCommentSh()
         call setline(1,"")
         call setline(2,"")
-        call SetCommentSh()
 
     elseif expand("%:e") == 'sh'
+        call SetCommentSh()
         call setline(1,"#!/system/bin/sh")
         call setline(2,"")
-        call SetCommentSh()
 
     elseif expand("%:e") == 'zsh'
+        call SetCommentSh()
         call setline(1,"#!/system/bin/zsh")
         call setline(2,"")
-        call SetCommentSh()
 
     elseif expand("%:e") == 'py'
+        call SetCommentSh()
         call setline(1,"#!/usr/bin/env python3")
         call setline(2,"# -*- coding: utf-8 -*- #")
-        call SetCommentSh()
 
     elseif &filetype == 'c' && expand("%:e") == 'h'
         call SetComment()
@@ -108,8 +110,8 @@ func SetTitle()
         call setline(20, "")
         call setline(21, "#include<iostream>")
         call setline(22, "")
-        call setline(23, "namespace A{")
-        call setline(24, "namespace B{")
+        call setline(23, "namespace A {")
+        call setline(24, "namespace B {")
         call setline(25, "class ".expand("%:t:r")."{};")
         call setline(26, "}")
         call setline(27, "}")
@@ -121,7 +123,7 @@ func SetTitle()
         call SetComment()
         call setline(17,"#include \"".expand("%:t:r").".hpp\"")
         call setline(18, "int main(int argc, char** argv) {")
-        call setline(19, "return 0;")
+        call setline(19, "  return 0;")
         call setline(20, "}")
 
     endif
