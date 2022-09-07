@@ -14,13 +14,22 @@ require('packer').startup( function(use)
 
   -- UI
   use{'kyazdani42/nvim-web-devicons'}
+  use{'sainnhe/sonokai',
+    config = function()
+      vim.g.sonokai_better_performance = 1
+      vim.cmd('colorscheme sonokai')
+    end }
   use {'folke/tokyonight.nvim',
+    disable = true,
     config = function() vim.cmd('colorscheme tokyonight') end}
   use { 'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     config = function() require('plugins.configs.statusline.eviline') end}
   use {'glepnir/dashboard-nvim',
     config = function() require('plugins.configs.dashboard') end}
+  use{'yamatsum/nvim-cursorline', config = function ()
+    require('nvim-cursorline').setup {}
+  end}
 
   -- file navgative
   use {'kyazdani42/nvim-tree.lua',
@@ -96,8 +105,9 @@ require('packer').startup( function(use)
     config = function() require('plugins.configs.lsp.project') end }
   use {'onsails/lspkind-nvim',
     config = function() require('plugins.configs.lsp.lspkind') end }
-  use {'folke/lsp-colors.nvim',
-    config = function () require("lsp-colors").setup {} end}
+  use {'folke/lsp-colors.nvim', -- not work with sonokai
+    config = function () require("lsp-colors").setup () end,
+    disable = true}
   use {'folke/trouble.nvim', cmd = 'Trouble',
     config = function () require("trouble").setup {} end}
 
