@@ -27,7 +27,7 @@ require('packer').startup( function(use)
     config = function() require('plugins.configs.statusline.eviline') end}
   use {'glepnir/dashboard-nvim',
     config = function() require('plugins.configs.dashboard') end}
-  use {'RRethy/vim-illuminate',
+  use {'RRethy/vim-illuminate', event = 'BufReadPre',
     config = function ()
       require('illuminate').configure({})
     end}
@@ -43,10 +43,10 @@ require('packer').startup( function(use)
   -- general enchance
   use {'lewis6991/impatient.nvim',
     configs = function() require('impatient') end}
-  use {'windwp/nvim-autopairs',
+  use {'windwp/nvim-autopairs', event = 'BufReadPre',
     config = function() require('nvim-autopairs').setup{
       ignored_next_char = ''} end }
-  use {'numToStr/Comment.nvim',
+  use {'numToStr/Comment.nvim', event = 'BufReadPre',
     config = function() require('Comment').setup{} end }
   use {'norcalli/nvim-colorizer.lua',
     config = function() require('colorizer').setup{} end }
@@ -62,20 +62,34 @@ require('packer').startup( function(use)
     end}
   use {'folke/todo-comments.nvim',
     config = function() require('plugins.configs.todo_comments') end }
-  use {'lewis6991/gitsigns.nvim', event = "BufReadPre",
+  use {'lewis6991/gitsigns.nvim', event = 'BufReadPost',
     config = function() require('gitsigns').setup{} end }
   use {'sbdchd/neoformat', cmd = 'Neoformat'}
   use {'psliwka/vim-smoothie'}
-  use {'tversteeg/registers.nvim'}
-  use{'kylechui/nvim-surround'}
+  use {'AckslD/nvim-neoclip.lua',
+    requires = {
+      {'nvim-telescope/telescope.nvim'},
+    },
+    config = function()
+      require('neoclip').setup()
+      require('telescope').load_extension('neoclip')
+    end,
+  }
+
+
+  use{'kylechui/nvim-surround',
+    config = function()
+      require('nvim-surround').setup({})
+    end
+  }
   use {'liuchengxu/vista.vim'}
-  use {'rlue/vim-barbaric', event='BufReadPre'}
-  use {'lukas-reineke/indent-blankline.nvim', event = "BufReadPre",
+  use {'rlue/vim-barbaric', event='BufReadPost'}
+  use {'lukas-reineke/indent-blankline.nvim', event = 'BufReadPre',
     config = function() require('plugins.configs.indent_blankline') end }
   use {'mg979/vim-visual-multi'}
   use {'junegunn/vim-easy-align'}
   use {'rhysd/conflict-marker.vim'}
-  use {'tpope/vim-fugitive', cmd = { "Git", "GBrowse", "Gdiffsplit", "Gvdiffsplit" }}
+  use {'tpope/vim-fugitive', cmd = { 'Git', 'GBrowse', 'Gdiffsplit', 'Gvdiffsplit' }}
   use {'mbbill/undotree', cmd = 'UndotreeToggle '}
   use{ 'anuvyklack/pretty-fold.nvim',
     config = function()
@@ -84,7 +98,7 @@ require('packer').startup( function(use)
   }
   use {'wellle/targets.vim'}
   use {'Pocco81/auto-save.nvim',
-    config = function () require("auto-save").setup {}
+    config = function () require('auto-save').setup {}
     end}
   use {'voldikss/vim-translator',cmd='TranslateW'}
 
@@ -106,14 +120,14 @@ require('packer').startup( function(use)
   use {'onsails/lspkind-nvim',
     config = function() require('plugins.configs.lsp.lspkind') end }
   use {'folke/lsp-colors.nvim', -- not work with sonokai
-    config = function () require("lsp-colors").setup () end,
+    config = function () require('lsp-colors').setup () end,
     disable = true}
   use {'folke/trouble.nvim', cmd = 'Trouble',
-    config = function () require("trouble").setup {} end}
+    config = function () require('trouble').setup {} end}
 
   -- linters
   use {'mfussenegger/nvim-lint',
-    config=function () require("plugins.configs.nvim_linter") end}
+    config=function () require('plugins.configs.nvim_linter') end}
 
   -- language
   use {'taketwo/vim-ros', ft =  {'rosmsg', 'cpp'}, cmd = 'Roscd'}
@@ -132,7 +146,7 @@ require('packer').startup( function(use)
     config = function ()
       vim.cmd([[
         function! g:Open_browser(url)
-        silent exec "!google-chrome --password-store=gnome --new-window " . a:url . " &"
+        silent exec '!google-chrome --password-store=gnome --new-window ' . a:url . ' &'
         endfunction
         ]])
       vim.g.mkdp_browser = 'google-chrome'
