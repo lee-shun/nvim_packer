@@ -21,21 +21,25 @@ local createdir = function ()
     end
   end
 end
-
 createdir()
 
+-- python
+vim.g.python_host_prog='/usr/bin/python'
+vim.g.python3_host_prog='/usr/bin/python3'
+
+-- encode
 vim.o.encoding='utf-8'
 vim.o.fileencodings = 'ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1'
 vim.o.termencoding='utf-8'
 vim.o.fileformats='unix,dos,mac'
 
+-- basic
 vim.cmd('filetype plugin indent on')
+vim.cmd('syntax on')
 vim.o.compatible=false
 vim.g.mapleader = ' '
 vim.o.autochdir = true
 vim.o.autoread=true
-
-vim.cmd('syntax on')
 vim.o.scrolloff=5
 vim.o.number = true
 vim.o.relativenumber = true
