@@ -50,9 +50,12 @@ vim.api.nvim_set_keymap('t', '<C-N>', '<C-\\><C-N>', {noremap = true})
 -- translate
 vim.api.nvim_set_keymap('n', 'ts', ':TranslateW<CR>', {noremap = true})
 
--- Mappings for nvimtree
+-- nvimtree
 vim.api.nvim_set_keymap( "n", "<leader>t", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
 
 -- easy-align
 vim.api.nvim_set_keymap( "v", "ga", "<Plug>(EasyAlign)", {noremap = false})
 vim.api.nvim_set_keymap( "n", "ga", "<Plug>(EasyAlign)", {noremap = false})
+
+-- floaterm
+vim.api.nvim_set_keymap( "n", "<Leader>ra", ":FloatermNew --height=0.6 --width=0.8 --wintype=float ranger<CR>", {noremap = true})
