@@ -54,12 +54,21 @@ require('packer').startup( function(use)
     config = function() require('plugins.configs.treesitter') end }
   use {'nvim-treesitter/playground'}
   use {'p00f/nvim-ts-rainbow'}
+  use {"akinsho/toggleterm.nvim",
+    config = function()
+      require("plugins.configs.toggleterm")
+    end}
+  use {'is0n/fm-nvim',
+    config = function()
+      require('fm-nvim').setup{}
+    end}
   use {'voldikss/vim-floaterm',
     config = function ()
       vim.g.floaterm_keymap_toggle = '<F12>'
       vim.g.floaterm_width = 0.8
       vim.g.floaterm_height = 0.7
-    end}
+    end,
+    disable=true}
   use {'folke/todo-comments.nvim',
     config = function() require('plugins.configs.todo_comments') end }
   use {'lewis6991/gitsigns.nvim', event = 'BufReadPost',
@@ -151,10 +160,6 @@ require('packer').startup( function(use)
       vim.g.mkdp_browser = 'google-chrome'
       vim.g.mkdp_browserfunc = 'g:Open_browser'
     end}
-  use {'lee-shun/vim-markdown-wiki', ft = {'markdown'}}
-
-  use {'numirias/semshi', run=':UpdateRemotePlugins', ft={'python'}}
-  use {'mboughaba/i3config.vim', ft={'i3config'}}
 
 
   if Packer_bootstrap then
