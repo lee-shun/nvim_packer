@@ -50,7 +50,6 @@ end
 
 -- LSP integration
 -- Make sure to also have the snippet with the common helper functions in your config!
-
 vim.lsp.handlers["$/progress"] = function(_, result, ctx)
  local client_id = ctx.client_id
 
@@ -89,4 +88,16 @@ vim.lsp.handlers["$/progress"] = function(_, result, ctx)
 
    notif_data.spinner = nil
  end
+end
+
+-- table from lsp severity to vim severity.
+local severity = {
+  "error",
+  "warn",
+  "info",
+  "hint", -- map both hint and info to info?
+}
+
+vim.lsp.handlers["window/showMessage"] = function(err, method, params, client_id)
+             vim.notify(method.message, severity[params.type])
 end
