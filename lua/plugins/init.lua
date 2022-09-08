@@ -61,7 +61,7 @@ require('packer').startup( function(use)
   use {'is0n/fm-nvim',
     config = function()
       require('fm-nvim').setup{}
-
+      vim.api.nvim_set_keymap('n', '<Leader>ra', '<cmd>Ranger<CR>', {noremap = true, silent = true})
     end}
   use {'voldikss/vim-floaterm',
     config = function ()
