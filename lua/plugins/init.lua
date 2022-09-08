@@ -299,6 +299,13 @@ require("packer").startup( function(use)
       end,
     }
 
+    use { "williamboman/mason.nvim",
+      disable = true,
+      config = function ()
+        require("mason").setup()
+      end
+    }
+
     use { "ahmedkhalf/project.nvim",
       event = "BufReadPre",
       config = function()
