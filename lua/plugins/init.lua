@@ -12,10 +12,10 @@ require("packer").startup( function(use)
     }
 
     -- commom libs
-    use {"nvim-lua/popup.nvim"
+    use { "nvim-lua/popup.nvim"
     }
 
-    use {"nvim-lua/plenary.nvim"
+    use { "nvim-lua/plenary.nvim"
     }
 
     -- UI
@@ -29,7 +29,7 @@ require("packer").startup( function(use)
       end
     }
 
-    use {"folke/tokyonight.nvim",
+    use { "folke/tokyonight.nvim",
       disable = true,
       config = function()
         vim.cmd("colorscheme tokyonight")
@@ -44,13 +44,13 @@ require("packer").startup( function(use)
         opt = true }
     }
 
-    use {"glepnir/dashboard-nvim",
+    use { "glepnir/dashboard-nvim",
       config = function()
         require("plugins.configs.dashboard")
       end
     }
 
-    use {"RRethy/vim-illuminate",
+    use { "RRethy/vim-illuminate",
       event = "BufReadPre",
       config = function ()
         require("illuminate").configure({})
@@ -58,7 +58,7 @@ require("packer").startup( function(use)
     }
 
     -- file navgative
-    use {"kyazdani42/nvim-tree.lua",
+    use { "kyazdani42/nvim-tree.lua",
       cmd = {"NvimTreeToggle", "NvimTreeClose"},
       requires = {"kyazdani42/nvim-web-devicons", opt = true,},
       config = function()
@@ -66,7 +66,7 @@ require("packer").startup( function(use)
       end
     }
 
-    use {"nvim-telescope/telescope.nvim",
+    use { "nvim-telescope/telescope.nvim",
       requires = {"nvim-lua/plenary.nvim"},
       config = function()
         require("plugins.configs.telescope")
@@ -74,14 +74,14 @@ require("packer").startup( function(use)
     }
 
     -- general enchance
-    use {"lewis6991/impatient.nvim",
+    use { "lewis6991/impatient.nvim",
       configs = function()
         require("impatient")
       end
     }
 
-    use {
-      "windwp/nvim-autopairs",
+    use { "windwp/nvim-autopairs",
+      event = "BufReadPre",
       wants = "nvim-treesitter",
       module = { "nvim-autopairs.completion.cmp", "nvim-autopairs" },
       config = function()
@@ -90,21 +90,21 @@ require("packer").startup( function(use)
 
     }
 
-    use {"numToStr/Comment.nvim",
+    use { "numToStr/Comment.nvim",
       event = "BufReadPre",
       config = function()
         require("Comment").setup{}
       end
     }
 
-    use {"norcalli/nvim-colorizer.lua",
+    use { "norcalli/nvim-colorizer.lua",
       cmd = "ColorizerToggle",
       config = function()
         require("colorizer").setup{}
       end
     }
 
-    use {"nvim-treesitter/nvim-treesitter",
+    use { "nvim-treesitter/nvim-treesitter",
       run =":TSUpdate",
       events = "BufReadPre",
       config = function()
@@ -116,13 +116,13 @@ require("packer").startup( function(use)
 
     }
 
-    use {"akinsho/toggleterm.nvim",
+    use { "akinsho/toggleterm.nvim",
       config = function()
         require("plugins.configs.toggleterm")
       end
     }
 
-    use {"is0n/fm-nvim",
+    use { "is0n/fm-nvim",
       event = "BufReadPost",
       config = function()
         require("fm-nvim").setup{}
@@ -130,7 +130,7 @@ require("packer").startup( function(use)
       end
     }
 
-    use {"voldikss/vim-floaterm",
+    use { "voldikss/vim-floaterm",
       disable=true,
       event = "BufReadPost",
       config = function ()
@@ -140,29 +140,29 @@ require("packer").startup( function(use)
       end,
     }
 
-    use {"folke/todo-comments.nvim",
+    use { "folke/todo-comments.nvim",
       events = "BufReadPost",
       config = function()
         require("plugins.configs.todo_comments")
       end
     }
 
-    use {"lewis6991/gitsigns.nvim",
+    use { "lewis6991/gitsigns.nvim",
       event = "BufReadPost",
       config = function()
         require("gitsigns").setup{}
       end
     }
 
-    use {"sbdchd/neoformat",
+    use { "sbdchd/neoformat",
       cmd = "Neoformat"
     }
 
-    use {"psliwka/vim-smoothie",
+    use { "psliwka/vim-smoothie",
       events = "BufReadPost"
     }
 
-    use {"AckslD/nvim-neoclip.lua",
+    use { "AckslD/nvim-neoclip.lua",
       event = "BufReadPost",
       requires = {
         {"nvim-telescope/telescope.nvim"},
@@ -179,38 +179,38 @@ require("packer").startup( function(use)
       end
     }
 
-    use {"liuchengxu/vista.vim",
+    use { "liuchengxu/vista.vim",
       cmd = "Vista",
     }
 
-    use {"rlue/vim-barbaric",
+    use { "rlue/vim-barbaric",
       event="BufReadPost"
     }
 
-    use {"lukas-reineke/indent-blankline.nvim",
+    use { "lukas-reineke/indent-blankline.nvim",
       event = "BufReadPre",
       config = function()
         require("plugins.configs.indent_blankline")
       end
     }
 
-    use {"mg979/vim-visual-multi",
+    use { "mg979/vim-visual-multi",
       event = "BufReadPost",
     }
 
-    use {"junegunn/vim-easy-align",
+    use { "junegunn/vim-easy-align",
       event = "BufReadPost",
     }
 
-    use {"rhysd/conflict-marker.vim",
+    use { "rhysd/conflict-marker.vim",
       event = "BufReadPost",
     }
 
-    use {"tpope/vim-fugitive",
+    use { "tpope/vim-fugitive",
       cmd = { "Git", "GBrowse", "Gdiffsplit", "Gvdiffsplit" }
     }
 
-    use {"mbbill/undotree",
+    use { "mbbill/undotree",
       cmd = "UndotreeToggle "
     }
 
@@ -222,17 +222,17 @@ require("packer").startup( function(use)
 
     }
 
-    use {"wellle/targets.vim"
+    use { "wellle/targets.vim"
     }
 
-    use {"Pocco81/auto-save.nvim",
+    use { "Pocco81/auto-save.nvim",
       event = "BufReadPost",
       config = function()
         require("auto-save").setup {}
       end
     }
 
-    use {"voldikss/vim-translator",
+    use { "voldikss/vim-translator",
       cmd="TranslateW",
     }
 
@@ -246,7 +246,7 @@ require("packer").startup( function(use)
     }
 
     -- completion
-    use {"hrsh7th/nvim-cmp",
+    use { "hrsh7th/nvim-cmp",
       event = "InsertEnter",
       opt = true,
       wants = { "LuaSnip" },
@@ -272,7 +272,7 @@ require("packer").startup( function(use)
     }
 
     -- lsp
-    use {"neovim/nvim-lspconfig",
+    use { "neovim/nvim-lspconfig",
       event = "BufReadPre",
       wants = {"cmp-nvim-lsp"},
       config = function()
@@ -288,13 +288,13 @@ require("packer").startup( function(use)
       }
     }
 
-    use {"ahmedkhalf/project.nvim",
+    use { "ahmedkhalf/project.nvim",
       config = function()
         require("plugins.configs.lsp.project")
       end
     }
 
-    use {"folke/trouble.nvim",
+    use { "folke/trouble.nvim",
       cmd = "Trouble",
       config = function()
         require("trouble").setup {}
@@ -302,7 +302,7 @@ require("packer").startup( function(use)
     }
 
     -- linters
-    use {"mfussenegger/nvim-lint",
+    use { "mfussenegger/nvim-lint",
       event="BufReadPre",
       config=function()
         require("plugins.configs.nvim_linter")
@@ -310,20 +310,20 @@ require("packer").startup( function(use)
     }
 
     -- language
-    use {"taketwo/vim-ros",
+    use { "taketwo/vim-ros",
       ft =  {"rosmsg", "cpp"},
       cmd = "Roscd"
     }
 
-    use {"thibthib18/ros-nvim",
+    use { "thibthib18/ros-nvim",
       ft =  {"rosmsg", "cpp"}
     }
 
-    use {"lervag/vimtex",
+    use { "lervag/vimtex",
       ft = "tex"
     }
 
-    use {"iamcco/markdown-preview.nvim",
+    use { "iamcco/markdown-preview.nvim",
       run=":call mkdp#util#install()",
       ft ={"markdown"},
       config = function ()
