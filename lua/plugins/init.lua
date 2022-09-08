@@ -58,9 +58,16 @@ require("packer").startup( function(use)
     }
 
     use { "rcarriga/nvim-notify",
-    config = function ()
+      disable = true,
+      config = function ()
         require("plugins.configs.notify")
-    end
+      end
+    }
+
+    use {'j-hui/fidget.nvim',
+      config = function()
+        require"fidget".setup{}
+      end
     }
 
     -- file navgative
