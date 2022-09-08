@@ -65,6 +65,7 @@ require("packer").startup( function(use)
     }
 
     use {'j-hui/fidget.nvim',
+      event = "BufReadPost",
       config = function()
         require"fidget".setup{}
       end
@@ -121,7 +122,6 @@ require("packer").startup( function(use)
 
     use { "nvim-treesitter/nvim-treesitter",
       run =":TSUpdate",
-      events = "BufReadPre",
       requires = {
         {"nvim-treesitter/playground"},
         {"p00f/nvim-ts-rainbow"}},
@@ -156,7 +156,7 @@ require("packer").startup( function(use)
     }
 
     use { "folke/todo-comments.nvim",
-      events = "BufReadPost",
+      event = "BufReadPost",
       config = function()
         require("plugins.configs.todo_comments")
       end
@@ -174,7 +174,7 @@ require("packer").startup( function(use)
     }
 
     use { "psliwka/vim-smoothie",
-      events = "BufReadPost"
+      event = "BufReadPost"
     }
 
     use { "AckslD/nvim-neoclip.lua",
@@ -189,6 +189,7 @@ require("packer").startup( function(use)
     }
 
     use{"kylechui/nvim-surround",
+      event = "BufReadPost",
       config = function()
         require("nvim-surround").setup({})
       end
@@ -228,12 +229,13 @@ require("packer").startup( function(use)
     use{ "anuvyklack/pretty-fold.nvim",
       event = "BufReadPost",
       config = function()
-        require("pretty-fold").setup()
+        require("pretty-fold").setup({})
       end
 
     }
 
-    use { "wellle/targets.vim"
+    use { "wellle/targets.vim",
+          event = "BufReadPost",
     }
 
     use { "Pocco81/auto-save.nvim",
