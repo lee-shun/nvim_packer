@@ -197,7 +197,6 @@ ins_left {
     return ""
   end,
   color = { fg = '#ffffff', gui = 'bold' },
-
 }
 
 -- Add components to right sections
