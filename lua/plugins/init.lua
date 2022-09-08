@@ -98,9 +98,15 @@ require('packer').startup( function(use)
   }
   use {'wellle/targets.vim'}
   use {'Pocco81/auto-save.nvim',
-    config = function () require('auto-save').setup {}
+    config = function() require('auto-save').setup {}
     end}
   use {'voldikss/vim-translator',cmd='TranslateW'}
+
+  -- code runner
+  use { 'pianocomposer321/yabs.nvim',
+    requires = { 'nvim-lua/plenary.nvim' },
+    config = function() require('plugins.configs.yabs') end
+  }
 
   -- lsp
   use {'neovim/nvim-lspconfig',
