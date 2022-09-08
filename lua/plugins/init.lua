@@ -8,45 +8,54 @@ end
 
 require("packer").startup( function(use)
 
-    use { "wbthomason/packer.nvim"}
+    use { "wbthomason/packer.nvim"
+    }
 
     -- commom libs
-    use {"nvim-lua/popup.nvim"}
+    use {"nvim-lua/popup.nvim"
+    }
 
-    use {"nvim-lua/plenary.nvim"}
+    use {"nvim-lua/plenary.nvim"
+    }
 
     -- UI
-    use{"kyazdani42/nvim-web-devicons"}
+    use{"kyazdani42/nvim-web-devicons"
+    }
 
     use{"sainnhe/sonokai",
       config = function()
         vim.g.sonokai_better_performance = 1
         vim.cmd("colorscheme sonokai")
-      end}
+      end
+    }
 
     use {"folke/tokyonight.nvim",
       disable = true,
       config = function()
         vim.cmd("colorscheme tokyonight")
-      end}
+      end
+    }
 
     use { "nvim-lualine/lualine.nvim",
       config = function()
         require("plugins.configs.statusline.eviline")
       end,
       requires = { "kyazdani42/nvim-web-devicons",
-        opt = true } }
+        opt = true }
+    }
 
     use {"glepnir/dashboard-nvim",
       config = function()
         require("plugins.configs.dashboard")
-      end}
+      end
+    }
 
     use {"RRethy/vim-illuminate",
       event = "BufReadPre",
       config = function ()
         require("illuminate").configure({})
-      end}
+      end
+    }
 
     -- file navgative
     use {"kyazdani42/nvim-tree.lua",
@@ -54,19 +63,22 @@ require("packer").startup( function(use)
       requires = {"kyazdani42/nvim-web-devicons", opt = true,},
       config = function()
         require("plugins.configs.nvimtree")
-      end}
+      end
+    }
 
     use {"nvim-telescope/telescope.nvim",
       requires = {"nvim-lua/plenary.nvim"},
       config = function()
         require("plugins.configs.telescope")
-      end}
+      end
+    }
 
     -- general enchance
     use {"lewis6991/impatient.nvim",
       configs = function()
         require("impatient")
-      end}
+      end
+    }
 
     use {
       "windwp/nvim-autopairs",
@@ -75,64 +87,83 @@ require("packer").startup( function(use)
       config = function()
         require("plugins.configs.autopairs").setup()
       end,
+
     }
 
-    use {"numToStr/Comment.nvim", event = "BufReadPre",
+    use {"numToStr/Comment.nvim",
+      event = "BufReadPre",
       config = function()
         require("Comment").setup{}
-      end}
+      end
+    }
 
     use {"norcalli/nvim-colorizer.lua",
+      cmd = "ColorizerToggle",
       config = function()
         require("colorizer").setup{}
-      end}
+      end
+    }
 
-    use {"nvim-treesitter/nvim-treesitter", run =":TSUpdate",
+    use {"nvim-treesitter/nvim-treesitter",
+      run =":TSUpdate",
       events = "BufReadPre",
       config = function()
         require("plugins.configs.treesitter")
       end,
       requires = {
         {"nvim-treesitter/playground"},
-        {"p00f/nvim-ts-rainbow"},      }
+        {"p00f/nvim-ts-rainbow"}}
+
     }
 
     use {"akinsho/toggleterm.nvim",
       config = function()
         require("plugins.configs.toggleterm")
-      end}
+      end
+    }
 
     use {"is0n/fm-nvim",
       event = "BufReadPost",
       config = function()
         require("fm-nvim").setup{}
         vim.api.nvim_set_keymap("n", "<Leader>ra", "<cmd>Ranger<CR>", {noremap = true, silent = true})
-      end}
+      end
+    }
 
     use {"voldikss/vim-floaterm",
+      disable=true,
+      event = "BufReadPost",
       config = function ()
         vim.g.floaterm_keymap_toggle = "<F12>"
         vim.g.floaterm_width = 0.8
         vim.g.floaterm_height = 0.7
       end,
-      disable=true}
+    }
 
     use {"folke/todo-comments.nvim",
+      events = "BufReadPost",
       config = function()
         require("plugins.configs.todo_comments")
-      end}
+      end
+    }
 
-    use {"lewis6991/gitsigns.nvim", event = "BufReadPost",
+    use {"lewis6991/gitsigns.nvim",
+      event = "BufReadPost",
       config = function()
         require("gitsigns").setup{}
-      end}
+      end
+    }
 
     use {"sbdchd/neoformat",
-      cmd = "Neoformat"}
+      cmd = "Neoformat"
+    }
 
-    use {"psliwka/vim-smoothie"}
+    use {"psliwka/vim-smoothie",
+      events = "BufReadPost"
+    }
 
     use {"AckslD/nvim-neoclip.lua",
+      event = "BufReadPost",
       requires = {
         {"nvim-telescope/telescope.nvim"},
       },
@@ -140,7 +171,6 @@ require("packer").startup( function(use)
         require("neoclip").setup()
         require("telescope").load_extension("neoclip")
       end,
-      event = "BufReadPost",
     }
 
     use{"kylechui/nvim-surround",
@@ -149,59 +179,80 @@ require("packer").startup( function(use)
       end
     }
 
-    use {"liuchengxu/vista.vim"}
+    use {"liuchengxu/vista.vim",
+      cmd = "Vista",
+    }
 
     use {"rlue/vim-barbaric",
-      event="BufReadPost"}
+      event="BufReadPost"
+    }
 
     use {"lukas-reineke/indent-blankline.nvim",
       event = "BufReadPre",
       config = function()
         require("plugins.configs.indent_blankline")
-      end}
+      end
+    }
 
-    use {"mg979/vim-visual-multi"}
+    use {"mg979/vim-visual-multi",
+      event = "BufReadPost",
+    }
 
-    use {"junegunn/vim-easy-align"}
+    use {"junegunn/vim-easy-align",
+      event = "BufReadPost",
+    }
 
-    use {"rhysd/conflict-marker.vim"}
+    use {"rhysd/conflict-marker.vim",
+      event = "BufReadPost",
+    }
 
     use {"tpope/vim-fugitive",
-      cmd = { "Git", "GBrowse", "Gdiffsplit", "Gvdiffsplit" }}
+      cmd = { "Git", "GBrowse", "Gdiffsplit", "Gvdiffsplit" }
+    }
 
     use {"mbbill/undotree",
-      cmd = "UndotreeToggle "}
+      cmd = "UndotreeToggle "
+    }
 
     use{ "anuvyklack/pretty-fold.nvim",
+      event = "BufReadPost",
       config = function()
         require("pretty-fold").setup()
-      end}
+      end
 
-    use {"wellle/targets.vim"}
+    }
+
+    use {"wellle/targets.vim"
+    }
 
     use {"Pocco81/auto-save.nvim",
+      event = "BufReadPost",
       config = function()
         require("auto-save").setup {}
-      end}
+      end
+    }
 
     use {"voldikss/vim-translator",
-      cmd="TranslateW"}
+      cmd="TranslateW",
+    }
 
     -- code runner
     use { "pianocomposer321/yabs.nvim",
-      requires = { "nvim-lua/plenary.nvim" },
+      event = "BufReadPost",
       config = function()
-        require("plugins.configs.yabs") end,
-      event = "BufReadPost" }
+        require("plugins.configs.yabs")
+      end,
+      requires = { "nvim-lua/plenary.nvim" },
+    }
 
     -- completion
     use {"hrsh7th/nvim-cmp",
       event = "InsertEnter",
       opt = true,
+      wants = { "LuaSnip" },
       config = function()
         require("plugins.configs.lsp.cmp")
       end,
-      wants = { "LuaSnip" },
       requires = {
         {"hrsh7th/cmp-nvim-lsp"},
         {"hrsh7th/cmp-buffer"},
@@ -217,15 +268,16 @@ require("packer").startup( function(use)
         {"rafamadriz/friendly-snippets"},
         {"honza/vim-snippets"},
       },
+
     }
 
     -- lsp
     use {"neovim/nvim-lspconfig",
       event = "BufReadPre",
+      wants = {"cmp-nvim-lsp"},
       config = function()
         require("plugins.configs.lsp.lspconfig")
       end,
-      wants = {"cmp-nvim-lsp"},
       requires = {
         {"Thiago4532/lsp-semantic.nvim"},
         {"folke/lsp-colors.nvim", -- not work with sonokai
@@ -233,36 +285,43 @@ require("packer").startup( function(use)
             require("lsp-colors").setup ()
           end,
           disable = true}
-      } }
+      }
+    }
 
     use {"ahmedkhalf/project.nvim",
       config = function()
         require("plugins.configs.lsp.project")
-      end}
+      end
+    }
 
     use {"folke/trouble.nvim",
       cmd = "Trouble",
       config = function()
         require("trouble").setup {}
-      end}
+      end
+    }
 
     -- linters
     use {"mfussenegger/nvim-lint",
+      event="BufReadPre",
       config=function()
         require("plugins.configs.nvim_linter")
       end,
-      event="BufReadPre"}
+    }
 
     -- language
     use {"taketwo/vim-ros",
       ft =  {"rosmsg", "cpp"},
-      cmd = "Roscd"}
+      cmd = "Roscd"
+    }
 
     use {"thibthib18/ros-nvim",
-      ft =  {"rosmsg", "cpp"}}
+      ft =  {"rosmsg", "cpp"}
+    }
 
     use {"lervag/vimtex",
-      ft = "tex"}
+      ft = "tex"
+    }
 
     use {"iamcco/markdown-preview.nvim",
       run=":call mkdp#util#install()",
@@ -275,15 +334,6 @@ require("packer").startup( function(use)
         ]])
         vim.g.mkdp_browser = "google-chrome"
         vim.g.mkdp_browserfunc = "g:Open_browser"
-      end}
-
-    use {'nvim-orgmode/orgmode',
-      config = function()
-        require('orgmode').setup_ts_grammar()
-        require('orgmode').setup({
-          org_agenda_files = {'~/Dropbox/org/*', '~/my-orgs/**/*'},
-          org_default_notes_file = '~/Dropbox/org/refile.org',
-        })
       end
     }
 
