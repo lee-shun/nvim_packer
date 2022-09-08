@@ -57,10 +57,14 @@ require("packer").startup( function(use)
     configs = function()
       require("impatient")
     end}
-  use {"windwp/nvim-autopairs", event = "BufReadPre",
+  use {
+    "windwp/nvim-autopairs",
+    wants = "nvim-treesitter",
+    module = { "nvim-autopairs.completion.cmp", "nvim-autopairs" },
     config = function()
-      require("nvim-autopairs").setup{ ignored_next_char = ""}
-    end}
+      require("plugins.configs.autopairs").setup()
+    end,
+  }
   use {"numToStr/Comment.nvim", event = "BufReadPre",
     config = function()
       require("Comment").setup{}
@@ -80,6 +84,7 @@ require("packer").startup( function(use)
       require("plugins.configs.toggleterm")
     end}
   use {"is0n/fm-nvim",
+    event = "BufReadPost",
     config = function()
       require("fm-nvim").setup{}
       vim.api.nvim_set_keymap("n", "<Leader>ra", "<cmd>Ranger<CR>", {noremap = true, silent = true})
@@ -153,36 +158,52 @@ require("packer").startup( function(use)
       require("plugins.configs.yabs") end,
     event = "BufReadPost" }
 
-  -- lsp
-  use {"neovim/nvim-lspconfig",
-    config = function()
-      require("plugins.configs.lsp.lspconfig")
-    end}
-  use {"hrsh7th/cmp-nvim-lsp"}
-  use {"hrsh7th/cmp-buffer"}
-  use {"hrsh7th/cmp-path"}
-  use {"hrsh7th/cmp-cmdline"}
+  -- completion
   use {"hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    opt = true,
     config = function()
       require("plugins.configs.lsp.cmp")
-    end}
-  use {"hrsh7th/cmp-vsnip"}
-  use {"hrsh7th/vim-vsnip"}
-  use {"tzachar/cmp-tabnine", run="./install.sh", requires = "hrsh7th/nvim-cmp"}
-  use {"Thiago4532/lsp-semantic.nvim"}
+    end,
+    wants = { "LuaSnip" },
+    requires = {
+      {"hrsh7th/cmp-nvim-lsp"},
+      {"hrsh7th/cmp-buffer"},
+      {"hrsh7th/cmp-path"},
+      {"hrsh7th/cmp-cmdline"},
+      {"tzachar/cmp-tabnine", run="./install.sh"},
+      {"saadparwaiz1/cmp_luasnip"},
+      {"L3MON4D3/LuaSnip",
+        wants = { "friendly-snippets", "vim-snippets" },
+        config = function()
+          require("plugins.configs.luasnip").setup()
+        end},
+      {"rafamadriz/friendly-snippets"},
+      {"honza/vim-snippets"},
+    },
+  }
+
+  -- lsp
+  use {"neovim/nvim-lspconfig",
+    event = "BufReadPre",
+    config = function()
+      require("plugins.configs.lsp.lspconfig")
+    end,
+    wants = {"cmp-nvim-lsp"},
+    requires = {
+      {"Thiago4532/lsp-semantic.nvim"},
+      {"folke/lsp-colors.nvim", -- not work with sonokai
+        config = function()
+          require("lsp-colors").setup ()
+        end,
+        disable = true}
+    } }
+
   use {"ahmedkhalf/project.nvim",
     config = function()
       require("plugins.configs.lsp.project")
     end}
-  use {"onsails/lspkind-nvim",
-    config = function()
-      require("plugins.configs.lsp.lspkind")
-    end}
-  use {"folke/lsp-colors.nvim", -- not work with sonokai
-    config = function()
-      require("lsp-colors").setup ()
-    end,
-    disable = true}
+
   use {"folke/trouble.nvim",
     cmd = "Trouble",
     config = function()
@@ -193,7 +214,8 @@ require("packer").startup( function(use)
   use {"mfussenegger/nvim-lint",
     config=function()
       require("plugins.configs.nvim_linter")
-    end}
+    end,
+    event="BufReadPre"}
 
   -- language
   use {"taketwo/vim-ros",
@@ -215,6 +237,15 @@ require("packer").startup( function(use)
       vim.g.mkdp_browser = "google-chrome"
       vim.g.mkdp_browserfunc = "g:Open_browser"
     end}
+  use {'nvim-orgmode/orgmode',
+    config = function()
+      require('orgmode').setup_ts_grammar()
+      require('orgmode').setup({
+        org_agenda_files = {'~/Dropbox/org/*', '~/my-orgs/**/*'},
+        org_default_notes_file = '~/Dropbox/org/refile.org',
+      })
+    end
+  }
 
 
   if Packer_bootstrap then
