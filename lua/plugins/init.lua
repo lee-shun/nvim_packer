@@ -74,6 +74,7 @@ require('packer').startup( function(use)
       require('neoclip').setup()
       require('telescope').load_extension('neoclip')
     end,
+    event = "BufReadPost",
   }
 
 
@@ -105,7 +106,8 @@ require('packer').startup( function(use)
   -- code runner
   use { 'pianocomposer321/yabs.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
-    config = function() require('plugins.configs.yabs') end
+    config = function() require('plugins.configs.yabs') end,
+    event = "BufReadPost",
   }
 
   -- lsp

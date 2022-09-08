@@ -31,3 +31,6 @@ require("yabs"):setup({
   },
 }
 )
+
+vim.api.nvim_set_keymap( "n", "rb", ":lua require('yabs'):run_task('build')<CR>", {noremap = true})
+vim.api.nvim_set_keymap( "n", "rr", ":lua require('yabs'):run_task('run')<CR>", {noremap = true})
