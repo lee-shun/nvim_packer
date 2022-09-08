@@ -61,6 +61,7 @@ require('packer').startup( function(use)
   use {'is0n/fm-nvim',
     config = function()
       require('fm-nvim').setup{}
+
     end}
   use {'voldikss/vim-floaterm',
     config = function ()
