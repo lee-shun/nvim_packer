@@ -44,7 +44,7 @@ require'cmp'.setup {
         nvim_lua = "[Lua]",
         treesitter = "[Treesitter]",
         path = "[Path]",
-        nvim_lsp_signature_help = "[Signature]",
+        nvim_lsp_signature_help = "[Sig]",
         cmp_tabnine = "[TN]",
       })[entry.source.name]
       return vim_item
@@ -104,6 +104,7 @@ cmp.setup({
   },
   sources = {
     { name = 'nvim_lsp' },
+    { name = "nvim_lsp_signature_help" },
     { name = 'path' },
     { name = 'path' },
     { name = 'cmp_tabnine' },

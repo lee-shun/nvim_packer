@@ -37,11 +37,11 @@ require("packer").startup( function(use)
     }
 
     use { "nvim-lualine/lualine.nvim",
+      requires = { "kyazdani42/nvim-web-devicons",
+        opt = true },
       config = function()
         require("plugins.configs.statusline.eviline")
       end,
-      requires = { "kyazdani42/nvim-web-devicons",
-        opt = true }
     }
 
     use { "glepnir/dashboard-nvim",
@@ -60,10 +60,12 @@ require("packer").startup( function(use)
     -- file navgative
     use { "kyazdani42/nvim-tree.lua",
       cmd = {"NvimTreeToggle", "NvimTreeClose"},
-      requires = {"kyazdani42/nvim-web-devicons", opt = true,},
+      requires = {"kyazdani42/nvim-web-devicons",
+        opt = true,},
       config = function()
         require("plugins.configs.nvimtree")
-      end
+      end,
+
     }
 
     use { "nvim-telescope/telescope.nvim",
@@ -107,12 +109,12 @@ require("packer").startup( function(use)
     use { "nvim-treesitter/nvim-treesitter",
       run =":TSUpdate",
       events = "BufReadPre",
+      requires = {
+        {"nvim-treesitter/playground"},
+        {"p00f/nvim-ts-rainbow"}},
       config = function()
         require("plugins.configs.treesitter")
       end,
-      requires = {
-        {"nvim-treesitter/playground"},
-        {"p00f/nvim-ts-rainbow"}}
 
     }
 
@@ -179,10 +181,6 @@ require("packer").startup( function(use)
       end
     }
 
-    use { "liuchengxu/vista.vim",
-      cmd = "Vista",
-    }
-
     use { "rlue/vim-barbaric",
       event="BufReadPost"
     }
@@ -239,10 +237,10 @@ require("packer").startup( function(use)
     -- code runner
     use { "pianocomposer321/yabs.nvim",
       event = "BufReadPost",
+      requires = { "nvim-lua/plenary.nvim" },
       config = function()
         require("plugins.configs.yabs")
       end,
-      requires = { "nvim-lua/plenary.nvim" },
     }
 
     -- completion
@@ -250,9 +248,6 @@ require("packer").startup( function(use)
       event = "InsertEnter",
       opt = true,
       wants = { "LuaSnip" },
-      config = function()
-        require("plugins.configs.lsp.cmp")
-      end,
       requires = {
         {"hrsh7th/cmp-nvim-lsp"},
         {"hrsh7th/cmp-buffer"},
@@ -260,6 +255,7 @@ require("packer").startup( function(use)
         {"hrsh7th/cmp-cmdline"},
         {"tzachar/cmp-tabnine", run="./install.sh"},
         {"saadparwaiz1/cmp_luasnip"},
+        {"hrsh7th/cmp-nvim-lsp-signature-help"},
         {"L3MON4D3/LuaSnip",
           wants = { "friendly-snippets", "vim-snippets" },
           config = function()
@@ -268,36 +264,39 @@ require("packer").startup( function(use)
         {"rafamadriz/friendly-snippets"},
         {"honza/vim-snippets"},
       },
-
+      config = function()
+        require("plugins.configs.lsp.cmp")
+      end,
     }
 
-    -- lsp
     use { "neovim/nvim-lspconfig",
       event = "BufReadPre",
-      wants = {"cmp-nvim-lsp"},
+      opt = true,
+      wants = {"cmp-nvim-lsp", "lsp-semantic.nvim", "aerial.nvim"},
+      requires = {
+        {"Thiago4532/lsp-semantic.nvim"},
+        {"stevearc/aerial.nvim",
+          config = function()
+            require("aerial").setup()
+          end
+        }
+      },
       config = function()
         require("plugins.configs.lsp.lspconfig")
       end,
-      requires = {
-        {"Thiago4532/lsp-semantic.nvim"},
-        {"folke/lsp-colors.nvim", -- not work with sonokai
-          config = function()
-            require("lsp-colors").setup ()
-          end,
-          disable = true}
-      }
     }
 
     use { "ahmedkhalf/project.nvim",
+      event = "BufReadPre",
       config = function()
         require("plugins.configs.lsp.project")
-      end
-    }
+      end }
 
     use { "folke/trouble.nvim",
+      event = "BufReadPost",
       cmd = "Trouble",
       config = function()
-        require("trouble").setup {}
+        require("trouble").setup{}
       end
     }
 
