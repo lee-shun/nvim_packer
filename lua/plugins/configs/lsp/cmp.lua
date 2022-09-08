@@ -27,26 +27,29 @@ local kind_icons = {
   Event = "",
   Operator = "",
   TypeParameter = "",
+  TN = "💡",
+  Snip = "",
 }
 
 require'cmp'.setup {
-formatting = {
-      format = function(entry, vim_item)
-        -- Kind icons
-        vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
-        -- Source
-        vim_item.menu = ({
-          nvim_lsp = "[LSP]",
-          buffer = "[Buffer]",
-          luasnip = "[Snip]",
-          nvim_lua = "[Lua]",
-          treesitter = "[Treesitter]",
-          path = "[Path]",
-          nvim_lsp_signature_help = "[Signature]",
-        })[entry.source.name]
-        return vim_item
-      end,
-    },
+  formatting = {
+    format = function(entry, vim_item)
+      -- Kind icons
+      vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
+      -- Source
+      vim_item.menu = ({
+        nvim_lsp = "[LSP]",
+        buffer = "[Buffer]",
+        luasnip = "[Snip]",
+        nvim_lua = "[Lua]",
+        treesitter = "[Treesitter]",
+        path = "[Path]",
+        nvim_lsp_signature_help = "[Signature]",
+        cmp_tabnine = "[TN]",
+      })[entry.source.name]
+      return vim_item
+    end,
+  },
 }
 
 local has_words_before = function()
