@@ -133,15 +133,6 @@ require('packer').startup( function(use)
   use {'taketwo/vim-ros', ft =  {'rosmsg', 'cpp'}, cmd = 'Roscd'}
   use {'thibthib18/ros-nvim', ft =  {'rosmsg', 'cpp'}}
   use {'lervag/vimtex', ft = 'tex'}
-  use {'SidOfc/mkdx', ft={'markdown'},
-    config = function ()
-      vim.cmd([[
-        let g:mkdx#settings = {
-                    \'highlight': { 'enable': 0 },
-                    \'map': { 'prefix': '=' }
-                    \}
-            ]])
-    end}
   use {'iamcco/markdown-preview.nvim', run=':call mkdp#util#install()', ft ={'markdown'},
     config = function ()
       vim.cmd([[
