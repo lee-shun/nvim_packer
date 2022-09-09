@@ -15,7 +15,7 @@ local on_attach = function(client, bufnr)
 		vim.api.nvim_create_autocmd({ "BufEnter", "BufEnter", "CursorHold", "InsertLeave", "BufWritePost" }, {
 			command = [[lua vim.lsp.buf.semantic_tokens_full()]],
 			group = SemHighlight,
-            buffer = vim.api.nvim_get_current_buf(),
+			buffer = vim.api.nvim_get_current_buf(),
 		})
 	end
 
