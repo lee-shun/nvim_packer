@@ -68,6 +68,12 @@ require("lspconfig")["pyright"].setup({
 	capabilities = capabilities,
 })
 
+-- markdown, latex, org. etc
+require("lspconfig")["ltex"].setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+
 -- lua
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
@@ -100,8 +106,6 @@ require("lspconfig")["sumneko_lua"].setup({
 	},
 })
 
--- taxlab
-require("lspconfig").texlab.setup({})
 
 -- set icons (if not use lsp-saga)
 local signs = { Error = "", Warn = "", Hint = "", Info = "" }

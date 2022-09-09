@@ -27,7 +27,6 @@ local function create_snippets()
 		},
 		lua = {
 			ls.parser.parse_snippet("lm", "local M = {}\n\nfunction M.setup()\n  $1 \nend\n\nreturn M"),
-			-- s("lm", { t { "local M = {}", "", "function M.setup()", "" }, i(1, ""), t { "", "end", "", "return M" } }),
 		},
 		python = {},
 	}
@@ -50,12 +49,11 @@ function M.setup()
 
 	-- Load snippets
 	require("luasnip/loaders/from_vscode").lazy_load()
-	require("luasnip.loaders.from_snipmate").lazy_load()
 
 	ls.filetype_extend("all", { "_" })
 
 	-- Create new snippets
-	create_snippets()
+	-- create_snippets()
 end
 
 return M

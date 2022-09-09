@@ -273,13 +273,12 @@ require("packer").startup(function(use)
 			{ "hrsh7th/cmp-nvim-lsp-signature-help" },
 			{
 				"L3MON4D3/LuaSnip",
-				wants = { "friendly-snippets", "vim-snippets" },
+				wants = { "friendly-snippets"},
 				config = function()
 					require("plugins.configs.luasnip").setup()
 				end,
 			},
 			{ "rafamadriz/friendly-snippets" },
-			{ "honza/vim-snippets" },
 		},
 		config = function()
 			require("plugins.configs.lsp.cmp")

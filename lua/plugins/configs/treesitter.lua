@@ -6,5 +6,6 @@ require("nvim-treesitter.configs").setup({
 	rainbow = {
 		enable = true,
 	},
-	ensure_installed = { "org", "markdown", "cpp", "c", "python" },
+	ensure_installed = {"markdown", "cpp", "c", "python" },
 })
+
