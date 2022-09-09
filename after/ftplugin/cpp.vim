@@ -63,8 +63,3 @@ function! s:inComment2()
 endfunction
 xnoremap <buffer> <silent> b/ :<c-u>call <sid>inComment2()<cr>
 onoremap <buffer> <silent> b/ :<c-u>call <sid>inComment2()<cr>
-
-" ===
-" === highlight
-" ===
-hi LspSemanticProperty ctermfg=LightRed guifg=LightRed  cterm=none gui=none
