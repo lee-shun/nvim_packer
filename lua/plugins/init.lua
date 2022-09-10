@@ -280,6 +280,7 @@ require("packer").startup(function(use)
 			{ "tzachar/cmp-tabnine", run = "./install.sh" },
 			{ "saadparwaiz1/cmp_luasnip" },
 			{ "hrsh7th/cmp-nvim-lsp-signature-help" },
+			{ "lukas-reineke/cmp-under-comparator" },
 			{
 				"L3MON4D3/LuaSnip",
 				wants = { "friendly-snippets" },
@@ -302,7 +303,7 @@ require("packer").startup(function(use)
 		requires = {
 			{
 				"theHamsta/nvim-semantic-tokens",
-                opt = true,
+				opt = true,
 				config = function()
 					require("nvim-semantic-tokens").setup({
 						preset = "default",
@@ -314,7 +315,7 @@ require("packer").startup(function(use)
 				"stevearc/aerial.nvim",
 				opt = true,
 				config = function()
-					require("aerial").setup()
+					require("plugins.configs.lsp.aerial")
 				end,
 			},
 			{
