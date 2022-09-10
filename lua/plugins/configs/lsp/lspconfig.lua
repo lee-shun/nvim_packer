@@ -42,7 +42,9 @@ local on_attach = function(client, bufnr)
 		opts
 	)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+	vim.keymap.set("n", "<leader>rn", function()
+		return ":IncRename " .. vim.fn.expand("<cword>")
+	end, { expr = true })
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>ac", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 
@@ -105,7 +107,6 @@ require("lspconfig")["sumneko_lua"].setup({
 		},
 	},
 })
-
 
 -- set icons (if not use lsp-saga)
 local signs = { Error = "", Warn = "", Hint = "", Info = "" }

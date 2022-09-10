@@ -298,10 +298,11 @@ require("packer").startup(function(use)
 		"neovim/nvim-lspconfig",
 		event = "BufReadPre",
 		opt = true,
-		wants = { "cmp-nvim-lsp", "nvim-semantic-tokens", "aerial.nvim" },
+		wants = { "cmp-nvim-lsp", "nvim-semantic-tokens", "aerial.nvim", "inc-rename.nvim" },
 		requires = {
 			{
 				"theHamsta/nvim-semantic-tokens",
+                opt = true,
 				config = function()
 					require("nvim-semantic-tokens").setup({
 						preset = "default",
@@ -314,6 +315,14 @@ require("packer").startup(function(use)
 				opt = true,
 				config = function()
 					require("aerial").setup()
+				end,
+			},
+			{
+				"smjonas/inc-rename.nvim",
+				opt = true,
+				cmd = "IncRename",
+				config = function()
+					require("inc_rename").setup()
 				end,
 			},
 		},
