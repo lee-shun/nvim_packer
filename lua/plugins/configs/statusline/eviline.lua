@@ -45,6 +45,7 @@ local config = {
 			"packer",
 			"NvimTree",
 			"vista",
+            "alpha",
 		},
 	},
 	sections = {

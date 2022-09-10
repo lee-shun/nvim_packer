@@ -46,8 +46,17 @@ require("packer").startup(function(use)
 
 	use({
 		"glepnir/dashboard-nvim",
+		disable = true,
 		config = function()
 			require("plugins.configs.dashboard")
+		end,
+	})
+
+	use({
+		"goolord/alpha-nvim",
+		requires = { "kyazdani42/nvim-web-devicons" },
+		config = function()
+			require("plugins.configs.alpha")
 		end,
 	})
 
@@ -273,7 +282,7 @@ require("packer").startup(function(use)
 			{ "hrsh7th/cmp-nvim-lsp-signature-help" },
 			{
 				"L3MON4D3/LuaSnip",
-				wants = { "friendly-snippets"},
+				wants = { "friendly-snippets" },
 				config = function()
 					require("plugins.configs.luasnip").setup()
 				end,

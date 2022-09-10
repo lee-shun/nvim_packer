@@ -17,6 +17,6 @@ require("indent_blankline").setup({
 		"block",
 	},
 	show_end_of_line = false,
-	filetype_exclude = { "help", "Nvimtree", "coc-explorer", "dashboard" },
+	filetype_exclude = { "help", "Nvimtree", "coc-explorer", "dashboard", "alpha" },
 	buftype_exclude = { "terminal", "prompt" },
 })
