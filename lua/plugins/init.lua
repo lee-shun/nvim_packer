@@ -27,28 +27,12 @@ require("packer").startup(function(use)
 	})
 
 	use({
-		"folke/tokyonight.nvim",
-		disable = true,
-		config = function()
-			vim.cmd("colorscheme tokyonight")
-		end,
-	})
-
-	use({
 		"nvim-lualine/lualine.nvim",
 		requires = {
 			{ "kyazdani42/nvim-web-devicons" },
 		},
 		config = function()
 			require("plugins.configs.statusline.eviline")
-		end,
-	})
-
-	use({
-		"glepnir/dashboard-nvim",
-		disable = true,
-		config = function()
-			require("plugins.configs.dashboard")
 		end,
 	})
 
@@ -65,22 +49,6 @@ require("packer").startup(function(use)
 		event = "BufReadPre",
 		config = function()
 			require("illuminate").configure({})
-		end,
-	})
-
-	use({
-		"rcarriga/nvim-notify",
-		disable = true,
-		config = function()
-			require("plugins.configs.notify")
-		end,
-	})
-
-	use({
-		"j-hui/fidget.nvim",
-		event = "BufReadPost",
-		config = function()
-			require("fidget").setup({})
 		end,
 	})
 
@@ -156,17 +124,6 @@ require("packer").startup(function(use)
 		config = function()
 			require("fm-nvim").setup({})
 			vim.api.nvim_set_keymap("n", "<Leader>ra", "<cmd>Ranger<CR>", { noremap = true, silent = true })
-		end,
-	})
-
-	use({
-		"voldikss/vim-floaterm",
-		disable = true,
-		event = "BufReadPost",
-		config = function()
-			vim.g.floaterm_keymap_toggle = "<F12>"
-			vim.g.floaterm_width = 0.8
-			vim.g.floaterm_height = 0.7
 		end,
 	})
 
@@ -295,6 +252,7 @@ require("packer").startup(function(use)
 		end,
 	})
 
+    -- lsp
 	use({
 		"neovim/nvim-lspconfig",
 		event = "BufReadPre",
@@ -329,14 +287,6 @@ require("packer").startup(function(use)
 		},
 		config = function()
 			require("plugins.configs.lsp.lspconfig")
-		end,
-	})
-
-	use({
-		"williamboman/mason.nvim",
-		disable = true,
-		config = function()
-			require("mason").setup()
 		end,
 	})
 
