@@ -176,13 +176,20 @@ ins_left({
 		if next(clients) == nil then
 			return msg
 		end
+
+		local buf_client_names = {}
 		for _, client in ipairs(clients) do
-			local filetypes = client.config.filetypes
-			if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-				return client.name
+			if client.name ~= "null-ls" then
+				table.insert(buf_client_names, client.name)
 			end
 		end
-		return msg
+
+		local sources = require("null-ls.sources")
+		for _, source in ipairs(sources.get_available(buf_ft)) do
+			table.insert(buf_client_names, source.name)
+		end
+
+		return "[" .. table.concat(buf_client_names, ", ") .. "]"
 	end,
 	icon = " LSP:",
 	color = { fg = "#ffffff", gui = "bold" },

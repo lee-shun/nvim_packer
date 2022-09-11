@@ -54,11 +54,13 @@ end
 -- cmp + lsp
 --
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local clangd_cap = capabilities
+clangd_cap.offsetEncoding = { "utf-16" }
 
 -- clangd
 require("lspconfig")["clangd"].setup({
 	on_attach = on_attach,
-	capabilities = capabilities,
+	capabilities = clangd_cap,
 	-- before_init = require'lsp-semantic.configs'.clangd.before_init
 })
 
