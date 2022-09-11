@@ -41,10 +41,7 @@ local config = {
 		section_separators = "",
 		theme = "auto",
 		disabled_filetypes = { -- Filetypes to disable lualine for.
-			"dashboard",
 			"alpha",
-			"packer",
-			"NvimTree",
 		},
 		globalstatus = true,
 	},
