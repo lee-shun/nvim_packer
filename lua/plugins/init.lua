@@ -252,10 +252,10 @@ require("packer").startup(function(use)
 		end,
 	})
 
-    -- lsp
+	-- lsp
 	use({
 		"neovim/nvim-lspconfig",
-		event = "BufReadPre",
+		event = {"BufReadPre", "BufNewFile"},
 		opt = true,
 		wants = { "cmp-nvim-lsp", "nvim-semantic-tokens", "aerial.nvim", "inc-rename.nvim" },
 		requires = {
@@ -313,6 +313,30 @@ require("packer").startup(function(use)
 		event = "BufReadPre",
 		config = function()
 			require("plugins.configs.nvim_linter")
+		end,
+	})
+
+	-- debug
+	use({
+		"mfussenegger/nvim-dap",
+		event = "BufReadPost",
+		opt = true,
+		requires = {
+			{
+				"theHamsta/nvim-dap-virtual-text",
+				config = function()
+					require("plugins.configs.debugger.nvim_dap_virtul_text")
+				end,
+			},
+			{
+				"rcarriga/nvim-dap-ui",
+				config = function()
+					require("plugins.configs.debugger.nvim_dap_ui")
+				end,
+			},
+		},
+		config = function()
+			require("plugins.configs.debugger.nvim_dap")
 		end,
 	})
 

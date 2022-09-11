@@ -60,6 +60,7 @@ vim.o.ttimeoutlen = 10
 vim.o.conceallevel = 0
 vim.o.wildmenu = true
 vim.o.lazyredraw = true
+vim.o.laststatus = 3
 vim.o.ttyfast = true
 vim.o.t_Co = 256
 vim.o.termguicolors = true

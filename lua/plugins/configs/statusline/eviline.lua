@@ -42,11 +42,11 @@ local config = {
 		theme = "auto",
 		disabled_filetypes = { -- Filetypes to disable lualine for.
 			"dashboard",
+			"alpha",
 			"packer",
 			"NvimTree",
-			"vista",
-            "alpha",
 		},
+		globalstatus = true,
 	},
 	sections = {
 		-- these are to remove the defaults
