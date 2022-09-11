@@ -87,7 +87,7 @@ require("packer").startup(function(use)
 		"numToStr/Comment.nvim",
 		event = "BufReadPre",
 		config = function()
-			require("Comment").setup({})
+			require("Comment").setup()
 		end,
 	})
 
@@ -95,7 +95,7 @@ require("packer").startup(function(use)
 		"norcalli/nvim-colorizer.lua",
 		cmd = "ColorizerToggle",
 		config = function()
-			require("colorizer").setup({})
+			require("colorizer").setup()
 		end,
 	})
 
@@ -139,7 +139,7 @@ require("packer").startup(function(use)
 		"lewis6991/gitsigns.nvim",
 		event = "BufReadPost",
 		config = function()
-			require("gitsigns").setup({})
+			require("gitsigns").setup()
 		end,
 	})
 
@@ -169,7 +169,7 @@ require("packer").startup(function(use)
 		"kylechui/nvim-surround",
 		event = "BufReadPost",
 		config = function()
-			require("nvim-surround").setup({})
+			require("nvim-surround").setup()
 		end,
 	})
 
@@ -197,7 +197,7 @@ require("packer").startup(function(use)
 		"anuvyklack/pretty-fold.nvim",
 		event = "BufReadPost",
 		config = function()
-			require("pretty-fold").setup({})
+			require("pretty-fold").setup()
 		end,
 	})
 
@@ -207,7 +207,7 @@ require("packer").startup(function(use)
 		"Pocco81/auto-save.nvim",
 		event = "BufReadPost",
 		config = function()
-			require("auto-save").setup({})
+			require("auto-save").setup()
 		end,
 	})
 
@@ -255,7 +255,7 @@ require("packer").startup(function(use)
 	-- lsp
 	use({
 		"neovim/nvim-lspconfig",
-		event = {"BufReadPre", "BufNewFile"},
+		event = { "BufReadPre", "BufNewFile" },
 		opt = true,
 		wants = { "cmp-nvim-lsp", "nvim-semantic-tokens", "aerial.nvim", "inc-rename.nvim" },
 		requires = {
@@ -303,7 +303,7 @@ require("packer").startup(function(use)
 		event = "BufReadPost",
 		cmd = "Trouble",
 		config = function()
-			require("trouble").setup({})
+			require("trouble").setup()
 		end,
 	})
 
