@@ -154,18 +154,6 @@ require("packer").startup(function(use)
 	use({ "psliwka/vim-smoothie", event = "BufReadPost" })
 
 	use({
-		"AckslD/nvim-neoclip.lua",
-		event = "BufReadPost",
-		requires = {
-			{ "nvim-telescope/telescope.nvim" },
-		},
-		config = function()
-			require("neoclip").setup()
-			require("telescope").load_extension("neoclip")
-		end,
-	})
-
-	use({
 		"kylechui/nvim-surround",
 		event = "BufReadPost",
 		config = function()
@@ -295,15 +283,6 @@ require("packer").startup(function(use)
 		event = "BufReadPre",
 		config = function()
 			require("plugins.configs.lsp.project")
-		end,
-	})
-
-	use({
-		"folke/trouble.nvim",
-		event = "BufReadPost",
-		cmd = "Trouble",
-		config = function()
-			require("trouble").setup()
 		end,
 	})
 

@@ -3,6 +3,8 @@ if not present then
 	return
 end
 
+local actions = require("telescope.actions")
+
 telescope.setup({
 	defaults = {
 		vimgrep_arguments = {
@@ -15,8 +17,15 @@ telescope.setup({
 			"--smart-case",
 		},
 		prompt_prefix = "   ",
-		selection_caret = "  ",
-		entry_prefix = "  ",
+		selection_caret = " ",
+		mappings = {
+			i = {
+				["<C-j>"] = actions.move_selection_next,
+				["<C-k>"] = actions.move_selection_previous,
+				["<C-n>"] = actions.cycle_history_next,
+				["<C-p>"] = actions.cycle_history_prev,
+			},
+		},
 		initial_mode = "insert",
 		selection_strategy = "reset",
 		sorting_strategy = "descending",
@@ -63,3 +72,5 @@ vim.api.nvim_set_keymap(
 	"<Cmd> Telescope current_buffer_fuzzy_find<CR>",
 	{ noremap = true, silent = true }
 )
+vim.api.nvim_set_keymap("n", "<Leader>fr", "<Cmd> Telescope registers<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<Leader>fd", "<Cmd> Telescope diagnostics<CR>", { noremap = true, silent = true })
