@@ -286,6 +286,15 @@ require("packer").startup(function(use)
 		end,
 	})
 
+	use({
+		"kosayoda/nvim-lightbulb",
+		event = "BufReadPost",
+		requires = "antoinemadec/FixCursorHold.nvim",
+		config = function()
+			require("nvim-lightbulb").setup({ autocmd = { enabled = true } })
+		end,
+	})
+
 	-- linters
 	use({
 		"jose-elias-alvarez/null-ls.nvim",
