@@ -288,10 +288,10 @@ require("packer").startup(function(use)
 
 	-- linters
 	use({
-		"mfussenegger/nvim-lint",
+		"jose-elias-alvarez/null-ls.nvim",
 		event = "BufReadPre",
 		config = function()
-			require("plugins.configs.nvim_linter")
+			require("plugins.configs.lsp.null_ls")
 		end,
 	})
 

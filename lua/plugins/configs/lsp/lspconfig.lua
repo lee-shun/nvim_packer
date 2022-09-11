@@ -68,16 +68,6 @@ require("lspconfig")["pyright"].setup({
 	capabilities = capabilities,
 })
 
--- markdown, org. etc
-require("lspconfig")["ltex"].setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	filetypes = {
-		"markdown",
-		"org",
-	},
-})
-
 -- taxlab
 require("lspconfig")["texlab"].setup({
 	on_attach = on_attach,
