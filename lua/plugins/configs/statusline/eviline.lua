@@ -186,7 +186,7 @@ ins_left({
 			table.insert(buf_client_names, source.name)
 		end
 
-		if next(clients) == nil and next(available) == nil then
+		if next(buf_client_names) == nil then
 			return ""
 		end
 
