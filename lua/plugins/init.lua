@@ -32,7 +32,7 @@ require("packer").startup(function(use)
 			{ "kyazdani42/nvim-web-devicons" },
 		},
 		config = function()
-			require("plugins.configs.statusline.eviline")
+			require("plugins.configs.eviline")
 		end,
 	})
 
