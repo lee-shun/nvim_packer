@@ -36,6 +36,9 @@ vim.api.nvim_set_keymap("n", "]<LEADER>", ":<c-u>put =repeat(nr2char(10), v:coun
 -- yank line
 vim.api.nvim_set_keymap("n", "Y", "y$", { noremap = true })
 
+-- greatest remap ever
+vim.api.nvim_set_keymap("v", "<leader>p", "\"_dP", {noremap = true})
+
 -- move the chosen zone
 vim.api.nvim_set_keymap("v", "J", ":m '>+1<CR>gv=gv", { noremap = true })
 vim.api.nvim_set_keymap("v", "K", ":m '<-2<CR>gv=gv", { noremap = true })
