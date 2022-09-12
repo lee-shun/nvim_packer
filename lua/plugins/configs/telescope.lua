@@ -61,9 +61,6 @@ telescope.setup({
 	},
 })
 
--- extions
-
--- telescope.load_extension('telescope-code-actions')
 
 -- mappings
 vim.api.nvim_set_keymap("n", "<Leader>ff", "<Cmd> Telescope find_files<CR>", { noremap = true, silent = true })

@@ -337,11 +337,6 @@ require("packer").startup(function(use)
 	-- telescope
 	use({
 		"nvim-telescope/telescope.nvim",
-		wants = { "telescope-code-actions.nvim" },
-		requires = {
-			{ "nvim-lua/plenary.nvim" },
-			{ "nyarthan/telescope-code-actions.nvim", opt = true },
-		},
 		config = function()
 			require("plugins.configs.telescope")
 		end,
