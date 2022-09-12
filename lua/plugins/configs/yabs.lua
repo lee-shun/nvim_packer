@@ -7,7 +7,7 @@ require("yabs"):setup({
 					command = function()
 						return "g++ -std=c++11 "
 							.. vim.fn.expand("%:t")
-							.. " -Wall -o "
+							.. " -Wall -ggdb -o "
 							.. vim.fn.expand("%:t:r")
 							.. ".out"
 					end,
@@ -19,7 +19,7 @@ require("yabs"):setup({
 						-- `open_on_run`, which defines the behavior
 						-- for the quickfix list opening) (can be
 						-- `never`, `always`, or `auto`, the default)
-						open_on_run = "always",
+						open_on_run = "auto",
 					},
 				},
 				run = { -- You can specify as many tasks as you want per filetype
