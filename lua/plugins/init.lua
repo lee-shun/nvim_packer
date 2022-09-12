@@ -62,14 +62,6 @@ require("packer").startup(function(use)
 		end,
 	})
 
-	use({
-		"nvim-telescope/telescope.nvim",
-		requires = { "nvim-lua/plenary.nvim" },
-		config = function()
-			require("plugins.configs.telescope")
-		end,
-	})
-
 	-- general enchance
 	use({ "lewis6991/impatient.nvim" })
 
@@ -143,14 +135,6 @@ require("packer").startup(function(use)
 		end,
 	})
 
-	use({
-		"mhartington/formatter.nvim",
-		cmd = "Format",
-		config = function()
-			require("plugins.configs.formatter")
-		end,
-	})
-
 	use({ "psliwka/vim-smoothie", event = "BufReadPost" })
 
 	use({
@@ -185,7 +169,7 @@ require("packer").startup(function(use)
 		"anuvyklack/pretty-fold.nvim",
 		event = "BufReadPost",
 		config = function()
-			require("pretty-fold").setup()
+			require("pretty-fold").setup({})
 		end,
 	})
 
@@ -278,6 +262,7 @@ require("packer").startup(function(use)
 		end,
 	})
 
+	-- manage root
 	use({
 		"ahmedkhalf/project.nvim",
 		event = "BufReadPre",
@@ -286,21 +271,21 @@ require("packer").startup(function(use)
 		end,
 	})
 
-	use({
-		"kosayoda/nvim-lightbulb",
-		event = "BufReadPost",
-		requires = "antoinemadec/FixCursorHold.nvim",
-		config = function()
-			require("nvim-lightbulb").setup({ autocmd = { enabled = true } })
-		end,
-	})
-
-	-- linters
+	-- linters...
 	use({
 		"jose-elias-alvarez/null-ls.nvim",
 		event = "BufReadPre",
 		config = function()
 			require("plugins.configs.lsp.null_ls")
+		end,
+	})
+
+	-- format
+	use({
+		"mhartington/formatter.nvim",
+		cmd = "Format",
+		config = function()
+			require("plugins.configs.formatter")
 		end,
 	})
 
@@ -328,7 +313,20 @@ require("packer").startup(function(use)
 		end,
 	})
 
-	-- language
+	-- telescope
+	use({
+		"nvim-telescope/telescope.nvim",
+		wants = { "telescope-code-actions.nvim" },
+		requires = {
+			{ "nvim-lua/plenary.nvim" },
+			{ "nyarthan/telescope-code-actions.nvim", opt = true },
+		},
+		config = function()
+			require("plugins.configs.telescope")
+		end,
+	})
+
+	-- special language-based plugins
 	use({ "taketwo/vim-ros", ft = { "rosmsg", "cpp" }, cmd = "Roscd" })
 
 	use({ "thibthib18/ros-nvim", ft = { "rosmsg", "cpp" } })
