@@ -55,6 +55,7 @@ vim.o.wrap = false
 vim.o.linebreak = true
 vim.o.timeout = true
 vim.o.timeoutlen = 1000
+vim.o.updatetime = 1000
 vim.o.ttimeout = true
 vim.o.ttimeoutlen = 10
 vim.o.conceallevel = 0

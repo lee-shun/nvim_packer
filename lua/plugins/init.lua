@@ -289,6 +289,27 @@ require("packer").startup(function(use)
 		end,
 	})
 
+	-- code action UI
+	use({
+		"kosayoda/nvim-lightbulb",
+		event = "BufReadPost",
+		wants = { "FixCursorHold.nvim" },
+		requires = {
+			{ "antoinemadec/FixCursorHold.nvim", opt = true },
+		},
+		config = function()
+			require("nvim-lightbulb").setup({
+				sign = { enabled = false },
+				float = {
+					enabled = true,
+				},
+				autocmd = {
+					enabled = true,
+				},
+			})
+		end,
+	})
+
 	-- debug
 	use({
 		"mfussenegger/nvim-dap",
