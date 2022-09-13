@@ -155,7 +155,14 @@ require("packer").startup(function(use)
 		end,
 	})
 
-	use({ "mg979/vim-visual-multi", event = "BufReadPost" })
+	use({
+		"mg979/vim-visual-multi",
+		event = "BufReadPost",
+		config = function()
+			vim.g.VM_maps = { ["I BS"] = "" }
+			vim.g.VM_set_statusline = 0
+		end,
+	})
 
 	use({ "junegunn/vim-easy-align", event = "BufReadPost" })
 
