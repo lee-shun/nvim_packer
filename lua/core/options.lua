@@ -76,7 +76,7 @@ vim.o.virtualedit = "block"
 vim.o.inccommand = "split"
 
 vim.o.showmatch = true
-vim.opt.iskeyword:append("_,$,@,%,#,-")
+vim.opt.iskeyword:append("_,$,@,%,#")
 vim.o.matchpairs = "(:),{:},[:],<:>"
 vim.o.whichwrap = "b,s,<,>,[,]"
 
