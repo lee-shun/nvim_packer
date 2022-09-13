@@ -52,6 +52,14 @@ require("packer").startup(function(use)
 		end,
 	})
 
+	use({
+		"sunjon/shade.nvim",
+		event = "WinNew",
+		config = function()
+			require("shade").setup({})
+		end,
+	})
+
 	-- file navgative
 	use({
 		"kyazdani42/nvim-tree.lua",
@@ -361,6 +369,28 @@ require("packer").startup(function(use)
         ]])
 			vim.g.mkdp_browser = "google-chrome"
 			vim.g.mkdp_browserfunc = "g:Open_browser"
+		end,
+	})
+
+	use({
+		"jbyuki/nabla.nvim",
+		ft = { "markdown", "tex" },
+		config = function()
+			local nabulaDis = vim.api.nvim_create_augroup("NabulaDis", { clear = true })
+			vim.api.nvim_create_autocmd({ "CursorHold", "Filetype" }, {
+				pattern = { "markdown", "tex" },
+				command = [[silent! lua require('nabla').popup({ border = 'rounded' })]],
+				group = nabulaDis,
+			})
+			vim.cmd([[au CursorHold *.md,*.markdown silent! lua require('nabla').popup({ border = 'rounded' })]])
+		end,
+	})
+
+	use({
+		"NFrid/due.nvim",
+		ft = "markdown",
+		config = function()
+			require("due_nvim").setup({})
 		end,
 	})
 
