@@ -52,14 +52,6 @@ require("packer").startup(function(use)
 		end,
 	})
 
-	use({
-		"sunjon/shade.nvim",
-		event = "WinNew",
-		config = function()
-			require("shade").setup({})
-		end,
-	})
-
 	-- file navgative
 	use({
 		"kyazdani42/nvim-tree.lua",
