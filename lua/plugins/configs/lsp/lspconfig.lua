@@ -9,6 +9,7 @@ vim.api.nvim_set_keymap("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
+    -- semantic provider
 	local caps = client.server_capabilities
 	if caps.semanticTokensProvider and caps.semanticTokensProvider.full then
 		local SemHighlight = vim.api.nvim_create_augroup("SemHighlight", { clear = true })
