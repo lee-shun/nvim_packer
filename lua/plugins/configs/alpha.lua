@@ -22,11 +22,11 @@ dashboard.section.header.val = {
 	[[⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠛⢿⣿⣿⠂⠀⠀⠀⠀⠀⢀⣽⣿⣿⣿⣿⣿⣿⣿⣍⠛⠿⣿⣿⣿⣿⣿⣿]],
 }
 dashboard.section.buttons.val = {
-	dashboard.button("SPC f m", "  Old files", "<cmd>Telescope oldfiles<cr>"),
-	dashboard.button("SPC f f", "  Find file", "<cmd>Telescope find_files<cr>"),
-	dashboard.button("SPC f w", "  Find Words", "<cmd>Telescope live_grep<cr>"),
-	dashboard.button("e", "  New file", "<cmd>ene <BAR> startinsert <CR>"),
-	dashboard.button("q", "  Quit NVIM", "<cmd>qa<CR>"),
+	dashboard.button("SPC f m", "  Hist File", "<cmd>Telescope oldfiles<cr>"),
+	dashboard.button("SPC f f", "  Find File", "<cmd>Telescope find_files<cr>"),
+	dashboard.button("SPC f w", "  Find Word", "<cmd>Telescope live_grep<cr>"),
+	dashboard.button("e", "  New  File", "<cmd>ene <BAR> startinsert <CR>"),
+	dashboard.button("q", "  Quit Nvim", "<cmd>qa<CR>"),
 }
 
 local handle = io.popen("fortune")
