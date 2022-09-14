@@ -343,14 +343,6 @@ require("packer").startup(function(use)
 		end,
 	})
 
-	use({
-		"anuvyklack/pretty-fold.nvim",
-		event = "BufReadPost",
-		config = function()
-			require("pretty-fold").setup()
-		end,
-	})
-
 	-- telescope
 	use({
 		"nvim-telescope/telescope.nvim",
