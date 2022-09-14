@@ -105,6 +105,7 @@ require("packer").startup(function(use)
 
 	use({
 		"akinsho/toggleterm.nvim",
+		event = "BufReadPre",
 		config = function()
 			require("plugins.configs.toggleterm")
 		end,
@@ -145,7 +146,7 @@ require("packer").startup(function(use)
 		end,
 	})
 
-	use({ "rlue/vim-barbaric", event = "BufReadPost" })
+	use({ "rlue/vim-barbaric", event = "InsertEnter" })
 
 	use({
 		"lukas-reineke/indent-blankline.nvim",
@@ -270,7 +271,7 @@ require("packer").startup(function(use)
 		end,
 	})
 
-	-- linters...
+	-- linters
 	use({
 		"jose-elias-alvarez/null-ls.nvim",
 		event = "BufReadPre",
