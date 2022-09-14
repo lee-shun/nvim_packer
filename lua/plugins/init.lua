@@ -172,14 +172,6 @@ require("packer").startup(function(use)
 
 	use({ "mbbill/undotree", cmd = "UndotreeToggle " })
 
-	use({
-		"anuvyklack/pretty-fold.nvim",
-		event = "BufReadPost",
-		config = function()
-			require("pretty-fold").setup({})
-		end,
-	})
-
 	use({ "wellle/targets.vim", event = "BufReadPost" })
 
 	use({
@@ -347,11 +339,15 @@ require("packer").startup(function(use)
 		wants = { "promise-async" },
 		requires = "kevinhwang91/promise-async",
 		config = function()
-			require("ufo").setup({
-				provider_selector = function(bufnr, filetype, buftype)
-					return { "treesitter", "indent" }
-				end,
-			})
+			require("plugins.configs.nvim_ufo")
+		end,
+	})
+
+	use({
+		"anuvyklack/pretty-fold.nvim",
+		event = "BufReadPost",
+		config = function()
+			require("pretty-fold").setup()
 		end,
 	})
 
