@@ -375,6 +375,14 @@ require("packer").startup(function(use)
 	})
 
 	use({
+		"ekickx/clipboard-image.nvim",
+		ft = { "markdown" },
+		config = function()
+			require("plugins.configs.clip_img")
+		end,
+	})
+
+	use({
 		"jbyuki/nabla.nvim",
 		ft = { "markdown", "tex" },
 		config = function()
