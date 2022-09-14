@@ -8,10 +8,10 @@ vim.api.nvim_set_keymap("i", "<Tab>", 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', { 
 vim.api.nvim_set_keymap("i", "<S-Tab>", 'pumvisible() ? "\\<C-p>" : "\\<Tab>"', { expr = true, noremap = true })
 
 -- quick
-vim.api.nvim_set_keymap("n", "<LEADER>rc", ":e ~/.config/nvim/init.lua<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>rc", ":e ~/.config/nvim/init.lua<CR>", { noremap = true })
 vim.api.nvim_set_keymap(
 	"n",
-	"<LEADER><LEADER>",
+	"<leader><leader>",
 	"<Esc>/<++><CR>:nohlsearch<CR>i<Del><Del><Del><Del>",
 	{ noremap = true }
 )
@@ -30,8 +30,8 @@ vim.api.nvim_set_keymap("v", ">", ">gv", { noremap = true })
 -- add blank line and move line
 vim.api.nvim_set_keymap("n", "[e", ":<c-u>execute 'move -1-'. v:count1<cr>", { noremap = true })
 vim.api.nvim_set_keymap("n", "]e", ":<c-u>execute 'move +'. v:count1<cr>", { noremap = true })
-vim.api.nvim_set_keymap("n", "[<LEADER>", ":<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[", { noremap = true })
-vim.api.nvim_set_keymap("n", "]<LEADER>", ":<c-u>put =repeat(nr2char(10), v:count1)<cr>", { noremap = true })
+vim.api.nvim_set_keymap("n", "[<leader>", ":<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[", { noremap = true })
+vim.api.nvim_set_keymap("n", "]<leader>", ":<c-u>put =repeat(nr2char(10), v:count1)<cr>", { noremap = true })
 
 -- yank line
 vim.api.nvim_set_keymap("n", "Y", "y$", { noremap = true })
