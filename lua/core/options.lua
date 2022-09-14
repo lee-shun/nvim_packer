@@ -95,8 +95,10 @@ vim.o.expandtab = true
 vim.o.shiftround = true
 
 vim.o.foldmethod = "manual"
-vim.o.foldlevel = 99
 vim.o.foldenable = true
+vim.o.foldcolumn = '1'
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
 
 vim.o.list = true
 vim.o.listchars = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←"

@@ -341,6 +341,20 @@ require("packer").startup(function(use)
 		end,
 	})
 
+	-- code fold
+	use({
+		"kevinhwang91/nvim-ufo",
+		wants = { "promise-async" },
+		requires = "kevinhwang91/promise-async",
+		config = function()
+			require("ufo").setup({
+				provider_selector = function(bufnr, filetype, buftype)
+					return { "treesitter", "indent" }
+				end,
+			})
+		end,
+	})
+
 	-- telescope
 	use({
 		"nvim-telescope/telescope.nvim",

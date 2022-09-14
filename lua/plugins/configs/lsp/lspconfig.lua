@@ -56,8 +56,15 @@ end
 --
 -- cmp + lsp
 --
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
-local clangd_cap = capabilities
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.foldingRange = {
+  dynamicRegistration = false,
+  lineFoldingOnly = true,
+}
+
+local cmp_cap = require("cmp_nvim_lsp").update_capabilities(capabilities)
+local clangd_cap = cmp_cap
 clangd_cap.offsetEncoding = { "utf-16" }
 
 -- clangd
@@ -70,13 +77,13 @@ require("lspconfig")["clangd"].setup({
 -- pyright
 require("lspconfig")["pyright"].setup({
 	on_attach = on_attach,
-	capabilities = capabilities,
+	capabilities = cmp_cap,
 })
 
 -- taxlab
 require("lspconfig")["texlab"].setup({
 	on_attach = on_attach,
-	capabilities = capabilities,
+	capabilities = cmp_cap,
 })
 
 -- lua
@@ -86,7 +93,7 @@ table.insert(runtime_path, "lua/?/init.lua")
 
 require("lspconfig")["sumneko_lua"].setup({
 	on_attach = on_attach,
-	capabilities = capabilities,
+	capabilities = cmp_cap,
 	settings = {
 		Lua = {
 			runtime = {
