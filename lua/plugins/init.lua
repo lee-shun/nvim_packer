@@ -20,9 +20,16 @@ require("packer").startup(function(use)
 
 	use({
 		"sainnhe/sonokai",
+        disable = true,
 		config = function()
 			vim.g.sonokai_better_performance = 1
 			vim.cmd("colorscheme sonokai")
+		end,
+	})
+	use({
+		"rmehri01/onenord.nvim",
+		config = function()
+			vim.cmd("colorscheme onenord")
 		end,
 	})
 
