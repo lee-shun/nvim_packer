@@ -39,7 +39,7 @@ require("packer").startup(function(use)
 
 	use({
 		"goolord/alpha-nvim",
-		requires = { "kyazdani42/nvim-web-devicons" },
+		requires = { "kyazdani42/nvim-web-devicons", opt = true },
 		config = function()
 			require("plugins.configs.alpha")
 		end,
@@ -79,6 +79,7 @@ require("packer").startup(function(use)
 	use({
 		"numToStr/Comment.nvim",
 		event = "BufReadPre",
+		wants = "nvim-treesitter",
 		config = function()
 			require("Comment").setup()
 		end,
@@ -173,7 +174,7 @@ require("packer").startup(function(use)
 
 	use({ "tpope/vim-fugitive", cmd = { "Git", "GBrowse", "Gdiffsplit", "Gvdiffsplit" } })
 
-	use({ "mbbill/undotree", cmd = "UndotreeToggle " })
+	use({ "mbbill/undotree", cmd = "UndotreeToggle" })
 
 	use({ "wellle/targets.vim", event = "BufReadPost" })
 
