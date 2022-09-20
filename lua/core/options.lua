@@ -67,6 +67,7 @@ vim.o.t_Co = 256
 vim.o.termguicolors = true
 vim.o.laststatus = 2
 vim.o.cmdheight = 1
+vim.o.statusline="%#normal#"
 vim.o.spelllang = "en,cjk"
 vim.o.spellfile = "~/.config/nvim/spell/en.utf-8.add"
 vim.o.spellfile = global.vim_config_path .. "spell/en.utf-8.add"

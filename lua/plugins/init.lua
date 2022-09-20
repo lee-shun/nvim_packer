@@ -20,7 +20,6 @@ require("packer").startup(function(use)
 
 	use({
 		"sainnhe/sonokai",
-        disable = true,
 		config = function()
 			vim.g.sonokai_better_performance = 1
 			vim.cmd("colorscheme sonokai")
@@ -28,6 +27,7 @@ require("packer").startup(function(use)
 	})
 	use({
 		"rmehri01/onenord.nvim",
+		disable = true,
 		config = function()
 			vim.cmd("colorscheme onenord")
 		end,
@@ -35,6 +35,7 @@ require("packer").startup(function(use)
 
 	use({
 		"nvim-lualine/lualine.nvim",
+		event = "BufReadPre",
 		requires = {
 			{ "kyazdani42/nvim-web-devicons" },
 		},
@@ -101,8 +102,9 @@ require("packer").startup(function(use)
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
+        wants = {"playground", "nvim-ts-rainbow"},
 		requires = {
-			{ "nvim-treesitter/playground" },
+			{ "nvim-treesitter/playground"},
 			{ "p00f/nvim-ts-rainbow" },
 		},
 		config = function()
@@ -344,8 +346,9 @@ require("packer").startup(function(use)
 	-- code fold
 	use({
 		"kevinhwang91/nvim-ufo",
+		event = "BufReadPost",
 		wants = { "promise-async" },
-		requires = "kevinhwang91/promise-async",
+		requires = { "kevinhwang91/promise-async", opt = 1 },
 		config = function()
 			require("plugins.configs.nvim_ufo")
 		end,
