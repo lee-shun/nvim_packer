@@ -30,7 +30,7 @@ require("packer").startup(function(use)
 		"nvim-lualine/lualine.nvim",
 		event = "BufReadPre",
 		requires = {
-			{ "kyazdani42/nvim-web-devicons" },
+			{ "kyazdani42/nvim-web-devicons", opt = true },
 		},
 		config = function()
 			require("plugins.configs.eviline")
@@ -353,10 +353,11 @@ require("packer").startup(function(use)
 		cmd = { "Telescope" },
 		module = { "telescope", "telescope.builtin" },
 		keys = { "<leader>f" },
-		wants = { "plenary.nvim", "popup.nvim" },
+		wants = { "plenary.nvim", "popup.nvim", "nvim-web-devicons" },
 		requires = {
-			"nvim-lua/popup.nvim", opt = true,
-			"nvim-lua/plenary.nvim", opt = true,
+            {"nvim-lua/popup.nvim", opt = true},
+            {"nvim-lua/plenary.nvim", opt = true},
+            { "kyazdani42/nvim-web-devicons", opt = true },
 		},
 		config = function()
 			require("plugins.configs.telescope")
