@@ -10,14 +10,6 @@ end
 require("packer").startup(function(use)
 	use({ "wbthomason/packer.nvim" })
 
-	-- commom libs
-	use({ "nvim-lua/popup.nvim" })
-
-	use({ "nvim-lua/plenary.nvim" })
-
-	-- UI
-	use({ "kyazdani42/nvim-web-devicons" })
-
 	use({
 		"sainnhe/sonokai",
 		config = function()
@@ -25,6 +17,7 @@ require("packer").startup(function(use)
 			vim.cmd("colorscheme sonokai")
 		end,
 	})
+
 	use({
 		"rmehri01/onenord.nvim",
 		disable = true,
@@ -102,9 +95,9 @@ require("packer").startup(function(use)
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
-        wants = {"playground", "nvim-ts-rainbow"},
+		wants = { "playground", "nvim-ts-rainbow" },
 		requires = {
-			{ "nvim-treesitter/playground"},
+			{ "nvim-treesitter/playground" },
 			{ "p00f/nvim-ts-rainbow" },
 		},
 		config = function()
@@ -357,6 +350,14 @@ require("packer").startup(function(use)
 	-- telescope
 	use({
 		"nvim-telescope/telescope.nvim",
+		cmd = { "Telescope" },
+		module = { "telescope", "telescope.builtin" },
+		keys = { "<leader>f" },
+		wants = { "plenary.nvim", "popup.nvim" },
+		requires = {
+			"nvim-lua/popup.nvim", opt = true,
+			"nvim-lua/plenary.nvim", opt = true,
+		},
 		config = function()
 			require("plugins.configs.telescope")
 		end,
