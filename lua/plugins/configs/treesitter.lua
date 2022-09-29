@@ -1,11 +1,10 @@
 require("nvim-treesitter.configs").setup({
 	highlight = {
 		enable = true,
-		additional_vim_regex_highlighting = { "org" },
 	},
 	rainbow = {
 		enable = true,
 	},
-	ensure_installed = {"markdown", "cpp", "c", "python" },
+	ensure_installed = {"markdown", "cpp", "c", "python", "latex", "lua", "bash"},
 })
 
