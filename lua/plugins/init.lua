@@ -188,6 +188,14 @@ require("packer").startup(function(use)
 
 	use({ "voldikss/vim-translator", cmd = "TranslateW" })
 
+	use({
+		"glepnir/template.nvim",
+		config = function()
+			local temp = require("template")
+			temp.temp_dir = "~/.config/nvim/template/"
+		end,
+	})
+
 	-- code runner
 	use({
 		"pianocomposer321/yabs.nvim",
@@ -356,9 +364,9 @@ require("packer").startup(function(use)
 		keys = { "<leader>f" },
 		wants = { "plenary.nvim", "popup.nvim", "nvim-web-devicons" },
 		requires = {
-            {"nvim-lua/popup.nvim", opt = true},
-            {"nvim-lua/plenary.nvim", opt = true},
-            { "kyazdani42/nvim-web-devicons", opt = true },
+			{ "nvim-lua/popup.nvim", opt = true },
+			{ "nvim-lua/plenary.nvim", opt = true },
+			{ "kyazdani42/nvim-web-devicons", opt = true },
 		},
 		config = function()
 			require("plugins.configs.telescope")
