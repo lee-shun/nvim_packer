@@ -66,6 +66,15 @@ require("packer").startup(function(use)
 	-- general enchance
 	use({ "lewis6991/impatient.nvim" })
 
+	-- Lua
+	use({
+		"gbprod/yanky.nvim",
+		event = "BufReadPre",
+		config = function()
+            require("plugins.configs.yanky")
+		end,
+	})
+
 	use({
 		"windwp/nvim-autopairs",
 		event = "BufReadPre",
@@ -187,14 +196,6 @@ require("packer").startup(function(use)
 	})
 
 	use({ "voldikss/vim-translator", cmd = "TranslateW" })
-
-	use({
-		"glepnir/template.nvim",
-		config = function()
-			local temp = require("template")
-			temp.temp_dir = "~/.config/nvim/template/"
-		end,
-	})
 
 	-- code runner
 	use({
@@ -362,7 +363,7 @@ require("packer").startup(function(use)
 		cmd = { "Telescope" },
 		module = { "telescope", "telescope.builtin" },
 		keys = { "<leader>f" },
-		wants = { "plenary.nvim", "popup.nvim", "nvim-web-devicons" },
+		wants = { "plenary.nvim", "popup.nvim", "nvim-web-devicons", "yanky.nvim" },
 		requires = {
 			{ "nvim-lua/popup.nvim", opt = true },
 			{ "nvim-lua/plenary.nvim", opt = true },
@@ -386,10 +387,10 @@ require("packer").startup(function(use)
 		ft = { "markdown" },
 		config = function()
 			vim.cmd([[
-        function! g:Open_browser(url)
-        silent exec "!google-chrome --password-store=gnome --new-window " . a:url . " &"
-        endfunction
-        ]])
+            function! g:Open_browser(url)
+            silent exec "!google-chrome --password-store=gnome --new-window " . a:url . " &"
+            endfunction
+            ]])
 			vim.g.mkdp_browser = "google-chrome"
 			vim.g.mkdp_browserfunc = "g:Open_browser"
 		end,
