@@ -370,7 +370,7 @@ require("packer").startup(function(use)
 			{ "kyazdani42/nvim-web-devicons", opt = true },
 		},
 		config = function()
-			require("plugins.configs.telescope")
+			require("plugins.configs.telescope.telescope")
 		end,
 	})
 
