@@ -13,15 +13,19 @@ local tmpl_full_list = {}
 for _, d in pairs(tmpl_dir) do
 	local names = vim.fn.readdir(d)
 	for _, name in pairs(names) do
-		table.insert(tmpl_full_list, {name, d .. "/" .. name })
+        local item = vim.fn.fnamemodify(name, ":r")
+		table.insert(tmpl_full_list, {item, d .. "/" .. name })
 	end
 end
 
 -- prepare the finder
 local function apply_template(prompt_bufnr)
-	actions.close(prompt_bufnr)
 	local selection = action_state.get_selected_entry()
-	print(vim.inspect(selection))
+    local cmd = 'TemplateInit ' .. selection["display"]
+	-- print(cmd)
+    vim.cmd(cmd)
+    vim.cmd("echom 'hell'")
+	actions.close(prompt_bufnr)
 end
 
 local find_template = function(opts)

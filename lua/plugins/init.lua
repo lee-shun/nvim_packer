@@ -71,7 +71,7 @@ require("packer").startup(function(use)
 		"gbprod/yanky.nvim",
 		event = "BufReadPre",
 		config = function()
-            require("plugins.configs.yanky")
+			require("plugins.configs.yanky")
 		end,
 	})
 
@@ -363,11 +363,23 @@ require("packer").startup(function(use)
 		cmd = { "Telescope" },
 		module = { "telescope", "telescope.builtin" },
 		keys = { "<leader>f" },
-		wants = { "plenary.nvim", "popup.nvim", "nvim-web-devicons", "yanky.nvim" },
+		wants = { "plenary.nvim", "popup.nvim", "nvim-web-devicons", "yanky.nvim", "vim-templates" },
 		requires = {
 			{ "nvim-lua/popup.nvim", opt = true },
 			{ "nvim-lua/plenary.nvim", opt = true },
 			{ "kyazdani42/nvim-web-devicons", opt = true },
+			{
+				"tibabit/vim-templates",
+				opt = true,
+                cmd = {"TemplateInit", "TemplateExpand",},
+				config = function()
+					local global = require("core.global")
+					vim.g.tmpl_search_paths = { global.vim_config_path .. "/template" }
+					-- vim.g.tmpl_default_path = $CONF_PATH."/dein/repos/github.com/tibabit/vim-templates/templates"
+					vim.g.tmpl_author_name = "ShunLi"
+					vim.g.tmpl_author_email = "2015097272@qq.com"
+				end,
+			},
 		},
 		config = function()
 			require("plugins.configs.telescope")
@@ -411,10 +423,10 @@ require("packer").startup(function(use)
 			local nabulaDis = vim.api.nvim_create_augroup("NabulaDis", { clear = true })
 			vim.api.nvim_create_autocmd({ "CursorHold", "Filetype" }, {
 				pattern = { "markdown", "tex" },
-				command = [[silent! lua require('nabla').popup({ border = 'rounded' })]],
+				command = [[silent! lua require("nabla").popup({ border = "rounded" })]],
 				group = nabulaDis,
 			})
-			vim.cmd([[au CursorHold *.md,*.markdown silent! lua require('nabla').popup({ border = 'rounded' })]])
+			vim.cmd([[au CursorHold *.md,*.markdown silent! lua require("nabla").popup({ border = "rounded" })]])
 		end,
 	})
 
