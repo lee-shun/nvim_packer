@@ -372,8 +372,8 @@ require("packer").startup(function(use)
 				cmd = { "TemplateInit", "TemplateExpand" },
 				config = function()
 					local global = require("core.global")
+                    vim.g.tmpl_auto_initialize = 0
 					vim.g.tmpl_search_paths = { global.vim_config_path .. "/template" }
-					-- vim.g.tmpl_default_path = $CONF_PATH."/dein/repos/github.com/tibabit/vim-templates/templates"
 					vim.g.tmpl_author_name = "ShunLi"
 					vim.g.tmpl_author_email = "2015097272@qq.com"
 				end,
