@@ -25,7 +25,7 @@ end
 local function apply_template(prompt_bufnr)
 	actions.close(prompt_bufnr)
 	local selection = action_state.get_selected_entry()
-	local cmd = "TemplateInit " .. selection.display
+	local cmd = "TemplateInit " .. selection.ordinal
 	vim.cmd(cmd)
 end
 

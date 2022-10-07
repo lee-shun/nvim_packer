@@ -67,6 +67,15 @@ require("packer").startup(function(use)
 	use({ "lewis6991/impatient.nvim" })
 
 	use({
+		"echasnovski/mini.nvim",
+		branch = "stable",
+		event = "BufReadPost",
+		config = function()
+			require("mini.trailspace").setup({})
+		end,
+	})
+
+	use({
 		"windwp/nvim-autopairs",
 		event = "BufReadPre",
 		wants = "nvim-treesitter",
@@ -372,7 +381,7 @@ require("packer").startup(function(use)
 				cmd = { "TemplateInit", "TemplateExpand" },
 				config = function()
 					local global = require("core.global")
-                    vim.g.tmpl_auto_initialize = 0
+					vim.g.tmpl_auto_initialize = 0
 					vim.g.tmpl_search_paths = { global.vim_config_path .. "/template" }
 					vim.g.tmpl_author_name = "ShunLi"
 					vim.g.tmpl_author_email = "2015097272@qq.com"
