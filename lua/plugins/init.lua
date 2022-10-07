@@ -66,15 +66,6 @@ require("packer").startup(function(use)
 	-- general enchance
 	use({ "lewis6991/impatient.nvim" })
 
-	-- Lua
-	use({
-		"gbprod/yanky.nvim",
-		event = "BufReadPre",
-		config = function()
-			require("plugins.configs.yanky")
-		end,
-	})
-
 	use({
 		"windwp/nvim-autopairs",
 		event = "BufReadPre",
@@ -369,9 +360,16 @@ require("packer").startup(function(use)
 			{ "nvim-lua/plenary.nvim", opt = true },
 			{ "kyazdani42/nvim-web-devicons", opt = true },
 			{
+				"gbprod/yanky.nvim",
+				opt = true,
+				config = function()
+					require("plugins.configs.yanky")
+				end,
+			},
+			{
 				"tibabit/vim-templates",
 				opt = true,
-                cmd = {"TemplateInit", "TemplateExpand",},
+				cmd = { "TemplateInit", "TemplateExpand" },
 				config = function()
 					local global = require("core.global")
 					vim.g.tmpl_search_paths = { global.vim_config_path .. "/template" }

@@ -65,7 +65,6 @@ telescope.setup({
 require("telescope").load_extension("yank_history")
 require("telescope").load_extension("find_template")
 
-
 -- mappings
 vim.api.nvim_set_keymap("n", "<Leader>ff", "<Cmd> Telescope find_files<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>fb", "<Cmd> Telescope buffers<CR>", { noremap = true, silent = true })
@@ -81,3 +80,4 @@ vim.api.nvim_set_keymap("n", "<Leader>fr", "<Cmd> Telescope registers<CR>", { no
 vim.api.nvim_set_keymap("n", "<Leader>fd", "<Cmd> Telescope diagnostics<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>fj", "<Cmd> Telescope jumplist<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>fy", "<Cmd> Telescope yank_history<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<Leader>ft", "<Cmd> Telescope find_template<CR>", { noremap = true, silent = true })
