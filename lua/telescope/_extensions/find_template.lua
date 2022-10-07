@@ -20,12 +20,10 @@ end
 
 -- prepare the finder
 local function apply_template(prompt_bufnr)
-	local selection = action_state.get_selected_entry()
-    local cmd = 'TemplateInit ' .. selection["display"]
-	-- print(cmd)
-    vim.cmd(cmd)
-    vim.cmd("echom 'hell'")
 	actions.close(prompt_bufnr)
+	local selection = action_state.get_selected_entry()
+    local cmd = 'TemplateInit ' .. selection.display
+    vim.cmd(cmd)
 end
 
 local find_template = function(opts)
