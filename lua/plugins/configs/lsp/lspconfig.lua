@@ -9,7 +9,7 @@ vim.api.nvim_set_keymap("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
-    -- semantic provider
+	-- semantic provider
 	local caps = client.server_capabilities
 	if caps.semanticTokensProvider and caps.semanticTokensProvider.full then
 		local SemHighlight = vim.api.nvim_create_augroup("SemHighlight", { clear = true })
@@ -59,19 +59,32 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.foldingRange = {
-  dynamicRegistration = false,
-  lineFoldingOnly = true,
+	dynamicRegistration = false,
+	lineFoldingOnly = true,
 }
 
 local cmp_cap = require("cmp_nvim_lsp").update_capabilities(capabilities)
-local clangd_cap = cmp_cap
-clangd_cap.offsetEncoding = { "utf-16" }
 
 -- clangd
-require("lspconfig")["clangd"].setup({
-	on_attach = on_attach,
-	capabilities = clangd_cap,
-	-- before_init = require'lsp-semantic.configs'.clangd.before_init
+-- require("lspconfig")["clangd"].setup({
+-- 	on_attach = on_attach,
+-- 	capabilities = clangd_cap,
+-- 	-- before_init = require'lsp-semantic.configs'.clangd.before_init
+-- })
+
+local ccls_on_attach = function(client, bufnr)
+	vim.cmd([[ hi LspCxxHlGroupMemberVariable ctermfg=LightRed guifg=LightRed  cterm=none gui=none ]])
+	on_attach(client, bufnr)
+end
+-- ccls
+require("lspconfig").ccls.setup({
+	init_options = {
+		highlight = {
+			lsRanges = true,
+		},
+	},
+	on_attach = ccls_on_attach,
+	capabilities = cmp_cap,
 })
 
 -- pyright

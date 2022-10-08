@@ -241,7 +241,7 @@ require("packer").startup(function(use)
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
 		opt = true,
-		wants = { "cmp-nvim-lsp", "nvim-semantic-tokens", "aerial.nvim", "inc-rename.nvim" },
+		wants = { "cmp-nvim-lsp", "nvim-semantic-tokens", "aerial.nvim", "inc-rename.nvim", "vim-lsp-cxx-highlight" },
 		requires = {
 			{
 				"theHamsta/nvim-semantic-tokens",
@@ -266,6 +266,13 @@ require("packer").startup(function(use)
 				cmd = "IncRename",
 				config = function()
 					require("inc_rename").setup()
+				end,
+			},
+			{
+				"jackguo380/vim-lsp-cxx-highlight",
+				opt = true,
+				ft = { "c", "cpp" },
+				config = function()
 				end,
 			},
 		},
