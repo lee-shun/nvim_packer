@@ -78,7 +78,6 @@ require("packer").startup(function(use)
 	use({
 		"windwp/nvim-autopairs",
 		event = "BufReadPre",
-		wants = "nvim-treesitter",
 		module = { "nvim-autopairs.completion.cmp", "nvim-autopairs" },
 		config = function()
 			require("plugins.configs.autopairs").setup()
@@ -88,7 +87,6 @@ require("packer").startup(function(use)
 	use({
 		"numToStr/Comment.nvim",
 		event = "BufReadPre",
-		wants = "nvim-treesitter",
 		config = function()
 			require("Comment").setup()
 		end,
@@ -105,7 +103,6 @@ require("packer").startup(function(use)
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
-		wants = { "playground", "nvim-ts-rainbow" },
 		requires = {
 			{ "nvim-treesitter/playground" },
 			{ "p00f/nvim-ts-rainbow" },
@@ -212,7 +209,6 @@ require("packer").startup(function(use)
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
 		opt = true,
-		wants = { "LuaSnip" },
 		requires = {
 			{ "hrsh7th/cmp-nvim-lsp" },
 			{ "hrsh7th/cmp-buffer" },
@@ -224,7 +220,6 @@ require("packer").startup(function(use)
 			{ "lukas-reineke/cmp-under-comparator" },
 			{
 				"L3MON4D3/LuaSnip",
-				wants = { "friendly-snippets" },
 				config = function()
 					require("plugins.configs.luasnip").setup()
 				end,
@@ -241,7 +236,6 @@ require("packer").startup(function(use)
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
 		opt = true,
-		wants = { "cmp-nvim-lsp", "nvim-semantic-tokens", "aerial.nvim", "inc-rename.nvim", "vim-lsp-cxx-highlight" },
 		requires = {
 			{
 				"theHamsta/nvim-semantic-tokens",
@@ -272,8 +266,6 @@ require("packer").startup(function(use)
 				"jackguo380/vim-lsp-cxx-highlight",
 				opt = true,
 				ft = { "c", "cpp" },
-				config = function()
-				end,
 			},
 		},
 		config = function()
@@ -312,7 +304,6 @@ require("packer").startup(function(use)
 	use({
 		"kosayoda/nvim-lightbulb",
 		event = "BufReadPost",
-		wants = { "FixCursorHold.nvim" },
 		requires = {
 			{ "antoinemadec/FixCursorHold.nvim", opt = true },
 		},
@@ -357,7 +348,6 @@ require("packer").startup(function(use)
 	use({
 		"kevinhwang91/nvim-ufo",
 		event = "BufReadPost",
-		wants = { "promise-async" },
 		requires = { "kevinhwang91/promise-async", opt = 1 },
 		config = function()
 			require("plugins.configs.nvim_ufo")
@@ -370,7 +360,6 @@ require("packer").startup(function(use)
 		cmd = { "Telescope" },
 		module = { "telescope", "telescope.builtin" },
 		keys = { "<leader>f" },
-		wants = { "plenary.nvim", "popup.nvim", "nvim-web-devicons", "yanky.nvim", "vim-templates" },
 		requires = {
 			{ "nvim-lua/popup.nvim", opt = true },
 			{ "nvim-lua/plenary.nvim", opt = true },
