@@ -67,6 +67,13 @@ require("packer").startup(function(use)
 	use({ "lewis6991/impatient.nvim" })
 
 	use({
+		"folke/which-key.nvim",
+		config = function()
+			require("which-key").setup({})
+		end,
+	})
+
+	use({
 		"echasnovski/mini.nvim",
 		branch = "stable",
 		event = "BufReadPost",
