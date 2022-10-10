@@ -65,19 +65,28 @@ telescope.setup({
 require("telescope").load_extension("yank_history")
 require("telescope").load_extension("find_template")
 
--- mappings
-vim.api.nvim_set_keymap("n", "<Leader>ff", "<Cmd> Telescope find_files<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>fb", "<Cmd> Telescope buffers<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>fm", "<Cmd> Telescope oldfiles<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>fw", "<Cmd> Telescope live_grep<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap(
-	"n",
-	"<Leader>fl",
-	"<Cmd> Telescope current_buffer_fuzzy_find<CR>",
-	{ noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap("n", "<Leader>fr", "<Cmd> Telescope registers<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>fd", "<Cmd> Telescope diagnostics<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>fj", "<Cmd> Telescope jumplist<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>fy", "<Cmd> Telescope yank_history<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>ft", "<Cmd> Telescope find_template<CR>", { noremap = true, silent = true })
+local wk = require("which-key")
+local tel_map_opt = {
+	mode = "n",
+	prefix = "<leader>f",
+	buffer = nil,
+	silent = true,
+	noremap = true,
+	nowait = false,
+}
+
+local tel_map = {
+	name = "find",
+	f = { "<Cmd> Telescope find_files<CR>", "find file" },
+	b = { "<Cmd> Telescope buffers<CR>", "find buffers" },
+	m = { "<Cmd> Telescope oldfiles<CR>", "find most recent files" },
+	w = { "<Cmd> Telescope live_grep<CR>", "find word" },
+	l = { "<Cmd> Telescope current_buffer_fuzzy_find<CR>", "find line in current buffer" },
+	r = { "<Cmd> Telescope registers<CR>", "find registers" },
+	d = { "<Cmd> Telescope diagnostics<CR>", "find diagnostics" },
+	j = { "<Cmd> Telescope jumplist<CR>", "find jumplist" },
+	y = { "<Cmd> Telescope yank_history<CR>", "find yank history" },
+	t = { "<Cmd> Telescope find_template<CR>", "find file templates" },
+}
+
+wk.register(tel_map, tel_map_opt)
