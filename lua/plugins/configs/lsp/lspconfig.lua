@@ -65,27 +65,28 @@ capabilities.textDocument.foldingRange = {
 
 local cmp_cap = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
+local clangd_cap = cmp_cap
+clangd_cap.offsetEncoding = { "utf-32" }
 -- clangd
--- require("lspconfig")["clangd"].setup({
--- 	on_attach = on_attach,
--- 	capabilities = clangd_cap,
--- 	-- before_init = require'lsp-semantic.configs'.clangd.before_init
--- })
-
-local ccls_on_attach = function(client, bufnr)
-	vim.cmd([[ hi LspCxxHlGroupMemberVariable ctermfg=LightRed guifg=LightRed  cterm=none gui=none ]])
-	on_attach(client, bufnr)
-end
--- ccls
-require("lspconfig").ccls.setup({
-	init_options = {
-		highlight = {
-			lsRanges = true,
-		},
-	},
-	on_attach = ccls_on_attach,
-	capabilities = cmp_cap,
+require("lspconfig")["clangd"].setup({
+	on_attach = on_attach,
+	capabilities = clangd_cap,
 })
+
+-- local ccls_on_attach = function(client, bufnr)
+-- 	vim.cmd([[ hi LspCxxHlGroupMemberVariable ctermfg=LightRed guifg=LightRed  cterm=none gui=none ]])
+-- 	on_attach(client, bufnr)
+-- end
+-- -- ccls
+-- require("lspconfig").ccls.setup({
+-- 	init_options = {
+-- 		highlight = {
+-- 			lsRanges = true,
+-- 		},
+-- 	},
+-- 	on_attach = ccls_on_attach,
+-- 	capabilities = cmp_cap,
+-- })
 
 -- pyright
 require("lspconfig")["pyright"].setup({
