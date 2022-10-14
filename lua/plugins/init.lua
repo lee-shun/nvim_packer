@@ -264,13 +264,6 @@ require("packer").startup(function(use)
 				end,
 			},
 			{
-				"stevearc/aerial.nvim",
-				opt = true,
-				config = function()
-					require("plugins.configs.lsp.aerial")
-				end,
-			},
-			{
 				"SmiteshP/nvim-navic",
 				opt = true,
 			},
@@ -282,16 +275,13 @@ require("packer").startup(function(use)
 					require("inc_rename").setup()
 				end,
 			},
-			-- {
-			-- 	"jackguo380/vim-lsp-cxx-highlight",
-			-- 	opt = true,
-			-- 	ft = { "c", "cpp" },
-			-- },
 		},
 		config = function()
 			require("plugins.configs.lsp.lspconfig")
 		end,
 	})
+
+	use({ "liuchengxu/vista.vim", cmd = "Vista" })
 
 	-- manage root
 	use({

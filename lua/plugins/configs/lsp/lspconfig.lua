@@ -49,9 +49,6 @@ local on_attach = function(client, bufnr)
 		return ":IncRename " .. vim.fn.expand("<cword>")
 	end, { expr = true })
 
-	-- aerial
-	require("aerial").on_attach(client, bufnr)
-
 	-- navic
 	local navic = require("nvim-navic")
 	if client.server_capabilities.documentSymbolProvider then

@@ -42,7 +42,8 @@ local config = {
 		section_separators = "",
 		theme = "auto",
 		disabled_filetypes = { -- Filetypes to disable lualine for.
-			"alpha",
+			winbar = {"vista", "alpha", "NvimTree"},
+			statuesline = {"alpha"},
 		},
 		globalstatus = true,
 	},
