@@ -93,6 +93,12 @@ require("lspconfig")["clangd"].setup({
 -- 	capabilities = cmp_cap,
 -- })
 
+-- cmake
+require("lspconfig").cmake.setup({
+	on_attach = on_attach,
+	capabilities = cmp_cap,
+})
+
 -- pyright
 local pyright_cap = cmp_cap
 require("lspconfig")["pyright"].setup({
