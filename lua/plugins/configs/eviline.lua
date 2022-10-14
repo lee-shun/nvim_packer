@@ -208,12 +208,6 @@ ins_left({
 	color = { fg = "#DAF7A6"},
 })
 
-ins_left({
-	navic.get_location,
-	cond = navic.is_available,
-	color = { fg = "#FFC300" },
-})
-
 -- Add components to right sections
 ins_right({
 	"o:encoding", -- option component same as &encoding in viml

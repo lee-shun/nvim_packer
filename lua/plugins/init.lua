@@ -270,7 +270,10 @@ require("packer").startup(function(use)
 					require("plugins.configs.lsp.aerial")
 				end,
 			},
-            {"SmiteshP/nvim-navic", opt = true},
+			{
+				"SmiteshP/nvim-navic",
+				opt = true,
+			},
 			{
 				"smjonas/inc-rename.nvim",
 				opt = true,
