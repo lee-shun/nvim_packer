@@ -74,7 +74,7 @@ capabilities.textDocument.foldingRange = {
 local cmp_cap = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 local clangd_cap = cmp_cap
-clangd_cap.offsetEncoding = { "utf-32" }
+clangd_cap.offsetEncoding = { "utf-16" }
 -- clangd
 require("lspconfig")["clangd"].setup({
 	on_attach = on_attach,
@@ -97,9 +97,10 @@ require("lspconfig")["clangd"].setup({
 -- })
 
 -- pyright
+local pyright_cap = cmp_cap
 require("lspconfig")["pyright"].setup({
 	on_attach = on_attach,
-	capabilities = cmp_cap,
+	capabilities = pyright_cap,
 })
 
 -- taxlab
