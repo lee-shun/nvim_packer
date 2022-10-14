@@ -65,35 +65,47 @@ local config = {
 		lualine_c = {},
 		lualine_x = {},
 	},
+	winbar = {
+		lualine_a = {},
+		lualine_b = {},
+		lualine_c = {},
+		lualine_x = {},
+		lualine_y = {},
+		lualine_z = {},
+	},
 }
 
+--------statues line---------
+
 -- Inserts a component in lualine_c at left section
-local function ins_left(component)
+local function status_ins_left(component)
 	table.insert(config.sections.lualine_c, component)
 end
 
 -- Inserts a component in lualine_x ot right section
-local function ins_right(component)
+local function status_ins_right(component)
 	table.insert(config.sections.lualine_x, component)
 end
 
-local function ins_left_inactive(component)
+local function status_ins_left_inactive(component)
 	table.insert(config.inactive_sections.lualine_c, component)
 end
 
-local function ins_right_inactive(component)
+local function status_ins_right_inactive(component)
 	table.insert(config.inactive_sections.lualine_x, component)
 end
 
-ins_left({
+--
+-- insert c
+--
+status_ins_left({
 	function()
 		return "▊"
 	end,
 	color = { fg = colors.blue }, -- Sets highlighting of component
 	padding = { left = 0, right = 1 }, -- We don't need space before this
 })
-
-ins_left({
+status_ins_left({
 	-- mode component
 	function()
 		return ""
@@ -126,30 +138,37 @@ ins_left({
 	end,
 	padding = { right = 1 },
 })
-
-ins_left({
+status_ins_left({
 	-- filesize component
 	"filesize",
 	cond = conditions.buffer_not_empty,
 })
-
-ins_left({
-	"filename",
-	cond = conditions.buffer_not_empty,
-	color = { fg = colors.magenta, gui = "bold" },
+status_ins_left({
+	"branch",
+	icon = "",
+	color = { fg = colors.violet, gui = "bold" },
+})
+status_ins_left({
+	"diff",
+	-- Is it me or the symbol for modified us really weird
+	symbols = { added = " ", modified = "柳 ", removed = " " },
+	diff_color = {
+		added = { fg = colors.green },
+		modified = { fg = colors.orange },
+		removed = { fg = colors.red },
+	},
+	cond = conditions.hide_in_width,
 })
 
-ins_left_inactive({
-	"filename",
-	cond = conditions.buffer_not_empty,
-	color = { fg = colors.magenta, gui = "bold" },
+-- insert mid
+-- section. You can make any number of sections in neovim :)
+-- for lualine it's any number greater then 2
+status_ins_left({
+	function()
+		return "%="
+	end,
 })
-
-ins_left({ "location" })
-
-ins_left({ "progress", color = { fg = colors.fg, gui = "bold" } })
-
-ins_left({
+status_ins_left({
 	"diagnostics",
 	sources = { "nvim_diagnostic" },
 	symbols = { error = " ", warn = " ", info = " " },
@@ -159,16 +178,7 @@ ins_left({
 		color_info = { fg = colors.cyan },
 	},
 })
-
--- Insert mid section. You can make any number of sections in neovim :)
--- for lualine it's any number greater then 2
-ins_left({
-	function()
-		return "%="
-	end,
-})
-
-ins_left({
+status_ins_left({
 	-- Lsp server name .
 	function()
 		local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
@@ -196,8 +206,7 @@ ins_left({
 	icon = " LSP:",
 	color = { fg = "#ffffff", gui = "bold" },
 })
-
-ins_left({
+status_ins_left({
 	function()
 		local b = vim.api.nvim_get_current_buf()
 		if next(vim.treesitter.highlighter.active[b]) then
@@ -205,55 +214,63 @@ ins_left({
 		end
 		return ""
 	end,
-	color = { fg = "#DAF7A6"},
+	color = { fg = "#DAF7A6" },
 })
 
--- Add components to right sections
-ins_right({
+--
+-- insert right
+--
+status_ins_right({
 	"o:encoding", -- option component same as &encoding in viml
 	fmt = string.upper, -- I'm not sure why it's upper case either ;)
 	cond = conditions.hide_in_width,
 	color = { fg = colors.green, gui = "bold" },
 })
 
-ins_right({
+status_ins_right({
 	"fileformat",
 	fmt = string.upper,
-	icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
+	icons_enabled = true,
 	color = { fg = colors.green, gui = "bold" },
 })
-
-ins_right_inactive({
+status_ins_right_inactive({
 	"fileformat",
 	fmt = string.upper,
-	icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
+	icons_enabled = true,
 	color = { fg = colors.green, gui = "bold" },
 })
-
-ins_right({
-	"branch",
-	icon = "",
-	color = { fg = colors.violet, gui = "bold" },
-})
-
-ins_right({
-	"diff",
-	-- Is it me or the symbol for modified us really weird
-	symbols = { added = " ", modified = "柳 ", removed = " " },
-	diff_color = {
-		added = { fg = colors.green },
-		modified = { fg = colors.orange },
-		removed = { fg = colors.red },
-	},
-	cond = conditions.hide_in_width,
-})
-
-ins_right({
+status_ins_right({ "location" })
+status_ins_right({ "progress", color = { fg = colors.fg, gui = "bold" } })
+status_ins_right({
 	function()
 		return "▊"
 	end,
 	color = { fg = colors.blue },
 	padding = { left = 1 },
+})
+
+-------- winbar ---------
+
+-- Inserts a component in lualine_c at left section
+local function winbar_ins_left(component)
+	table.insert(config.winbar.lualine_c, component)
+end
+-- Inserts a component in lualine_x ot right section
+local function winbar_ins_right(component)
+	table.insert(config.winbar.lualine_x, component)
+end
+
+winbar_ins_left({
+	"filename",
+    path=3,
+	cond = conditions.buffer_not_empty,
+	color = { fg = colors.magenta, gui = "bold" },
+})
+
+winbar_ins_right({
+	navic.get_location,
+	cond = navic.is_available,
+	color = { fg = "#FFC300" },
 })
 
 -- Now don't forget to initialize lualine
