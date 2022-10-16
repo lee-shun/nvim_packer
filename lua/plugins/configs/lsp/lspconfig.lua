@@ -68,7 +68,7 @@ capabilities.textDocument.foldingRange = {
 	lineFoldingOnly = true,
 }
 
-local cmp_cap = require("cmp_nvim_lsp").update_capabilities(capabilities)
+local cmp_cap = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 local clangd_cap = cmp_cap
 clangd_cap.offsetEncoding = { "utf-16" }
