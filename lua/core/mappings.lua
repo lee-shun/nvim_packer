@@ -204,3 +204,5 @@ local yabs_map = {
 	r = { "<cmd> lua require('yabs'):run_task('run')<CR>", "Run Task" },
 }
 wk.register(yabs_map, yabs_map_opt)
+
+-- TODO: yank history
