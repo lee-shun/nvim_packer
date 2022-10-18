@@ -1,5 +1,3 @@
-vim.api.nvim_set_keymap("n", "<leader>du", "<cmd>lua require('dapui').toggle()<CR>", { noremap = true })
-
 local dap, dapui = require("dap"), require("dapui")
 dapui.setup({})
 

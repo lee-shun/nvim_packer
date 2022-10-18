@@ -5,9 +5,9 @@ local wk = require("which-key")
 --
 
 -- comp
-vim.api.nvim_set_keymap("i", "<CR>", '(pumvisible())?("\\<C-y>"):("\\<cr>")', { expr = true, noremap = true })
-vim.api.nvim_set_keymap("i", "<Tab>", 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', { expr = true, noremap = true })
-vim.api.nvim_set_keymap("i", "<S-Tab>", 'pumvisible() ? "\\<C-p>" : "\\<Tab>"', { expr = true, noremap = true })
+vim.keymap.set("i", "<CR>", '(pumvisible())?("\\<C-y>"):("\\<cr>")', { expr = true, noremap = true })
+vim.keymap.set("i", "<Tab>", 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', { expr = true, noremap = true })
+vim.keymap.set("i", "<S-Tab>", 'pumvisible() ? "\\<C-p>" : "\\<Tab>"', { expr = true, noremap = true })
 
 -- quick
 local qucik_map = {
@@ -24,17 +24,17 @@ local quick_map_opt = {
 }
 wk.register(qucik_map, quick_map_opt)
 
-vim.api.nvim_set_keymap("n", "<C-h>", ":set hlsearch!<CR>", { noremap = true })
+vim.keymap.set("n", "<C-h>", ":set hlsearch!<CR>", { noremap = true })
 
 -- window
-vim.api.nvim_set_keymap("n", "<up>", ":resize +3<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<down>", ":resize -3<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<left>", ":vertical resize-5<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<right>", ":vertical resize+5<CR>", { noremap = true })
+vim.keymap.set("n", "<up>", ":resize +3<CR>", { noremap = true })
+vim.keymap.set("n", "<down>", ":resize -3<CR>", { noremap = true })
+vim.keymap.set("n", "<left>", ":vertical resize-5<CR>", { noremap = true })
+vim.keymap.set("n", "<right>", ":vertical resize+5<CR>", { noremap = true })
 
 -- change indent and select in v-mode
-vim.api.nvim_set_keymap("v", "<", "<gv", { noremap = true })
-vim.api.nvim_set_keymap("v", ">", ">gv", { noremap = true })
+vim.keymap.set("v", "<", "<gv", { noremap = true })
+vim.keymap.set("v", ">", ">gv", { noremap = true })
 
 -- add blank line and move line
 wk.register({
@@ -52,22 +52,22 @@ wk.register({
 })
 
 -- yank line
-vim.api.nvim_set_keymap("n", "Y", "y$", { noremap = true })
+vim.keymap.set("n", "Y", "y$", { noremap = true })
 
 -- greatest remap ever
-vim.api.nvim_set_keymap("v", "<leader>p", '"_dP', { noremap = true })
+vim.keymap.set("v", "<leader>p", '"_dP', { noremap = true })
 
 -- move the chosen zone
-vim.api.nvim_set_keymap("v", "J", ":m '>+1<CR>gv=gv", { noremap = true })
-vim.api.nvim_set_keymap("v", "K", ":m '<-2<CR>gv=gv", { noremap = true })
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { noremap = true })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { noremap = true })
 
 -- place the cursor in the middle
-vim.api.nvim_set_keymap("n", "n", "nzzzv", { noremap = true })
-vim.api.nvim_set_keymap("n", "N", "Nzzzv", { noremap = true })
-vim.api.nvim_set_keymap("n", "J", "mzJ'z", { noremap = true })
+vim.keymap.set("n", "n", "nzzzv", { noremap = true })
+vim.keymap.set("n", "N", "Nzzzv", { noremap = true })
+vim.keymap.set("n", "J", "mzJ'z", { noremap = true })
 
 -- terminal
-vim.api.nvim_set_keymap("t", "<C-N>", "<C-\\><C-N>", { noremap = true })
+vim.keymap.set("t", "<C-N>", "<C-\\><C-N>", { noremap = true })
 
 --
 -- Plugin Mappings
@@ -138,7 +138,8 @@ local dap_map = {
 		s = { "<Cmd>lua require'dap'.close()<CR>", "Close" },
 		i = { "<Cmd>lua require'dap'.step_into()<CR>", "Step Into" },
 		v = { "<Cmd>lua require'dap'.step_over()<CR>", "Step Over" },
-		u = { "<Cmd>lua require'dap'.step_out()<CR>", "Step Out" },
+		o = { "<Cmd>lua require'dap'.step_out()<CR>", "Step Out" },
+		u = { "<cmd>lua require('dapui').toggle()<CR>", "DapUI Toggle" },
 	},
 }
 local dap_map_opt = {
@@ -205,4 +206,9 @@ local yabs_map = {
 }
 wk.register(yabs_map, yabs_map_opt)
 
--- TODO: yank history
+-- yanky
+vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
+vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
+vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
+vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
+vim.keymap.set({ "n", "x" }, "y", "<Plug>(YankyYank)")
