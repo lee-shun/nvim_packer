@@ -92,6 +92,15 @@ require("packer").startup(function(use)
 	})
 
 	use({
+		"gbprod/yanky.nvim",
+		opt = true,
+		event = "BufReadPost",
+		config = function()
+			require("plugins.configs.yanky")
+		end,
+	})
+
+	use({
 		"windwp/nvim-autopairs",
 		event = "BufReadPre",
 		module = { "nvim-autopairs.completion.cmp", "nvim-autopairs" },
@@ -379,13 +388,6 @@ require("packer").startup(function(use)
 			{ "nvim-lua/popup.nvim", opt = true },
 			{ "nvim-lua/plenary.nvim", opt = true },
 			{ "kyazdani42/nvim-web-devicons", opt = true },
-			{
-				"gbprod/yanky.nvim",
-				opt = true,
-				config = function()
-					require("plugins.configs.yanky")
-				end,
-			},
 			{
 				"tibabit/vim-templates",
 				opt = true,
