@@ -141,7 +141,6 @@ require("packer").startup(function(use)
 		event = "BufReadPost",
 		config = function()
 			require("fm-nvim").setup({})
-			vim.api.nvim_set_keymap("n", "<Leader>ra", "<cmd>Ranger<CR>", { noremap = true, silent = true })
 		end,
 	})
 
@@ -190,7 +189,39 @@ require("packer").startup(function(use)
 		end,
 	})
 
-	use({ "junegunn/vim-easy-align", event = "BufReadPost" })
+	use({
+		"junegunn/vim-easy-align",
+		event = "BufReadPost",
+		config = function()
+			local wk = require("which-key")
+			wk.register({
+				g = {
+					a = { "<Plug>(EasyAlign)", "Easy Align" },
+				},
+			}, {
+
+				mode = "n",
+				prefix = "",
+				buffer = nil,
+				silent = true,
+				noremap = true,
+				nowait = false,
+			})
+			wk.register({
+				g = {
+					a = { "<Plug>(EasyAlign)", "Easy Align" },
+				},
+			}, {
+
+				mode = "v",
+				prefix = "",
+				buffer = nil,
+				silent = true,
+				noremap = true,
+				nowait = false,
+			})
+		end,
+	})
 
 	use({ "rhysd/conflict-marker.vim", event = "BufReadPost" })
 
@@ -208,7 +239,10 @@ require("packer").startup(function(use)
 		end,
 	})
 
-	use({ "voldikss/vim-translator", cmd = "TranslateW" })
+	use({
+		"voldikss/vim-translator",
+		cmd = "TranslateW",
+	})
 
 	-- code runner
 	use({

@@ -27,7 +27,6 @@ local on_attach = function(client, bufnr)
 
 	-- mappings
 	local keymap_g = {
-		name = "Goto",
 		d = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "Definition" },
 		D = { "<Cmd>lua vim.lsp.buf.declaration()<CR>", "Declaration" },
 		H = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature Help" },
@@ -55,6 +54,7 @@ local on_attach = function(client, bufnr)
 					return ":IncRename " .. vim.fn.expand("<cword>")
 				end,
 				"IncRename",
+				expr = true,
 			},
 		},
 	}
