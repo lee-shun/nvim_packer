@@ -64,29 +64,3 @@ telescope.setup({
 -- extensions
 require("telescope").load_extension("yank_history")
 require("telescope").load_extension("find_template")
-
-local wk = require("which-key")
-local tel_map_opt = {
-	mode = "n",
-	prefix = "<leader>f",
-	buffer = nil,
-	silent = true,
-	noremap = true,
-	nowait = false,
-}
-
-local tel_map = {
-	name = "find",
-	f = { "<Cmd> Telescope find_files<CR>", "find file" },
-	b = { "<Cmd> Telescope buffers<CR>", "find buffers" },
-	m = { "<Cmd> Telescope oldfiles<CR>", "find most recent files" },
-	w = { "<Cmd> Telescope live_grep<CR>", "find word" },
-	l = { "<Cmd> Telescope current_buffer_fuzzy_find<CR>", "find line in current buffer" },
-	r = { "<Cmd> Telescope registers<CR>", "find registers" },
-	d = { "<Cmd> Telescope diagnostics<CR>", "find diagnostics" },
-	j = { "<Cmd> Telescope jumplist<CR>", "find jumplist" },
-	y = { "<Cmd> Telescope yank_history<CR>", "find yank history" },
-	t = { "<Cmd> Telescope find_template<CR>", "find file templates" },
-}
-
-wk.register(tel_map, tel_map_opt)

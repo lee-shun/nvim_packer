@@ -192,35 +192,6 @@ require("packer").startup(function(use)
 	use({
 		"junegunn/vim-easy-align",
 		event = "BufReadPost",
-		config = function()
-			local wk = require("which-key")
-			wk.register({
-				g = {
-					a = { "<Plug>(EasyAlign)", "Easy Align" },
-				},
-			}, {
-
-				mode = "n",
-				prefix = "",
-				buffer = nil,
-				silent = true,
-				noremap = true,
-				nowait = false,
-			})
-			wk.register({
-				g = {
-					a = { "<Plug>(EasyAlign)", "Easy Align" },
-				},
-			}, {
-
-				mode = "v",
-				prefix = "",
-				buffer = nil,
-				silent = true,
-				noremap = true,
-				nowait = false,
-			})
-		end,
 	})
 
 	use({ "rhysd/conflict-marker.vim", event = "BufReadPost" })

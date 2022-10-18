@@ -1,7 +1,8 @@
---
--- buildin Mapping
---
 local wk = require("which-key")
+
+--
+-- Buildin Mapping
+--
 
 -- comp
 vim.api.nvim_set_keymap("i", "<CR>", '(pumvisible())?("\\<C-y>"):("\\<cr>")', { expr = true, noremap = true })
@@ -68,6 +69,10 @@ vim.api.nvim_set_keymap("n", "J", "mzJ'z", { noremap = true })
 -- terminal
 vim.api.nvim_set_keymap("t", "<C-N>", "<C-\\><C-N>", { noremap = true })
 
+--
+-- Plugin Mappings
+--
+
 -- translate
 wk.register({
 	["s"] = { ":TranslateW<CR>", "Translate" },
@@ -91,3 +96,111 @@ wk.register({
 	noremap = true,
 	nowait = false,
 })
+
+-- easy align
+wk.register({
+	g = {
+		a = { "<Plug>(EasyAlign)", "Easy Align" },
+	},
+}, {
+
+	mode = "n",
+	prefix = "",
+	buffer = nil,
+	silent = true,
+	noremap = true,
+	nowait = false,
+})
+wk.register({
+	g = {
+		a = { "<Plug>(EasyAlign)", "Easy Align" },
+	},
+}, {
+
+	mode = "v",
+	prefix = "",
+	buffer = nil,
+	silent = true,
+	noremap = true,
+	nowait = false,
+})
+
+-- dap
+local dap_map = {
+	d = {
+		name = "Nvim Dap",
+		b = { "<Cmd>lua require'dap'.toggle_breakpoint()<CR>", "Toggle Breakpoint" },
+		B = {
+			"<Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
+			"Set Cond Breakpoint",
+		},
+		c = { "<Cmd>lua require'dap'.continue()<CR>", "Continue" },
+		s = { "<Cmd>lua require'dap'.close()<CR>", "Close" },
+		i = { "<Cmd>lua require'dap'.step_into()<CR>", "Step Into" },
+		v = { "<Cmd>lua require'dap'.step_over()<CR>", "Step Over" },
+		u = { "<Cmd>lua require'dap'.step_out()<CR>", "Step Out" },
+	},
+}
+local dap_map_opt = {
+	mode = "n",
+	prefix = "<leader>",
+	buffer = nil,
+	silent = true,
+	noremap = true,
+	nowait = false,
+}
+wk.register(dap_map, dap_map_opt)
+
+-- telescope
+local tel_map = {
+	f = {
+		name = "Find",
+		f = { "<Cmd> Telescope find_files<CR>", "Find File" },
+		b = { "<Cmd> Telescope buffers<CR>", "Find Buffers" },
+		m = { "<Cmd> Telescope oldfiles<CR>", "Find Most Recent Files" },
+		w = { "<Cmd> Telescope live_grep<CR>", "Find Word" },
+		l = { "<Cmd> Telescope current_buffer_fuzzy_find<CR>", "Find Line In Current Buffer" },
+		r = { "<Cmd> Telescope registers<CR>", "Find Registers" },
+		d = { "<Cmd> Telescope diagnostics<CR>", "Find Diagnostics" },
+		j = { "<Cmd> Telescope jumplist<CR>", "Find Jumplist" },
+		y = { "<Cmd> Telescope yank_history<CR>", "Find Yank History" },
+		t = { "<Cmd> Telescope find_template<CR>", "Find File Templates" },
+	},
+}
+local tel_map_opt = {
+	mode = "n",
+	prefix = "<leader>",
+	buffer = nil,
+	silent = true,
+	noremap = true,
+	nowait = false,
+}
+wk.register(tel_map, tel_map_opt)
+
+-- term
+wk.register({
+	["<F12>"] = { "<cmd>ToggleTerm<CR>", "Toggle Term" },
+}, {
+	mode = "n",
+	prefix = "",
+	buffer = nil,
+	silent = true,
+	noremap = true,
+	nowait = false,
+})
+
+-- yabs.nvim
+local yabs_map_opt = {
+	mode = "n",
+	prefix = "<leader>r",
+	buffer = nil,
+	silent = true,
+	noremap = true,
+	nowait = false,
+}
+local yabs_map = {
+	name = "Task Runner",
+	b = { "<cmd> lua require('yabs'):run_task('build')<CR>", "Build Task" },
+	r = { "<cmd> lua require('yabs'):run_task('run')<CR>", "Run Task" },
+}
+wk.register(yabs_map, yabs_map_opt)

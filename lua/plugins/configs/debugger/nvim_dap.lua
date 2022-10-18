@@ -6,22 +6,6 @@ vim.api.nvim_create_autocmd("FileType", {
 	group = dapWinbar,
 })
 
---
--- keymaps
---
-vim.api.nvim_set_keymap("n", "<leader>db", "<Cmd>lua require'dap'.toggle_breakpoint()<CR>", { noremap = true })
-vim.api.nvim_set_keymap(
-	"n",
-	"<leader>dB",
-	"<Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
-	{ noremap = true }
-)
-vim.api.nvim_set_keymap("n", "<leader>dc", "<Cmd>lua require'dap'.continue()<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>ds", "<Cmd>lua require'dap'.close()<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>di", "<Cmd>lua require'dap'.step_into()<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>dv", "<Cmd>lua require'dap'.step_over()<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>du", "<Cmd>lua require'dap'.step_out()<CR>", { noremap = true })
-
 local dap = require("dap")
 --
 -- cpp
