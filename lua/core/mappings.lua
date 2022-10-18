@@ -70,7 +70,7 @@ vim.api.nvim_set_keymap("t", "<C-N>", "<C-\\><C-N>", { noremap = true })
 
 -- translate
 wk.register({
-	["ts"] = { ":TranslateW<CR>", "Translate" },
+	["s"] = { ":TranslateW<CR>", "Translate" },
 }, {
 	mode = "n",
 	prefix = "<leader>",
@@ -82,7 +82,7 @@ wk.register({
 
 -- nvim tree
 wk.register({
-	["tr"] = { ":NvimTreeToggle<CR>", "NvimTreeToggle" },
+	["t"] = { ":NvimTreeToggle<CR>", "NvimTreeToggle" },
 }, {
 	mode = "n",
 	prefix = "<leader>",
