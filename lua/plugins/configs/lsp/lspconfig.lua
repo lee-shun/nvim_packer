@@ -1,13 +1,5 @@
--- Mappings.
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
-local opts = { noremap = true, silent = true }
-vim.api.nvim_set_keymap("n", "<leader>e", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-vim.api.nvim_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
-vim.api.nvim_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+local wk = require("which-key")
 
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
 	-- semantic provider
 	local caps = client.server_capabilities
@@ -19,35 +11,11 @@ local on_attach = function(client, bufnr)
 			buffer = vim.api.nvim_get_current_buf(),
 		})
 	end
-
 	-- set highlight
 	vim.api.nvim_set_hl(0, "LspProperty", { ctermfg = "LightRed", fg = "LightRed" })
 
 	-- Enable completion triggered by <c-x><c-o>
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
-	-- Mappings.
-	-- See `:help vim.lsp.*` for documentation on any of the below functions
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(
-		bufnr,
-		"n",
-		"<leader>wl",
-		"<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>",
-		opts
-	)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ac", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-	vim.keymap.set("n", "<leader>rn", function()
-		return ":IncRename " .. vim.fn.expand("<cword>")
-	end, { expr = true })
 
 	-- navic
 	local navic = require("nvim-navic")
@@ -56,6 +24,60 @@ local on_attach = function(client, bufnr)
 		-- set navic
 		vim.o.winbar = "%=%{%v:lua.require'nvim-navic'.get_location()%} "
 	end
+
+	-- mappings
+	local keymap_g = {
+		name = "Goto",
+		d = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "Definition" },
+		D = { "<Cmd>lua vim.lsp.buf.declaration()<CR>", "Declaration" },
+		H = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature Help" },
+		h = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover" },
+		i = { "<cmd>Telescope lsp_implementations<CR>", "Goto Implementation" },
+		b = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Goto Type Definition" },
+		r = { "<cmd>lua vim.lsp.buf.references()<CR>", "Goto Reference" },
+	}
+	wk.register(keymap_g, {
+		mode = "n",
+		prefix = "g",
+		buffer = nil,
+		silent = true,
+		noremap = true,
+		nowait = false,
+	})
+
+	-- diagnostic
+	local keymap_l = {
+		l = {
+			name = "LSP",
+			a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
+			r = {
+				function()
+					return ":IncRename " .. vim.fn.expand("<cword>")
+				end,
+				"IncRename",
+			},
+		},
+	}
+	wk.register(keymap_l, {
+		mode = "n",
+		prefix = "<leader>",
+		buffer = nil,
+		silent = true,
+		noremap = true,
+		nowait = false,
+	})
+
+	wk.register({
+		["[d"] = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Goto Prev Diagnostic" },
+		["]d"] = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Goto Next Diagnostic" },
+	}, {
+		mode = "n",
+		prefix = "",
+		buffer = nil,
+		silent = true,
+		noremap = true,
+		nowait = false,
+	})
 end
 
 --
