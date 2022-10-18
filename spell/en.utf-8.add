@@ -138,3 +138,5 @@ regular
 ResNet
 upsamplings
 #pu
+colmap
+geolocated

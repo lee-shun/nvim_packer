@@ -67,6 +67,22 @@ require("packer").startup(function(use)
 	use({ "lewis6991/impatient.nvim" })
 
 	use({
+		"folke/which-key.nvim",
+		config = function()
+			require("which-key").setup({
+				plugins = {
+					marks = true,
+					registers = true,
+					spelling = {
+						enabled = true,
+						suggestions = 20,
+					},
+				},
+			})
+		end,
+	})
+
+	use({
 		"echasnovski/mini.nvim",
 		branch = "stable",
 		event = "BufReadPost",
@@ -125,7 +141,6 @@ require("packer").startup(function(use)
 		event = "BufReadPost",
 		config = function()
 			require("fm-nvim").setup({})
-			vim.api.nvim_set_keymap("n", "<Leader>ra", "<cmd>Ranger<CR>", { noremap = true, silent = true })
 		end,
 	})
 
@@ -174,7 +189,39 @@ require("packer").startup(function(use)
 		end,
 	})
 
-	use({ "junegunn/vim-easy-align", event = "BufReadPost" })
+	use({
+		"junegunn/vim-easy-align",
+		event = "BufReadPost",
+		config = function()
+			local wk = require("which-key")
+			wk.register({
+				g = {
+					a = { "<Plug>(EasyAlign)", "Easy Align" },
+				},
+			}, {
+
+				mode = "n",
+				prefix = "",
+				buffer = nil,
+				silent = true,
+				noremap = true,
+				nowait = false,
+			})
+			wk.register({
+				g = {
+					a = { "<Plug>(EasyAlign)", "Easy Align" },
+				},
+			}, {
+
+				mode = "v",
+				prefix = "",
+				buffer = nil,
+				silent = true,
+				noremap = true,
+				nowait = false,
+			})
+		end,
+	})
 
 	use({ "rhysd/conflict-marker.vim", event = "BufReadPost" })
 
@@ -192,7 +239,10 @@ require("packer").startup(function(use)
 		end,
 	})
 
-	use({ "voldikss/vim-translator", cmd = "TranslateW" })
+	use({
+		"voldikss/vim-translator",
+		cmd = "TranslateW",
+	})
 
 	-- code runner
 	use({
@@ -248,11 +298,8 @@ require("packer").startup(function(use)
 				end,
 			},
 			{
-				"stevearc/aerial.nvim",
+				"SmiteshP/nvim-navic",
 				opt = true,
-				config = function()
-					require("plugins.configs.lsp.aerial")
-				end,
 			},
 			{
 				"smjonas/inc-rename.nvim",
@@ -262,16 +309,13 @@ require("packer").startup(function(use)
 					require("inc_rename").setup()
 				end,
 			},
-			{
-				"jackguo380/vim-lsp-cxx-highlight",
-				opt = true,
-				ft = { "c", "cpp" },
-			},
 		},
 		config = function()
 			require("plugins.configs.lsp.lspconfig")
 		end,
 	})
+
+	use({ "liuchengxu/vista.vim", cmd = "Vista" })
 
 	-- manage root
 	use({
@@ -394,7 +438,20 @@ require("packer").startup(function(use)
 
 	use({ "thibthib18/ros-nvim", ft = { "rosmsg", "cpp" } })
 
-	use({ "lervag/vimtex", ft = "tex" })
+	use({
+		"lervag/vimtex",
+		ft = "tex",
+		config = function()
+			vim.g.vimtex_view_method = "zathura"
+			vim.g.vimtex_quickfix_mode = 0
+			vim.g.vimtex_mappings_enabled = 0
+			vim.g.vimtex_imaps_enabled = 0
+			vim.g.vimtex_text_obj_enabled = 0
+			vim.g.vimtex_fold_enabled = 1
+			vim.g.tex_conceal = "abdmg"
+			vim.g.vimtex_format_enabled = 1
+		end,
+	})
 
 	use({
 		"iamcco/markdown-preview.nvim",
