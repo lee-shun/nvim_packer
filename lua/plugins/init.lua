@@ -29,6 +29,7 @@ require("packer").startup(function(use)
 	use({
 		"nvim-lualine/lualine.nvim",
 		event = "BufReadPre",
+		wants = { "nvim-web-devicons" },
 		requires = {
 			{ "kyazdani42/nvim-web-devicons", opt = true },
 		},
@@ -39,6 +40,7 @@ require("packer").startup(function(use)
 
 	use({
 		"goolord/alpha-nvim",
+		wants = { "nvim-web-devicons" },
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
 		config = function()
 			require("plugins.configs.alpha")
@@ -57,6 +59,7 @@ require("packer").startup(function(use)
 	use({
 		"kyazdani42/nvim-tree.lua",
 		cmd = { "NvimTreeToggle", "NvimTreeClose" },
+		wants = { "nvim-web-devicons" },
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
 		config = function()
 			require("plugins.configs.nvimtree")
@@ -88,15 +91,6 @@ require("packer").startup(function(use)
 		event = "BufReadPost",
 		config = function()
 			require("mini.trailspace").setup({})
-		end,
-	})
-
-	use({
-		"gbprod/yanky.nvim",
-		opt = true,
-		event = "BufReadPost",
-		config = function()
-			require("plugins.configs.yanky")
 		end,
 	})
 
@@ -228,7 +222,7 @@ require("packer").startup(function(use)
 	use({
 		"pianocomposer321/yabs.nvim",
 		event = "BufReadPost",
-		requires = { "nvim-lua/plenary.nvim" },
+		requires = { "nvim-lua/plenary.nvim", opt = true },
 		config = function()
 			require("plugins.configs.yabs")
 		end,
@@ -239,6 +233,9 @@ require("packer").startup(function(use)
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
 		opt = true,
+        wants = {
+            "LuaSnip",
+        },
 		requires = {
 			{ "hrsh7th/cmp-nvim-lsp" },
 			{ "hrsh7th/cmp-buffer" },
@@ -250,11 +247,12 @@ require("packer").startup(function(use)
 			{ "lukas-reineke/cmp-under-comparator" },
 			{
 				"L3MON4D3/LuaSnip",
+                opt = true,
 				config = function()
 					require("plugins.configs.luasnip").setup()
 				end,
 			},
-			{ "rafamadriz/friendly-snippets" },
+			{ "rafamadriz/friendly-snippets", opt = true },
 		},
 		config = function()
 			require("plugins.configs.lsp.cmp")
@@ -266,6 +264,7 @@ require("packer").startup(function(use)
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
 		opt = true,
+		wants = { "nvim-semantic-tokens", "nvim-navic", "inc-rename.nvim" },
 		requires = {
 			{
 				"theHamsta/nvim-semantic-tokens",
@@ -328,6 +327,7 @@ require("packer").startup(function(use)
 	use({
 		"kosayoda/nvim-lightbulb",
 		event = "BufReadPost",
+		wants = { "FixCursorHold.nvim" },
 		requires = {
 			{ "antoinemadec/FixCursorHold.nvim", opt = true },
 		},
@@ -349,15 +349,18 @@ require("packer").startup(function(use)
 		"mfussenegger/nvim-dap",
 		event = "BufReadPost",
 		opt = true,
+		wants = { "nvim-dap-virtual-text", "nvim-dap-ui" },
 		requires = {
 			{
 				"theHamsta/nvim-dap-virtual-text",
+				opt = true,
 				config = function()
 					require("plugins.configs.debugger.nvim_dap_virtul_text")
 				end,
 			},
 			{
 				"rcarriga/nvim-dap-ui",
+				opt = true,
 				config = function()
 					require("plugins.configs.debugger.nvim_dap_ui")
 				end,
@@ -372,7 +375,8 @@ require("packer").startup(function(use)
 	use({
 		"kevinhwang91/nvim-ufo",
 		event = "BufReadPost",
-		requires = { "kevinhwang91/promise-async", opt = 1 },
+		wants = { "promise-async" },
+		requires = { "kevinhwang91/promise-async", opt = true },
 		config = function()
 			require("plugins.configs.nvim_ufo")
 		end,
@@ -382,8 +386,9 @@ require("packer").startup(function(use)
 	use({
 		"nvim-telescope/telescope.nvim",
 		cmd = { "Telescope" },
-		module = { "telescope", "telescope.builtin", "yanky" },
+		module = { "telescope", "telescope.builtin" },
 		keys = { "<leader>f" },
+		wants = { "popup.nvim", "plenary.nvim", "nvim-web-devicons", "yanky.nvim", "vim-templates" },
 		requires = {
 			{ "nvim-lua/popup.nvim", opt = true },
 			{ "nvim-lua/plenary.nvim", opt = true },
@@ -398,6 +403,13 @@ require("packer").startup(function(use)
 					vim.g.tmpl_search_paths = { global.vim_config_path .. "/template" }
 					vim.g.tmpl_author_name = "ShunLi"
 					vim.g.tmpl_author_email = "2015097272@qq.com"
+				end,
+			},
+			{
+				"gbprod/yanky.nvim",
+				opt = true,
+				config = function()
+					require("plugins.configs.yanky")
 				end,
 			},
 		},
