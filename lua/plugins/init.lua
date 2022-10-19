@@ -382,7 +382,7 @@ require("packer").startup(function(use)
 	use({
 		"nvim-telescope/telescope.nvim",
 		cmd = { "Telescope" },
-		module = { "telescope", "telescope.builtin" },
+		module = { "telescope", "telescope.builtin", "yanky" },
 		keys = { "<leader>f" },
 		requires = {
 			{ "nvim-lua/popup.nvim", opt = true },
