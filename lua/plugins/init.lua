@@ -49,9 +49,9 @@ require("packer").startup(function(use)
 
 	use({
 		"RRethy/vim-illuminate",
-		event = "BufReadPre",
+		event = "BufReadPost",
 		config = function()
-			require("illuminate").configure({})
+			require("plugins.configs.illuminate")
 		end,
 	})
 
@@ -72,22 +72,16 @@ require("packer").startup(function(use)
 	use({
 		"folke/which-key.nvim",
 		config = function()
-			require("which-key").setup({
-				plugins = {
-					marks = true,
-					registers = true,
-					spelling = {
-						enabled = true,
-						suggestions = 20,
-					},
-				},
-			})
+			require("plugins.configs.which_key")
 		end,
 	})
 
 	use({
-		"ntpeters/vim-better-whitespace",
-		event = "BufReadPost",
+		"jdhao/whitespace.nvim",
+		event = { "BufReadPost" },
+		config = function()
+			vim.g.trailing_whitespace_exclude_filetypes = { "alpha", "git" }
+		end,
 	})
 
 	use({
@@ -187,6 +181,8 @@ require("packer").startup(function(use)
 			vim.g.VM_set_statusline = 0
 		end,
 	})
+
+	use({ "kevinhwang91/nvim-hlslens", event = "BufReadPost" })
 
 	use({
 		"junegunn/vim-easy-align",
