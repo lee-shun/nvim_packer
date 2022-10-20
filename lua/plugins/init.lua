@@ -86,12 +86,8 @@ require("packer").startup(function(use)
 	})
 
 	use({
-		"echasnovski/mini.nvim",
-		branch = "stable",
+		"ntpeters/vim-better-whitespace",
 		event = "BufReadPost",
-		config = function()
-			require("mini.trailspace").setup({})
-		end,
 	})
 
 	use({
@@ -233,9 +229,9 @@ require("packer").startup(function(use)
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
 		opt = true,
-        wants = {
-            "LuaSnip",
-        },
+		wants = {
+			"LuaSnip",
+		},
 		requires = {
 			{ "hrsh7th/cmp-nvim-lsp" },
 			{ "hrsh7th/cmp-buffer" },
@@ -247,7 +243,7 @@ require("packer").startup(function(use)
 			{ "lukas-reineke/cmp-under-comparator" },
 			{
 				"L3MON4D3/LuaSnip",
-                opt = true,
+				opt = true,
 				config = function()
 					require("plugins.configs.luasnip").setup()
 				end,
