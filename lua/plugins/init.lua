@@ -77,10 +77,14 @@ require("packer").startup(function(use)
 	})
 
 	use({
-		"jdhao/whitespace.nvim",
+		"johnfrankmorgan/whitespace.nvim",
 		event = { "BufReadPost" },
 		config = function()
-			vim.g.trailing_whitespace_exclude_filetypes = { "alpha", "git" }
+			require("whitespace-nvim").setup({
+				highlight = "DiffDelete",
+				ignored_filetypes = { "TelescopePrompt", "alpha", "git", "NvimTree" },
+			})
+			vim.api.nvim_create_user_command("TrimWS", "lua require('whitespace-nvim').trim()", {})
 		end,
 	})
 
