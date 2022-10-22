@@ -34,6 +34,10 @@ api.nvim_create_autocmd(
 	{ "BufNewFile", "BufRead" },
 	{ pattern = "*.launch", command = "set filetype=xml", group = betterFileType }
 )
+api.nvim_create_autocmd(
+	{ "BufNewFile", "BufRead" },
+	{ pattern = "*.msg", command = "set filetype=rosmsg", group = betterFileType }
+)
 
 -- number toggle
 local numToggle = api.nvim_create_augroup("NumToggle", { clear = true })
