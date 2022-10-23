@@ -192,8 +192,13 @@ local plug_list_func = function(use)
 		end,
 	})
 
-	use({ "kevinhwang91/nvim-hlslens",
-    event = "BufReadPost" })
+	use({
+		"kevinhwang91/nvim-hlslens",
+		event = { "BufReadPost" },
+		config = function()
+			require("hlslens").setup()
+		end,
+	})
 
 	use({
 		"junegunn/vim-easy-align",
@@ -302,6 +307,17 @@ local plug_list_func = function(use)
 		event = "LspAttach",
 		config = function()
 			require("neodim").setup({})
+		end,
+	})
+
+	-- Lua
+	use({
+		"folke/trouble.nvim",
+		opt = true,
+		cmd = { "Trouble", "TroubleClose", "TroubleToggle", "TroubleRefresh" },
+		requires = "kyazdani42/nvim-web-devicons",
+		config = function()
+			require("trouble").setup({})
 		end,
 	})
 

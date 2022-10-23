@@ -49,6 +49,7 @@ local on_attach = function(client, bufnr)
 		l = {
 			name = "LSP",
 			a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
+			d = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Diagnostic Float" },
 			r = {
 				function()
 					return ":IncRename " .. vim.fn.expand("<cword>")
@@ -92,11 +93,29 @@ capabilities.textDocument.foldingRange = {
 
 local cmp_cap = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
+-- clangd
 local clangd_cap = cmp_cap
 clangd_cap.offsetEncoding = { "utf-16" }
--- clangd
+local clangd_on_attach = function(client, bufnr)
+	local keymap_l = {
+		l = {
+			name = "LSP",
+			j = { "<cmd> ClangdSwitchSourceHeader<CR>", "Clangd Switch Header" },
+		},
+	}
+	wk.register(keymap_l, {
+		mode = "n",
+		prefix = "<leader>",
+		buffer = nil,
+		silent = true,
+		noremap = true,
+		nowait = false,
+	})
+
+	return on_attach(client, bufnr)
+end
 require("lspconfig")["clangd"].setup({
-	on_attach = on_attach,
+	on_attach = clangd_on_attach,
 	capabilities = clangd_cap,
 })
 
