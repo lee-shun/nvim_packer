@@ -192,7 +192,8 @@ local plug_list_func = function(use)
 		end,
 	})
 
-	use({ "kevinhwang91/nvim-hlslens", event = "BufReadPost" })
+	use({ "kevinhwang91/nvim-hlslens",
+    event = "BufReadPost" })
 
 	use({
 		"junegunn/vim-easy-align",
@@ -293,6 +294,14 @@ local plug_list_func = function(use)
 		},
 		config = function()
 			require("plugins.configs.lsp.lspconfig")
+		end,
+	})
+
+	use({
+		"zbirenbaum/neodim",
+		event = "LspAttach",
+		config = function()
+			require("neodim").setup({})
 		end,
 	})
 
