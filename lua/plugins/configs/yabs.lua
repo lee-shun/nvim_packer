@@ -10,7 +10,7 @@ local cpp_config = {
 					.. ".out"
 			end,
 			output = "quickfix",
-			opts = { open_on_run = "always" },
+			opts = { open_on_run = "auto" },
 		},
 		run = {
 			command = function()

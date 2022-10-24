@@ -63,7 +63,7 @@ local plug_list_func = function(use)
 
 	-- file navgative
 	use({
-		"kyazdani42/nvim-tree.lua",
+		"nvim-tree/nvim-tree.lua",
 		cmd = { "NvimTreeToggle", "NvimTreeClose" },
 		wants = { "nvim-web-devicons" },
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
