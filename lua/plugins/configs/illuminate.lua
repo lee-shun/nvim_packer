@@ -1,9 +1,9 @@
 require("illuminate").configure({
 	-- providers: provider used to get references in the buffer, ordered by priority
 	providers = {
+		"regex",
 		"lsp",
 		"treesitter",
-		"regex",
 	},
 	-- delay: delay in milliseconds
 	delay = 100,
@@ -15,6 +15,7 @@ require("illuminate").configure({
 	filetypes_denylist = {
 		"dirvish",
 		"fugitive",
+        "NvimTree"
 	},
 	-- filetypes_allowlist: filetypes to illuminate, this is overriden by filetypes_denylist
 	filetypes_allowlist = {},

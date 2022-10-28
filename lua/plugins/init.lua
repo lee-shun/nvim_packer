@@ -18,15 +18,16 @@ local plug_list_func = function(use)
 
 	use({
 		"sainnhe/sonokai",
-		disable = true,
 		config = function()
 			vim.g.sonokai_better_performance = 1
+            vim.g.sonokai_current_word='underline'
 			vim.cmd("colorscheme sonokai")
 		end,
 	})
 
 	use({
 		"rmehri01/onenord.nvim",
+        disable = true,
 		config = function()
 			vim.cmd("colorscheme onenord")
 		end,
