@@ -20,14 +20,14 @@ local plug_list_func = function(use)
 		"sainnhe/sonokai",
 		config = function()
 			vim.g.sonokai_better_performance = 1
-            vim.g.sonokai_current_word='underline'
+			vim.g.sonokai_current_word = "underline"
 			vim.cmd("colorscheme sonokai")
 		end,
 	})
 
 	use({
 		"rmehri01/onenord.nvim",
-        disable = true,
+		disable = true,
 		config = function()
 			vim.cmd("colorscheme onenord")
 		end,
@@ -410,6 +410,15 @@ local plug_list_func = function(use)
 		end,
 	})
 
+	-- yank history
+	use({
+		"gbprod/yanky.nvim",
+		event = { "BufReadPost" },
+		config = function()
+			require("plugins.configs.yanky")
+		end,
+	})
+
 	-- telescope
 	use({
 		"nvim-telescope/telescope.nvim",
@@ -431,13 +440,6 @@ local plug_list_func = function(use)
 					vim.g.tmpl_search_paths = { global.vim_config_path .. "/template" }
 					vim.g.tmpl_author_name = "ShunLi"
 					vim.g.tmpl_author_email = "2015097272@qq.com"
-				end,
-			},
-			{
-				"gbprod/yanky.nvim",
-				opt = true,
-				config = function()
-					require("plugins.configs.yanky")
 				end,
 			},
 		},

@@ -28,3 +28,6 @@ require("yanky").setup({
 		enabled = true,
 	},
 })
+
+-- telescope extensions
+require("telescope").load_extension("yank_history")

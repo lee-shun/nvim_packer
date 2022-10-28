@@ -62,5 +62,4 @@ telescope.setup({
 })
 
 -- extensions
-require("telescope").load_extension("yank_history")
 require("telescope").load_extension("find_template")
