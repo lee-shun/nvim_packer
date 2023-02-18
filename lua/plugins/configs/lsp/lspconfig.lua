@@ -1,19 +1,6 @@
 local wk = require("which-key")
 
 local on_attach = function(client, bufnr)
-	-- semantic provider
-	local caps = client.server_capabilities
-	if caps.semanticTokensProvider and caps.semanticTokensProvider.full then
-		local SemHighlight = vim.api.nvim_create_augroup("SemHighlight", { clear = true })
-		vim.api.nvim_create_autocmd({ "BufEnter", "BufEnter", "CursorHold", "InsertLeave", "BufWritePost" }, {
-			command = [[lua vim.lsp.buf.semantic_tokens_full()]],
-			group = SemHighlight,
-			buffer = vim.api.nvim_get_current_buf(),
-		})
-	end
-	-- set highlight
-	vim.api.nvim_set_hl(0, "LspProperty", { ctermfg = "LightRed", fg = "LightRed" })
-
 	-- Enable completion triggered by <c-x><c-o>
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 

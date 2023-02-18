@@ -135,6 +135,17 @@ local plug_list_func = function(use)
 	})
 
 	use({
+		"m-demare/hlargs.nvim",
+		event = "BufReadPost",
+		requires = { "nvim-treesitter/nvim-treesitter" },
+		config = function()
+			require("hlargs").setup({
+				color = "#FAD7A0",
+			})
+		end,
+	})
+
+	use({
 		"akinsho/toggleterm.nvim",
 		event = "BufReadPre",
 		config = function()
@@ -275,18 +286,8 @@ local plug_list_func = function(use)
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
 		opt = true,
-		wants = { "nvim-semantic-tokens", "nvim-navic", "inc-rename.nvim" },
+		wants = { "nvim-navic", "inc-rename.nvim" },
 		requires = {
-			{
-				"theHamsta/nvim-semantic-tokens",
-				opt = true,
-				config = function()
-					require("nvim-semantic-tokens").setup({
-						preset = "default",
-						highlighters = { require("nvim-semantic-tokens.table-highlighter") },
-					})
-				end,
-			},
 			{
 				"SmiteshP/nvim-navic",
 				opt = true,
@@ -299,21 +300,19 @@ local plug_list_func = function(use)
 					require("inc_rename").setup()
 				end,
 			},
+			{
+				"j-hui/fidget.nvim",
+				opt = true,
+				config = function()
+					require("fidget").setup({})
+				end,
+			},
 		},
 		config = function()
 			require("plugins.configs.lsp.lspconfig")
 		end,
 	})
 
-	use({
-		"zbirenbaum/neodim",
-		event = "LspAttach",
-		config = function()
-			require("neodim").setup({})
-		end,
-	})
-
-	-- Lua
 	use({
 		"folke/trouble.nvim",
 		opt = true,
@@ -324,7 +323,13 @@ local plug_list_func = function(use)
 		end,
 	})
 
-	use({ "liuchengxu/vista.vim", cmd = "Vista" })
+	use({
+		"liuchengxu/vista.vim",
+		cmd = "Vista",
+		config = function()
+			vim.g.vista_default_executive = "nvim_lsp"
+		end,
+	})
 
 	-- manage root
 	use({
