@@ -19,7 +19,7 @@ local on_attach = function(client, bufnr)
 		H = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature Help" },
 		h = { "<cmd>LspUI hover<CR>", "LspUI Hover" },
 		i = { "<cmd>Telescope lsp_implementations<CR>", "Goto Implementation" },
-		b = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Goto Type Definition" },
+		t = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Goto Type Definition" },
 		r = { "<cmd>lua vim.lsp.buf.references()<CR>", "Goto Reference" },
 	}
 	wk.register(keymap_g, {
