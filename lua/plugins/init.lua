@@ -286,7 +286,7 @@ local plug_list_func = function(use)
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
 		opt = true,
-		wants = { "nvim-navic", "inc-rename.nvim" },
+		wants = { "nvim-navic", "inc-rename.nvim", "fidget.nvim" },
 		requires = {
 			{
 				"SmiteshP/nvim-navic",
@@ -360,22 +360,11 @@ local plug_list_func = function(use)
 
 	-- code action UI
 	use({
-		"kosayoda/nvim-lightbulb",
+		"jinzhongjia/LspUI.nvim",
 		event = "BufReadPost",
-		wants = { "FixCursorHold.nvim" },
-		requires = {
-			{ "antoinemadec/FixCursorHold.nvim", opt = true },
-		},
+		wants = { "nvim-lspconfig" },
 		config = function()
-			require("nvim-lightbulb").setup({
-				sign = { enabled = false },
-				float = {
-					enabled = true,
-				},
-				autocmd = {
-					enabled = true,
-				},
-			})
+			require("plugins.configs.lsp.LspUI")
 		end,
 	})
 

@@ -42,8 +42,8 @@ local config = {
 		section_separators = "",
 		theme = "auto",
 		disabled_filetypes = { -- Filetypes to disable lualine for.
-			winbar = {"vista", "alpha", "NvimTree"},
-			statuesline = {"alpha"},
+			winbar = { "vista", "alpha", "NvimTree" },
+			statuesline = { "alpha" },
 		},
 		globalstatus = true,
 	},
@@ -172,7 +172,7 @@ status_ins_left({
 status_ins_left({
 	"diagnostics",
 	sources = { "nvim_diagnostic" },
-	symbols = { error = " ", warn = " ", info = " " },
+	symbols = { error = " ", warn = " ", info = " ", hint = " " },
 	diagnostics_color = {
 		color_error = { fg = colors.red },
 		color_warn = { fg = colors.yellow },
@@ -263,7 +263,7 @@ end
 
 winbar_ins_left({
 	"filename",
-    path=3,
+	path = 3,
 	cond = conditions.buffer_not_empty,
 	color = { fg = colors.magenta, gui = "bold" },
 })
