@@ -14,10 +14,10 @@ local on_attach = function(client, bufnr)
 
 	-- mappings
 	local keymap_g = {
-		d = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "Definition" },
-		D = { "<Cmd>lua vim.lsp.buf.declaration()<CR>", "Declaration" },
+		d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Definition" },
+		D = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Declaration" },
 		H = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature Help" },
-		h = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover" },
+		h = { "<cmd>LspUI hover<CR>", "LspUI Hover" },
 		i = { "<cmd>Telescope lsp_implementations<CR>", "Goto Implementation" },
 		b = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Goto Type Definition" },
 		r = { "<cmd>lua vim.lsp.buf.references()<CR>", "Goto Reference" },
@@ -35,15 +35,16 @@ local on_attach = function(client, bufnr)
 	local keymap_l = {
 		l = {
 			name = "LSP",
-			a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
+			a = { "<cmd>LspUI code_action<CR>", "LspUI Code Action" },
 			d = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Diagnostic Float" },
-			r = {
+			i = {
 				function()
 					return ":IncRename " .. vim.fn.expand("<cword>")
 				end,
 				"IncRename",
 				expr = true,
 			},
+			r = { "<cmd>LspUI rename<CR>", "LspUI Rename" },
 		},
 	}
 	wk.register(keymap_l, {
@@ -56,8 +57,8 @@ local on_attach = function(client, bufnr)
 	})
 
 	wk.register({
-		["[d"] = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Goto Prev Diagnostic" },
-		["]d"] = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Goto Next Diagnostic" },
+		["[d"] = { "<cmd>LspUI diagnostic prev<CR>", "LspUI Prev Diagnostic" },
+		["]d"] = { "<cmd>LspUI diagnostic next<CR>", "LspUI Next Diagnostic" },
 	}, {
 		mode = "n",
 		prefix = "",
@@ -105,21 +106,6 @@ require("lspconfig")["clangd"].setup({
 	on_attach = clangd_on_attach,
 	capabilities = clangd_cap,
 })
-
--- local ccls_on_attach = function(client, bufnr)
--- 	vim.cmd([[ hi LspCxxHlGroupMemberVariable ctermfg=LightRed guifg=LightRed  cterm=none gui=none ]])
--- 	on_attach(client, bufnr)
--- end
--- -- ccls
--- require("lspconfig").ccls.setup({
--- 	init_options = {
--- 		highlight = {
--- 			lsRanges = true,
--- 		},
--- 	},
--- 	on_attach = ccls_on_attach,
--- 	capabilities = cmp_cap,
--- })
 
 -- cmake
 require("lspconfig")["cmake"].setup({
