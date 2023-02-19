@@ -126,7 +126,6 @@ local plug_list_func = function(use)
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
 		requires = {
-			{ "nvim-treesitter/playground" },
 			{ "p00f/nvim-ts-rainbow" },
 		},
 		config = function()
