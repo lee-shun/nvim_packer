@@ -508,6 +508,30 @@ local plug_list_func = function(use)
 		end,
 	})
 
+	-- werid stuff
+	use({
+		"giusgad/pets.nvim",
+		opt = true,
+		cmd = {
+			"PetsNew",
+			"PetsNewCustom",
+			"PetsList",
+			"PetsKill",
+			"PetsKillAll",
+			"PetsPauseToggle",
+			"PetsHideToggle",
+			"PetsSleepToggle",
+		},
+		wants = { "hologram.nvim", "nui.nvim" },
+		requires = {
+			{ "edluffy/hologram.nvim", opt = true },
+			{ "MunifTanjim/nui.nvim", opt = true },
+		},
+		config = function()
+			require("pets").setup()
+		end,
+	})
+
 	if packer_bootstrap then
 		require("packer").sync()
 	end
