@@ -116,9 +116,9 @@ vim.o.splitbelow = true
 vim.o.undofile = true
 vim.o.swapfile = true
 vim.o.backup = false
-vim.o.undodir = global.vim_config_path .. "tmp/undo"
-vim.o.backupdir = global.vim_config_path .. "tmp/backup"
-vim.o.directory = global.vim_config_path .. "tmp/backup"
+vim.o.undodir = global.vim_config_path .. "/tmp/undo"
+vim.o.backupdir = global.vim_config_path .. "/tmp/backup"
+vim.o.directory = global.vim_config_path .. "/tmp/backup"
 
 vim.opt.wildignore:append("*.o,*.obj,*.bin,*.dll,*.exe")
 vim.opt.wildignore:append("*/.git/*,*/.svn/*,*/__pycache__/*,*/build/**")
