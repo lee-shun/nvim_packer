@@ -478,29 +478,6 @@ local plug_list_func = function(use)
 		end,
 	})
 
-	use({
-		"jbyuki/nabla.nvim",
-		ft = { "markdown", "tex" },
-		config = function()
-			local nabulaDis = vim.api.nvim_create_augroup("NabulaDis", { clear = true })
-			vim.api.nvim_create_autocmd({ "CursorHold", "Filetype" }, {
-				pattern = { "markdown", "tex" },
-				command = [[silent! lua require("nabla").popup({ border = "rounded" })]],
-				group = nabulaDis,
-			})
-			vim.cmd([[au CursorHold *.md,*.markdown silent! lua require("nabla").popup({ border = "rounded" })]])
-			vim.cmd([[au CursorHold *.tex silent! lua require("nabla").popup({ border = "rounded" })]])
-		end,
-	})
-
-	use({
-		"NFrid/due.nvim",
-		ft = "markdown",
-		config = function()
-			require("due_nvim").setup({})
-		end,
-	})
-
 	if packer_bootstrap then
 		require("packer").sync()
 	end
