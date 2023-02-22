@@ -153,14 +153,6 @@ local plug_list_func = function(use)
 	})
 
 	use({
-		"is0n/fm-nvim",
-		event = "BufReadPost",
-		config = function()
-			require("fm-nvim").setup({})
-		end,
-	})
-
-	use({
 		"folke/todo-comments.nvim",
 		event = "BufReadPost",
 		config = function()
@@ -456,7 +448,7 @@ local plug_list_func = function(use)
 			vim.g.vimtex_quickfix_mode = 0
 			vim.g.vimtex_mappings_enabled = 0
 			vim.g.vimtex_imaps_enabled = 0
-			vim.g.vimtex_text_obj_enabled = 0
+			vim.g.vimtex_text_obj_enabled = 1
 			vim.g.vimtex_fold_enabled = 1
 			vim.g.tex_conceal = "abdmg"
 			vim.g.vimtex_format_enabled = 1
@@ -497,6 +489,7 @@ local plug_list_func = function(use)
 				group = nabulaDis,
 			})
 			vim.cmd([[au CursorHold *.md,*.markdown silent! lua require("nabla").popup({ border = "rounded" })]])
+			vim.cmd([[au CursorHold *.tex silent! lua require("nabla").popup({ border = "rounded" })]])
 		end,
 	})
 
@@ -505,30 +498,6 @@ local plug_list_func = function(use)
 		ft = "markdown",
 		config = function()
 			require("due_nvim").setup({})
-		end,
-	})
-
-	-- werid stuff
-	use({
-		"giusgad/pets.nvim",
-		opt = true,
-		cmd = {
-			"PetsNew",
-			"PetsNewCustom",
-			"PetsList",
-			"PetsKill",
-			"PetsKillAll",
-			"PetsPauseToggle",
-			"PetsHideToggle",
-			"PetsSleepToggle",
-		},
-		wants = { "hologram.nvim", "nui.nvim" },
-		requires = {
-			{ "edluffy/hologram.nvim", opt = true },
-			{ "MunifTanjim/nui.nvim", opt = true },
-		},
-		config = function()
-			require("pets").setup()
 		end,
 	})
 
