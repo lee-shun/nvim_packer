@@ -4,7 +4,7 @@ local wk = require("which-key")
 -- Buildin Mapping
 --
 
--- comp
+-- complementation
 vim.keymap.set("i", "<CR>", '(pumvisible())?("\\<C-y>"):("\\<cr>")', { expr = true, noremap = true })
 vim.keymap.set("i", "<Tab>", 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', { expr = true, noremap = true })
 vim.keymap.set("i", "<S-Tab>", 'pumvisible() ? "\\<C-p>" : "\\<Tab>"', { expr = true, noremap = true })
@@ -68,6 +68,9 @@ vim.keymap.set("n", "J", "mzJ'z", { noremap = true })
 
 -- terminal
 vim.keymap.set("t", "<C-N>", "<C-\\><C-N>", { noremap = true })
+
+-- numbers toggle
+vim.keymap.set("n", "<F2>", ":set number! relativenumber!<CR>")
 
 --
 -- Plugin Mappings
