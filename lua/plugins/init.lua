@@ -15,6 +15,7 @@ local packer_bootstrap = ensure_packer()
 -- plugins
 local plug_list_func = function(use)
 	use({ "wbthomason/packer.nvim" })
+	use({ "lewis6991/impatient.nvim" }) -- NOTE: this plug should be used in the very first line in the config file
 
 	use({
 		"sainnhe/sonokai",
@@ -76,8 +77,6 @@ local plug_list_func = function(use)
 	})
 
 	-- general enchance
-	use({ "lewis6991/impatient.nvim" })
-
 	use({
 		"folke/which-key.nvim",
         event = "BufReadPre",
@@ -483,8 +482,6 @@ local plug_list_func = function(use)
 	if packer_bootstrap then
 		require("packer").sync()
 	end
-
-	pcall(require, "impatient")
 end
 
 require("packer").startup({
