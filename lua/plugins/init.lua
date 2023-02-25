@@ -125,8 +125,9 @@ local plug_list_func = function(use)
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
+		event = "BufReadPre",
 		requires = {
-			{ "p00f/nvim-ts-rainbow" },
+			{ "p00f/nvim-ts-rainbow", opt = true, event = "BufReadPost" },
 		},
 		config = function()
 			require("plugins.configs.treesitter")

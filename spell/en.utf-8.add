@@ -144,3 +144,7 @@ openMVS
 MVS
 Eigen
 Sophus
+OpenCV
+reprojection
+PnP
+densify
