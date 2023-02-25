@@ -80,6 +80,7 @@ local plug_list_func = function(use)
 
 	use({
 		"folke/which-key.nvim",
+        event = "BufReadPre",
 		config = function()
 			require("plugins.configs.which_key")
 		end,
@@ -278,7 +279,7 @@ local plug_list_func = function(use)
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
 		opt = true,
-		wants = { "nvim-navic", "inc-rename.nvim", "fidget.nvim" },
+		wants = { "nvim-navic", "inc-rename.nvim", "fidget.nvim", "which-key.nvim" },
 		requires = {
 			{
 				"SmiteshP/nvim-navic",

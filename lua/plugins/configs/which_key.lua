@@ -70,3 +70,6 @@ require("which-key").setup({
 	},
 }
 )
+
+-- load the mappings
+require("core.mappings")
